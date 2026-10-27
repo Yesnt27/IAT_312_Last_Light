@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject player; // Reference to the player GameObject
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
     }
 }

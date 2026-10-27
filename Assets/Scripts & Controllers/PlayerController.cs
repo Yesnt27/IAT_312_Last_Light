@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,19 +16,18 @@ public class PlayerController : MonoBehaviour
     private PlayerControls playerControls;
     private Vector2 movement;
     private Rigidbody2D rb;
-
+    private bool isGrounded;
 
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerControls = new PlayerControls();
-
     }
 
-     private void OnEnable()
+    private void OnEnable()
     {
-        playerControls = new PlayerControls();
         playerControls.Enable();
+        playerControls.Controls.Jump.performed += OnJump;
     }
 
     private void OnDisable()
@@ -42,23 +40,22 @@ public class PlayerController : MonoBehaviour
         movement = playerControls.Controls.Move.ReadValue<Vector2>();
     }
 
-
     public void Update()
     {
         PlayerInput();
+        CheckIsGrounded();
     }
 
     public void FixedUpdate() 
     {
         Move();
-        Jump();
     }
 
     public void Move()
     {
-         if (movement.x != 0)
+        if (movement.x != 0)
         {
-        facingDirection = Mathf.Sign(movement.x);
+            facingDirection = Mathf.Sign(movement.x);
         }
 
         rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
@@ -71,18 +68,19 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        
     }
 
-    public void Jump()
+    private void CheckIsGrounded()
     {
-        bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Debug.Log("Is Grounded: " + isGrounded);
+    } 
 
-        if (isGrounded && playerControls.Controls.Jump.triggered)
+    private void OnJump(InputAction.CallbackContext context)
+    {
+        if (isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
-
-
 }
