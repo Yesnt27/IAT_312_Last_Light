@@ -9,13 +9,15 @@ public class CutscenePlaceholder : MonoBehaviour
 {
     public static CutscenePlaceholder Instance { get; private set; }
 
+    [Header("Input")]
+    [SerializeField] private InputActionReference continueAction;
+
     [Header("References")]
     [SerializeField] private GameObject cutscenePanel;
     [SerializeField] private TextMeshProUGUI titleLabel;
     [SerializeField] private TextMeshProUGUI descriptionLabel;
     [SerializeField] private Button continueButton;
 
-    private PlayerControls playerControls;
     private Action onClosed;
 
     public bool IsShowing => cutscenePanel.activeSelf;
@@ -23,21 +25,19 @@ public class CutscenePlaceholder : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        playerControls = new PlayerControls();
         continueButton.onClick.AddListener(Close);
         cutscenePanel.SetActive(false);
     }
 
     private void OnEnable()
     {
-        playerControls.Enable();
-        playerControls.Controls.Dialogue.performed += OnContinue;
+        continueAction.action.Enable();
+        continueAction.action.performed += OnContinue;
     }
 
     private void OnDisable()
     {
-        playerControls.Controls.Dialogue.performed -= OnContinue;
-        playerControls.Disable();
+        continueAction.action.performed -= OnContinue;
     }
 
     public void Show(string title, string description, Action onComplete = null)

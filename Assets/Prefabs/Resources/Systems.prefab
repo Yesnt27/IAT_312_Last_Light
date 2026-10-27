@@ -480,6 +480,7 @@ MonoBehaviour:
   characterNameText: {fileID: 8929038874268616159}
   dialogueArea: {fileID: 4564302153597834189}
   dialogueBox: {fileID: 8028796800719131335}
+  advanceAction: {fileID: 8804062662992266057, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   typingSpeed: 0.02
   isDialogueActive: 0
 --- !u!114 &526850470330435630
@@ -523,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01035d9abe3d0ed4193ae30f702445d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutscenePlaceholder
+  continueAction: {fileID: 8804062662992266057, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   cutscenePanel: {fileID: 8000973197388327100}
   titleLabel: {fileID: 2826568934162508531}
   descriptionLabel: {fileID: 795670695900258240}

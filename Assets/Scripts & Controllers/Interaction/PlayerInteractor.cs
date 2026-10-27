@@ -4,30 +4,26 @@ using UnityEngine.InputSystem;
 // On the player: finds the nearest available Interactable and shows its prompt.
 public class PlayerInteractor : MonoBehaviour
 {
+    [Header("Input")]
+    [SerializeField] private InputActionReference interactAction;
+
     [Header("Detection")]
     [SerializeField] private float interactRadius = 1.2f;
 
-    private PlayerControls playerControls;
     private Interactable current;
     private readonly Collider2D[] hits = new Collider2D[16];
 
     public Interactable Current => current;
 
-    private void Awake()
-    {
-        playerControls = new PlayerControls();
-    }
-
     private void OnEnable()
     {
-        playerControls.Enable();
-        playerControls.Controls.Interact.performed += OnInteract;
+        interactAction.action.Enable();
+        interactAction.action.performed += OnInteract;
     }
 
     private void OnDisable()
     {
-        playerControls.Controls.Interact.performed -= OnInteract;
-        playerControls.Disable();
+        interactAction.action.performed -= OnInteract;
         if (InteractionPrompt.Instance != null) InteractionPrompt.Instance.Hide();
     }
 

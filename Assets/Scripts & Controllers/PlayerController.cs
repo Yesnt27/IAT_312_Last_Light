@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Input")]
+    [SerializeField] private InputActionReference moveAction;
+    [SerializeField] private InputActionReference jumpAction;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float jumpForce = 16f;
@@ -13,7 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
-    private PlayerControls playerControls;
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
@@ -23,24 +26,23 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerControls = new PlayerControls();
     }
 
     private void OnEnable()
     {
-        playerControls.Enable();
-        playerControls.Controls.Jump.performed += OnJump;
+        moveAction.action.Enable();
+        jumpAction.action.Enable();
+        jumpAction.action.performed += OnJump;
     }
 
     private void OnDisable()
     {
-        playerControls.Controls.Jump.performed -= OnJump;
-        playerControls.Disable();
+        jumpAction.action.performed -= OnJump;
     }
 
     private void Update()
     {
-        moveInput = CanControl ? playerControls.Controls.Move.ReadValue<Vector2>().x : 0f;
+        moveInput = CanControl ? moveAction.action.ReadValue<Vector2>().x : 0f;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (moveInput != 0f) Face(Mathf.Sign(moveInput));
     }

@@ -13,6 +13,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueArea;
     [SerializeField] private GameObject dialogueBox;
 
+    [Header("Input")]
+    [SerializeField] private InputActionReference advanceAction;
+
     [Header("Settings")]
     [SerializeField] private float typingSpeed = 0.02f;
 
@@ -20,7 +23,6 @@ public class DialogueManager : MonoBehaviour
     private DialogueLine currentLine;
     private bool isTyping;
     private Action onFinished;
-    private PlayerControls playerControls;
     public bool isDialogueActive = false;
 
 
@@ -32,21 +34,19 @@ public class DialogueManager : MonoBehaviour
             instance = this;
         }
         lines = new Queue<DialogueLine>();
-        playerControls = new PlayerControls();
 
         dialogueBox.SetActive(false);
     }
 
     private void OnEnable()
     {
-        playerControls.Enable();
-        playerControls.Controls.Dialogue.performed += OnAdvance;
+        advanceAction.action.Enable();
+        advanceAction.action.performed += OnAdvance;
     }
 
     private void OnDisable()
     {
-        playerControls.Controls.Dialogue.performed -= OnAdvance;
-        playerControls.Disable();
+        advanceAction.action.performed -= OnAdvance;
     }
 
     public void StartDialogue(Dialogue dialogue, Action onComplete = null)

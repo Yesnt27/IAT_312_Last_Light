@@ -236,9 +236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3181b93a653cd49bbb1f672d414001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moveAction: {fileID: 5153861982214049684, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
+  jumpAction: {fileID: 7161336234527586981, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   moveSpeed: 6
   jumpForce: 16
-  facingDirection: 1
+  artFacesRight: 0
   groundCheck: {fileID: 8209623313848761961}
   groundCheckRadius: 0.2
   groundLayer:
@@ -256,4 +258,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd241e25e5343f4d90b7c07c6be0a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
+  interactAction: {fileID: 1495457442111385117, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   interactRadius: 1.2
