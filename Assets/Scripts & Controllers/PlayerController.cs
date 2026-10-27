@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 6f;
-    [SerializeField] private float jumpForce = 16f;
+    [SerializeField] private float jumpForce = 4f;
     [SerializeField] private float facingDirection = 1f;
 
     [Header("Ground Check")]
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+
         playerControls.Enable();
         playerControls.Controls.Jump.performed += OnJump;
     }
@@ -44,6 +45,15 @@ public class PlayerController : MonoBehaviour
     {
         PlayerInput();
         CheckIsGrounded();
+        if (DialogueManager.instance.isDialogueActive)
+        {
+            movement = Vector2.zero;
+            jumpForce = 0f;
+        }
+        else
+        {
+            jumpForce = 4f;
+        }
     }
 
     public void FixedUpdate() 
