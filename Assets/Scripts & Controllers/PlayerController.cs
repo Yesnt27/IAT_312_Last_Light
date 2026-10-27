@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float jumpForce = 16f;
-    [SerializeField] private float facingDirection = 1f;
+    [SerializeField] private bool artFacesRight = false;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private PlayerControls playerControls;
-    private Vector2 movement;
     private Rigidbody2D rb;
+    private float moveInput;
     private bool isGrounded;
 
-    public void Awake()
+    private bool CanControl => !PlayerLock.IsLocked;
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerControls = new PlayerControls();
@@ -36,51 +38,32 @@ public class PlayerController : MonoBehaviour
         playerControls.Disable();
     }
 
-    public void PlayerInput()
+    private void Update()
     {
-        movement = PlayerLock.IsLocked ? Vector2.zero : playerControls.Controls.Move.ReadValue<Vector2>();
-    }
-
-    public void Update()
-    {
-        PlayerInput();
-        CheckIsGrounded();
-    }
-
-    public void FixedUpdate() 
-    {
-        Move();
-    }
-
-    public void Move()
-    {
-        if (movement.x != 0)
-        {
-            facingDirection = Mathf.Sign(movement.x);
-        }
-
-        rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
-
-        if (movement.x > 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (movement.x < 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-    }
-
-    private void CheckIsGrounded()
-    {
+        moveInput = CanControl ? playerControls.Controls.Move.ReadValue<Vector2>().x : 0f;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-    } 
+        if (moveInput != 0f) Face(Mathf.Sign(moveInput));
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+    }
+
+    private void Face(float direction)
+    {
+        transform.localScale = new Vector3(artFacesRight ? direction : -direction, 1f, 1f);
+    }
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (isGrounded && !PlayerLock.IsLocked)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        }
+        if (isGrounded && CanControl) rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck == null) return;
+        Gizmos.color = isGrounded ? Color.green : Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }
