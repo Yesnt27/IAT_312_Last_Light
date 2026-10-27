@@ -77,7 +77,9 @@ All of these live on one **`Systems` prefab** that is never destroyed. A small `
 
 - **Check:** in Test Scene, walk, interact, read dialogue, see a task update, play a placeholder cutscene, and travel between two scenes with the key flag still set.
 
-## Phase C: Day and night flow
+## Phase C: Day and night flow ✅ done 2026-10-27
+Also added early: a minimal `FoundPage` (collect page N; the journal UI is still Phase E), `Bed`, `NightShiftStart`, and the `DayDebugStart` dev tool. The night is a placeholder card plus a report card until Phase G. The Victory/Death endings are cards for now, followed by the Title Screen (the Ending scene is still Phase H).
+
 - **`Core/DayDefinition.cs` (ScriptableObject), one asset per day.** Fields:
   - the wake-up dialogue
   - the day puzzle's task text

@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueLine currentLine;
     private bool isTyping;
     private Action onFinished;
+    private int startedFrame;
     public bool isDialogueActive = false;
 
 
@@ -59,6 +60,7 @@ public class DialogueManager : MonoBehaviour
 
         isDialogueActive = true;
         onFinished = onComplete;
+        startedFrame = Time.frameCount;
         PlayerLock.Add(this);
         dialogueBox.SetActive(true);
         lines.Clear();
@@ -73,7 +75,8 @@ public class DialogueManager : MonoBehaviour
 
     private void OnAdvance(InputAction.CallbackContext context)
     {
-        if (!isDialogueActive) return;
+        // Ignore the key press that started this dialogue (e.g. the one that closed a card).
+        if (!isDialogueActive || Time.frameCount == startedFrame) return;
 
         if (isTyping)
         {

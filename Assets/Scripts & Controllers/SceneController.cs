@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,13 +16,13 @@ public class SceneController : MonoBehaviour
         Instance = this;
     }
 
-    public void LoadScene(string sceneName, string spawnId = null)
+    public void LoadScene(string sceneName, string spawnId = null, Action onLoaded = null)
     {
         if (isLoading) return;
-        StartCoroutine(LoadRoutine(sceneName, spawnId));
+        StartCoroutine(LoadRoutine(sceneName, spawnId, onLoaded));
     }
 
-    private IEnumerator LoadRoutine(string sceneName, string spawnId)
+    private IEnumerator LoadRoutine(string sceneName, string spawnId, Action onLoaded)
     {
         isLoading = true;
         PlayerLock.Add(this);
@@ -37,6 +38,7 @@ public class SceneController : MonoBehaviour
 
         PlayerLock.Remove(this);
         isLoading = false;
+        onLoaded?.Invoke();
     }
 
     private void PlaceAtSpawn(string spawnId)

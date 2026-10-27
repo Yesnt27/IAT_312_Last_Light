@@ -9,6 +9,7 @@ public class GameState : MonoBehaviour
 
     [Header("Progress")]
     [SerializeField] private int currentDay = 1;
+    [SerializeField] private DayPhase phase = DayPhase.None;
     [SerializeField] private bool powerOn = true;
     [SerializeField] private List<string> flags = new List<string>();
     [SerializeField] private List<int> collectedPages = new List<int>();
@@ -26,6 +27,7 @@ public class GameState : MonoBehaviour
     public event Action Changed;
 
     public int CurrentDay => currentDay;
+    public DayPhase Phase => phase;
     public bool PowerOn => powerOn;
     public string ActiveTaskId => activeTaskId;
     public string ActiveTaskText => activeTaskText;
@@ -82,6 +84,13 @@ public class GameState : MonoBehaviour
         Changed?.Invoke();
     }
 
+    public void SetPhase(DayPhase newPhase)
+    {
+        if (phase == newPhase) return;
+        phase = newPhase;
+        Changed?.Invoke();
+    }
+
     public void SetPower(bool on)
     {
         if (powerOn == on) return;
@@ -114,6 +123,7 @@ public class GameState : MonoBehaviour
     public void ResetAll()
     {
         currentDay = 1;
+        phase = DayPhase.None;
         powerOn = true;
         flags.Clear();
         collectedPages.Clear();

@@ -19,6 +19,7 @@ public class CutscenePlaceholder : MonoBehaviour
     [SerializeField] private Button continueButton;
 
     private Action onClosed;
+    private int shownFrame;
 
     public bool IsShowing => cutscenePanel.activeSelf;
 
@@ -40,10 +41,22 @@ public class CutscenePlaceholder : MonoBehaviour
         continueAction.action.performed -= OnContinue;
     }
 
+    public void Show(CutsceneCard card, Action onComplete = null)
+    {
+        Show(card.title, card.description, onComplete);
+    }
+
     public void Show(string title, string description, Action onComplete = null)
     {
+        ShowCard($"CUTSCENE: {title}", description, onComplete);
+    }
+
+    // A full-screen card without the "CUTSCENE:" prefix (night placeholders, reports).
+    public void ShowCard(string heading, string description, Action onComplete = null)
+    {
         onClosed = onComplete;
-        titleLabel.text = $"CUTSCENE: {title}";
+        shownFrame = Time.frameCount;
+        titleLabel.text = heading;
         descriptionLabel.text = description;
         cutscenePanel.SetActive(true);
         PlayerLock.Add(this);
@@ -63,6 +76,7 @@ public class CutscenePlaceholder : MonoBehaviour
 
     private void OnContinue(InputAction.CallbackContext context)
     {
-        if (IsShowing && !DialogueManager.instance.isDialogueActive) Close();
+        // Ignore the key press that opened this card (e.g. the one that ended a dialogue).
+        if (IsShowing && Time.frameCount > shownFrame && !DialogueManager.instance.isDialogueActive) Close();
     }
 }

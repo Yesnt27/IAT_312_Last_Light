@@ -392,8 +392,8 @@ RectTransform:
   - {fileID: 1269524960510669350}
   - {fileID: 7414839744753302619}
   - {fileID: 6233637317964619860}
-  - {fileID: 883788869408270324}
   - {fileID: 6403620617605807865}
+  - {fileID: 883788869408270324}
   m_Father: {fileID: 2129478739108952221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1342,6 +1342,7 @@ GameObject:
   - component: {fileID: 2129478739108952221}
   - component: {fileID: 4905707833191827755}
   - component: {fileID: 1681673104147944352}
+  - component: {fileID: 7582300696637108891}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1379,6 +1380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   currentDay: 1
+  phase: 0
   powerOn: 1
   flags: []
   collectedPages: 
@@ -1400,6 +1402,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a2da4950a05d348a856562951b9607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
+--- !u!114 &7582300696637108891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240417004231455490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1462d9af533c54a8cc4b1e11f2664b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayManager
+  days:
+  - {fileID: 11400000, guid: 3bd8b25a951c0654a99904e703a5f42e, type: 2}
+  - {fileID: 11400000, guid: cee919aa877f4464aa906fe260b44d1c, type: 2}
+  - {fileID: 11400000, guid: 53ec3de206f5a4049903fdbcf26387e1, type: 2}
+  - {fileID: 11400000, guid: c5251fd506e2d7a459461223d2e7f416, type: 2}
+  introScene: Introduction
+  titleScene: Title Screen
+  introCutscene:
+    title: '#1 Boat ride'
+    description: The player sails to the island with their manager, who explains why they are being sent to look after the lighthouse.
+  goToLighthouseDialogue:
+    dialogueLines:
+    - character:
+        name: Player
+      text: '[PLACEHOLDER] I should head up to the top of the lighthouse before it gets dark.'
+  goToLighthouseTaskText: '*Head to the top of the lighthouse when you''re ready*'
+  nightShiftTaskText: '*Guide tonight''s ships*'
+  goToBedTaskText: '*Head to bed*'
+  ghostShipsToLose: 3
+  endingCutscene:
+    title: Ending
+    description: The player watches a ship arrive. A boat horn sounds.
+  victoryCutscene:
+    title: Victory
+    description: It's the higher up. They pick you up and you sail away. Shift complete!
+  deathCutscene:
+    title: Death
+    description: It's a ghost ship. All the ghosts come and pull you aboard.
 --- !u!1 &8000973197388327100
 GameObject:
   m_ObjectHideFlags: 0
