@@ -5,13 +5,19 @@ Instructions for Claude Code working in this project. Claude reads this file at 
 ## Project facts
 - Unity 6 (6000.6.2f1). 2D side-view so far (2D Sprite + Tilemap packages, Rigidbody2D). The 3D parts are not decided yet.
 - Rendering: URP with the 2D Renderer (`Assets/Settings/Rendering/URP-2D.asset`, used by Graphics and every Quality level). Every scene has a `Global Light 2D`, an orthographic `Main Camera` with post-processing on, and a `Global Volume` using `GlobalVolumeProfile.asset` (Vignette + Color Adjustments, both neutral, for the sanity effect later). Sprites need `Sprite-Lit-Default` to react to 2D lights. Don't add 3D `Light` components.
-- Input: the new Input System. `PlayerControls` is generated from `Assets/Scripts & Controllers/Input Action/PlayerControls.inputactions`. Its action map is `Controls` (`Move`, `Jump`). Never edit `PlayerControls.cs` by hand: change the `.inputactions` asset and let Unity regenerate it.
+- Input: the new Input System. `PlayerControls` is generated from `Assets/Scripts & Controllers/Input Action/PlayerControls.inputactions`. Its action map is `Controls`: `Move` (A/D), `Jump` (Space/W), `Interact` (E), `Dialogue` (Enter, advances dialogue and closes cutscene cards). Never edit `PlayerControls.cs` by hand: change the `.inputactions` asset and let Unity regenerate it.
 - Unity 6 physics API: use `rb.linearVelocity`, not `rb.velocity`.
 - Scripts go in `Assets/Scripts & Controllers/`, grouped in subfolders by system (`Dialogue Stuff/` is the existing example).
 - Art goes in `Assets/Visual Assets/`.
 - Scenes are in `Assets/Scenes/`: Title Screen, Introduction, Outside, Basement, Floor 1–4, Top Lighthouse, and Test Scene (a sandbox).
-- Existing systems: `PlayerController` (move and jump with a ground check), `CameraManager` (follows the player), `DialogueManager` singleton plus `DialogueTrigger` (typewriter text in TMP, starts on trigger enter with the `Player` tag).
-- These are empty stubs waiting to be implemented: `SceneController`, `Basement`, `ElectricalBox`, `Safe`, `Journal`, `FoundPage`, `MessageInaBottle`.
+- **Systems prefab** (`Assets/Prefabs/Resources/Systems.prefab`): `Bootstrap` spawns it before the first scene loads and it is never destroyed, so Play works from any scene. Never place it in a scene. It holds `GameState` (flags, pages, day, power, task, night results; flag names in `GameFlags`), `SceneController` (`LoadScene(scene, spawnId)` with a fade), the EventSystem, and the UI canvas with `DialogueManager`, `TaskDisplay`, `InteractionPrompt`, `CutscenePlaceholder` and `ScreenFader`.
+- **Player prefab** (`Assets/Prefabs/Player.prefab`): tagged `Player`, sprite on an `Art` child (the root scale is flipped for facing, so never scale the root), `PlayerController` + `PlayerInteractor`. Ground colliders go on the `groundLayer` layer.
+- **Per scene:** a `Player` instance, `CameraManager` on the Main Camera, one `RoomBounds` (camera limits) and `SpawnPoint`s with ids that `SceneTransition`s point at.
+- **Interactables:** subclass `Interaction/Interactable` (needs a trigger Collider2D). Its Inspector conditions (days, active tasks, required/hiding flags) decide when the prompt shows, and `Unlock Flag` + `Locked Dialogue` make it locked. Ready-made: `InteractDialogue`, `FlagPickup`, `SceneTransition` (doors/stairs). Anything that should freeze the player uses `PlayerLock.Add/Remove`.
+- `DialogueManager.StartDialogue(dialogue, onComplete)`: a line with an empty character name shows no speaker (use for sound cues like *\*Static\**).
+- Placeholder art uses `Assets/Visual Assets/Placeholders/Square.png`, never sprites from a package `Editor` folder (those are stripped from builds).
+- These are empty stubs waiting to be implemented: `Basement`, `ElectricalBox`, `Safe`, `Journal`, `FoundPage`, `MessageInaBottle`.
+- Testing over MCP: Play mode only advances while the Unity window has focus. If `Time.frameCount` stops moving, bring Unity to the front.
 
 ## Code style
 Match `PlayerController.cs`: use `[Header]` groups, keep fields `[SerializeField] private`, use camelCase for fields and PascalCase for methods, and add few comments. Prefer small single-purpose MonoBehaviours over large managers.

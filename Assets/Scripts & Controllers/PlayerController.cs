@@ -32,12 +32,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
+        playerControls.Controls.Jump.performed -= OnJump;
         playerControls.Disable();
     }
 
-    public void PlayerInput() 
+    public void PlayerInput()
     {
-        movement = playerControls.Controls.Move.ReadValue<Vector2>();
+        movement = PlayerLock.IsLocked ? Vector2.zero : playerControls.Controls.Move.ReadValue<Vector2>();
     }
 
     public void Update()
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (isGrounded)
+        if (isGrounded && !PlayerLock.IsLocked)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }

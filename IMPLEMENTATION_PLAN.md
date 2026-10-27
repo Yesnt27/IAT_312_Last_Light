@@ -57,7 +57,9 @@ Nothing is saved to disk. Restarting the game resets everything.
 4. Commit, including the URP package you already installed.
 - **Check:** Test Scene renders normally in Play mode, and the Console has no errors.
 
-## Phase B: Core systems (built and tested in Test Scene)
+## Phase B: Core systems (built and tested in Test Scene) ✅ done 2026-10-27
+All 10 scenes were also added to Build Settings (needed for scene loading).
+
 All of these live on one **`Systems` prefab** that is never destroyed. A small `Bootstrap` script creates it if it's missing, so you can press Play from any scene.
 
 | System | Script (folder in `Scripts & Controllers/`) | What it does |

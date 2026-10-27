@@ -24,6 +24,9 @@ public class Dialogue
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
+    [SerializeField] private bool triggerOnce = true;
+
+    private bool hasTriggered;
 
     public void TriggerDialogue()
     {
@@ -32,8 +35,9 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !(triggerOnce && hasTriggered))
         {
+            hasTriggered = true;
             TriggerDialogue();
             Debug.Log("Dialogue Triggered");
         }

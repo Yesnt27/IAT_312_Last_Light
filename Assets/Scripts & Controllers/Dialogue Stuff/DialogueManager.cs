@@ -1,7 +1,9 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,6 +17,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.02f;
 
     private Queue<DialogueLine> lines;
+    private DialogueLine currentLine;
+    private bool isTyping;
+    private Action onFinished;
+    private PlayerControls playerControls;
     public bool isDialogueActive = false;
 
 
@@ -26,20 +32,55 @@ public class DialogueManager : MonoBehaviour
             instance = this;
         }
         lines = new Queue<DialogueLine>();
+        playerControls = new PlayerControls();
 
         dialogueBox.SetActive(false);
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    private void OnEnable()
     {
+        playerControls.Enable();
+        playerControls.Controls.Dialogue.performed += OnAdvance;
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Controls.Dialogue.performed -= OnAdvance;
+        playerControls.Disable();
+    }
+
+    public void StartDialogue(Dialogue dialogue, Action onComplete = null)
+    {
+        if (dialogue == null || dialogue.dialogueLines.Count == 0)
+        {
+            onComplete?.Invoke();
+            return;
+        }
 
         isDialogueActive = true;
+        onFinished = onComplete;
+        PlayerLock.Add(this);
         dialogueBox.SetActive(true);
         lines.Clear();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
             lines.Enqueue(dialogueLine);
+        }
+
+        DisplayNextLine();
+    }
+
+    private void OnAdvance(InputAction.CallbackContext context)
+    {
+        if (!isDialogueActive) return;
+
+        if (isTyping)
+        {
+            StopAllCoroutines();
+            isTyping = false;
+            dialogueArea.text = currentLine.text;
+            return;
         }
 
         DisplayNextLine();
@@ -53,25 +94,34 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        DialogueLine currentline = lines.Dequeue();
-        characterNameText.text = currentline.character.name;
+        currentLine = lines.Dequeue();
+        bool hasSpeaker = currentLine.character != null && !string.IsNullOrEmpty(currentLine.character.name);
+        characterNameText.gameObject.SetActive(hasSpeaker);
+        characterNameText.text = hasSpeaker ? currentLine.character.name : "";
         StopAllCoroutines();
-        StartCoroutine(Typesentence(currentline));
+        StartCoroutine(Typesentence(currentLine));
     }
 
     IEnumerator Typesentence(DialogueLine dialogueLine)
     {
+        isTyping = true;
         dialogueArea.text = "";
         foreach (char letter in dialogueLine.text.ToCharArray())
         {
             dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        isTyping = false;
     }
 
     void EndDialogue()
     {
         isDialogueActive = false;
         dialogueBox.SetActive(false);
+        PlayerLock.Remove(this);
+
+        Action finished = onFinished;
+        onFinished = null;
+        finished?.Invoke();
     }
 }
