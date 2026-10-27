@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI dialogueArea;
+    [SerializeField] private GameObject dialogueBox;
 
     [Header("Settings")]
     [SerializeField] private float typingSpeed = 0.02f;
@@ -16,7 +17,6 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines;
     public bool isDialogueActive = false;
 
-    Animator animator;
 
 
     void Awake()
@@ -26,13 +26,15 @@ public class DialogueManager : MonoBehaviour
             instance = this;
         }
         lines = new Queue<DialogueLine>();
+
+        dialogueBox.SetActive(false);
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
 
         isDialogueActive = true;
-        animator.Play("show");
+        dialogueBox.SetActive(true);
         lines.Clear();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
@@ -70,6 +72,6 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         isDialogueActive = false;
-        animator.Play("hide");
+        dialogueBox.SetActive(false);
     }
 }
