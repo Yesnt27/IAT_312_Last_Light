@@ -4,6 +4,7 @@ Instructions for Claude Code working in this project. Claude reads this file at 
 
 ## Project facts
 - Unity 6 (6000.6.2f1). 2D side-view so far (2D Sprite + Tilemap packages, Rigidbody2D). The 3D parts are not decided yet.
+- Rendering: URP with the 2D Renderer (`Assets/Settings/Rendering/URP-2D.asset`, used by Graphics and every Quality level). Every scene has a `Global Light 2D`, an orthographic `Main Camera` with post-processing on, and a `Global Volume` using `GlobalVolumeProfile.asset` (Vignette + Color Adjustments, both neutral, for the sanity effect later). Sprites need `Sprite-Lit-Default` to react to 2D lights. Don't add 3D `Light` components.
 - Input: the new Input System. `PlayerControls` is generated from `Assets/Scripts & Controllers/Input Action/PlayerControls.inputactions`. Its action map is `Controls` (`Move`, `Jump`). Never edit `PlayerControls.cs` by hand: change the `.inputactions` asset and let Unity regenerate it.
 - Unity 6 physics API: use `rb.linearVelocity`, not `rb.velocity`.
 - Scripts go in `Assets/Scripts & Controllers/`, grouped in subfolders by system (`Dialogue Stuff/` is the existing example).
