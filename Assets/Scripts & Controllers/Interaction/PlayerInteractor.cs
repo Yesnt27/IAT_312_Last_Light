@@ -48,6 +48,7 @@ public class PlayerInteractor : MonoBehaviour
         {
             Interactable interactable = hits[i].GetComponentInParent<Interactable>();
             if (interactable == null || !interactable.IsAvailable) continue;
+            if (interactable.GetComponent<ClickToInteract>() != null) continue; // used with the mouse instead
 
             float distance = Vector2.Distance(transform.position, hits[i].ClosestPoint(transform.position));
             if (distance < nearestDistance)

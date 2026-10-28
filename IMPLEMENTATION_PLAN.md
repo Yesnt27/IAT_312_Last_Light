@@ -101,7 +101,7 @@ Also added early: a minimal `FoundPage` (collect page N; the journal UI is still
 - **Check:** with the puzzles stubbed out, run through all 4 days on placeholder content.
 
 ## Phase D: Placeholder environments (started)
-So far: the player auto-spawns (no Player in scenes), the Environment prefabs exist (Door, Stairs, Spawn Point, Ground, Wall), and the Outside ⇄ Floor 1 example is wired and tested. Outside still has the user's own `Floor` and `Player` next to the example.
+So far: the player auto-spawns (no Player in scenes), and the Environment prefabs exist (Door, Stairs, Spawn Point, Ground, Wall). Every room is now connected and walk-tested: Outside ⇄ Floor 1 ⇄ 2 ⇄ 3 ⇄ 4 ⇄ Top Lighthouse, plus Floor 1 ⇄ Basement, which is locked until `BasementKey`. Pressing Play in Outside starts a new game; the title screen comes later. Items (bed, journal, pages, key, lamp controls) are left for the user to place. Outside and Top Lighthouse still have hand-placed Players from the user.
 
 - **Modular prefabs** in `Assets/Prefabs/Environment/`: `Floor`, `Wall`, `Platform`, `Stairs` (a transition), `Door` (a transition, optionally locked), `RoomBounds`, `WaterZone`. Each one has `Art` and `Collision` children.
 - **Interactables:** a placeholder prefab for each interactable (sprite plus a world-space label such as "DRAWER" or "SAFE"). Their logic components are added separately.

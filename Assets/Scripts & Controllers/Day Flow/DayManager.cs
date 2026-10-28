@@ -16,9 +16,11 @@ public class DayManager : MonoBehaviour
     [Header("Days (the number of days is the list length)")]
     [SerializeField] private List<DayDefinition> days = new List<DayDefinition>();
 
-    [Header("Scenes")]
-    [SerializeField] private string introScene = "Introduction";
-    [SerializeField] private string titleScene = "Title Screen";
+    [Header("Starting the Game")]
+    [Tooltip("Pressing Play in Day 1's start scene (Outside) starts a new game there.")]
+    [SerializeField] private bool newGameOnPlayInFirstScene = true;
+    [Tooltip("Where to go after the ending. Leave empty to start a new game instead (until the title screen exists).")]
+    [SerializeField] private string titleScene = "";
 
     [Header("Intro")]
     [SerializeField] private CutsceneCard introCutscene;
@@ -55,6 +57,9 @@ public class DayManager : MonoBehaviour
     private void Start()
     {
         GameState.Instance.Changed += CheckPuzzleDone;
+
+        bool inFirstScene = days.Count > 0 && SceneManager.GetActiveScene().name == days[0].StartScene;
+        if (newGameOnPlayInFirstScene && inFirstScene && GameState.Instance.Phase == DayPhase.None) StartNewGame();
     }
 
     private void OnDestroy()
@@ -62,11 +67,14 @@ public class DayManager : MonoBehaviour
         if (GameState.Instance != null) GameState.Instance.Changed -= CheckPuzzleDone;
     }
 
+    // Intro cutscene card over a black screen, then Day 1 loads at its start spawn (Outside / Dock).
     public void StartNewGame()
     {
         stayInScene = null;
+        isSleeping = false;
         GameState.Instance.ResetAll();
-        SceneController.Instance.LoadScene(introScene, null, () => CutscenePlaceholder.Instance.Show(introCutscene, () => BeginDay(1)));
+        ScreenFader.Instance.SetAlpha(1f);
+        CutscenePlaceholder.Instance.Show(introCutscene, () => BeginDay(1));
     }
 
     // Dev tool: runs the loop in the current scene instead of loading each day's start scene.
@@ -196,8 +204,12 @@ public class DayManager : MonoBehaviour
         yield return ShowAndWait(state.GhostShipsMissed >= ghostShipsToLose ? deathCutscene : victoryCutscene);
 
         stayInScene = null;
-        state.ResetAll();
-        SceneController.Instance.LoadScene(titleScene);
+        if (string.IsNullOrEmpty(titleScene)) StartNewGame();
+        else
+        {
+            state.ResetAll();
+            SceneController.Instance.LoadScene(titleScene);
+        }
     }
 
     private IEnumerator ShowAndWait(CutsceneCard card)

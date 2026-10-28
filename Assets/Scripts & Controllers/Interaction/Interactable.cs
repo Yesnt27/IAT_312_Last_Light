@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-// Base for everything the player can press Interact on. Needs a Collider2D (usually a trigger).
+// Base for everything the player can press Interact on. Needs a Collider2D (usually a trigger),
+// or a ClickToInteract component to be used with the mouse instead (then no collider is needed).
 // The conditions below decide when the prompt shows, so puzzle-only prompts stay hidden at other times.
 public class Interactable : MonoBehaviour
 {

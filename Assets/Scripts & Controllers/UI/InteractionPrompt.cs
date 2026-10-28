@@ -18,9 +18,9 @@ public class InteractionPrompt : MonoBehaviour
         Hide();
     }
 
-    public void Show(string text)
+    public void Show(string text, string hint = null)
     {
-        promptLabel.text = $"{keyHint} {text}";
+        promptLabel.text = $"{hint ?? keyHint} {text}";
         if (!promptPanel.activeSelf) promptPanel.SetActive(true);
     }
 
