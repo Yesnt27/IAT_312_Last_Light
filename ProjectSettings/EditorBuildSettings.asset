@@ -33,8 +33,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Title Screen.unity
     guid: fb63297af4f0fc9499309898ae07d8c4
   - enabled: 1
-    path: Assets/Scenes/Introduction.unity
+    path: Assets/Scenes/Cut Scene 1 - Intro.unity
     guid: dfb0352fdc757f649866addcc2d2bb75
+  - enabled: 1
+    path: Assets/Scenes/Ending 1 - Win.unity
+    guid: 174d653e50f39ee46beeb9838c329e49
   - enabled: 1
     path: Assets/Scenes/Test Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab

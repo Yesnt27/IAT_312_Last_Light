@@ -109,11 +109,12 @@ public class SceneController : MonoBehaviour
 
     public void StartGame() 
     {
-        SceneManager.LoadScene("Introduction");
+        SceneManager.LoadScene("Cut scene 1 - Intro");
     }
 
     public void Back()
     {
         SceneManager.LoadScene("Title Screen");
     }
+
 }
