@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 542064654}
   - component: {fileID: 542064655}
   m_Layer: 0
-  m_Name: Day 3 - Horn Check
+  m_Name: Day 4 - Horn Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,6 +695,9 @@ MonoBehaviour:
     newTaskId: day3_observe_water
     newTaskText: '*Observe what is floating in the water*'
     setFlag: 
+  endsCutscene: 0
+  loadScene: 
+  loadSpawnId: 
 --- !u!1 &548137941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractDialogue
   promptText: Look at the bottle
-  activeOnDays: 03000000i
+  activeOnDays: 04000000i
   activeDuringTasks: []
   requiredFlags: []
   hiddenByFlags:

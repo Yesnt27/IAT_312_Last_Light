@@ -14,20 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
   startScene: Floor 2
   startSpawnId: Bed
-  startsWithPowerOutage: 0
+  startsWithPowerOutage: 1
   wakeDialogue:
     dialogueLines:
     - character:
         name: 
-      text: '*Loud horn sounds coming from outside*'
+      text: '*Crash sounds, lights turn off*'
     - character:
         name: Player
-      text: Huh? I wonder what that honking is for.
-  puzzleTaskId: day3_check_horn
-  puzzleTaskText: '*Check the horn sound coming from outside*'
-  journalPage: 3
-  requiredFlags: []
+      text: Hello? Can you hear me? The power went out...
+    - character:
+        name: 
+      text: '*Static*'
+    - character:
+        name: Player
+      text: '[PLACEHOLDER] The power box must be down in the basement.'
+  puzzleTaskId: day2_power
+  puzzleTaskText: '*Fix the power*'
+  journalPage: 2
+  requiredFlags:
+  - PowerFixed
   shipCount: 7
   bedtimeCutscene:
     title: '#3 Bedtime'
     description: The player hears strange noises in the night.
+    scene: 

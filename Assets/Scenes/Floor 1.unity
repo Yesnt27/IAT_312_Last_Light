@@ -515,6 +515,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6838372334853108710, guid: 820c08e8249a46f4e86b1b646a2212ef, type: 3}
   m_PrefabInstance: {fileID: 349685703}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &503619922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503619923}
+  - component: {fileID: 503619924}
+  m_Layer: 0
+  m_Name: Day 1 - Explore Floor 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503619923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503619922}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1393414714}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &503619924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503619922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433fc9d852829574bb7a3531d6891c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoryTrigger
+  mode: 0
+  activeOnDays: 
+  activeDuringTasks:
+  - day1_explore
+  requiredFlags: []
+  hiddenByFlags: []
+  rememberAsFlag: ExploredFloor1
+  dialogue:
+    dialogueLines:
+    - character:
+        name: Player
+      text: '[PLACEHOLDER] The ground floor. That door must lead down to the basement.'
+  outcome:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  endsCutscene: 0
+  loadScene: 
+  loadSpawnId: 
 --- !u!1001 &749624219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,11 +880,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8237702987998969059, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
       propertyPath: whenTriedWhileLocked.newTaskId
-      value: day1_find_key
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8237702987998969059, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
       propertyPath: whenTriedWhileLocked.newTaskText
-      value: '*Check around the house to find the key for the basement*'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8237702987998969059, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
       propertyPath: lockedDialogue.dialogueLines.Array.size
@@ -1043,6 +1106,38 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1393414713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1393414714}
+  m_Layer: 0
+  m_Name: Story
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1393414714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393414713}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 503619923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1530739992
@@ -1615,3 +1710,4 @@ SceneRoots:
   - {fileID: 831405163}
   - {fileID: 65602804}
   - {fileID: 1838626548}
+  - {fileID: 1393414714}

@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlagPickup
   promptText: Take the food
-  activeOnDays: 01000000i
+  activeOnDays: 02000000i
   activeDuringTasks: []
   requiredFlags: []
   hiddenByFlags: []
@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 1195083894}
   - component: {fileID: 1195083895}
   m_Layer: 0
-  m_Name: Day 1 - Basement Arrival
+  m_Name: Day 2 - Basement Arrival
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoryTrigger
   mode: 0
-  activeOnDays: 01000000i
+  activeOnDays: 02000000i
   activeDuringTasks: []
   requiredFlags:
   - BasementKey
@@ -1181,6 +1181,9 @@ MonoBehaviour:
     newTaskId: day1_food_journal
     newTaskText: '*Look for food and find the journal*'
     setFlag: 
+  endsCutscene: 0
+  loadScene: 
+  loadSpawnId: 
 --- !u!1 &1267905955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: 'activeOnDays.Array.data[0]'
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.size
@@ -2196,7 +2199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[1].text
-      value: '*[PLACEHOLDER] Entry 1: "Every night the keeper must climb to the top of the lighthouse, keep the light burning, and watch the ships that pass..."*'
+      value: '*[PLACEHOLDER] Entry 1: "Every night the keeper must climb to the top of the lighthouse, watch the ships that pass, and guide them correctly. Watch out for a black shadow on the ship...'
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[2].text

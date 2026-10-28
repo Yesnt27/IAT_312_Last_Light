@@ -18,13 +18,17 @@ MonoBehaviour:
   wakeDialogue:
     dialogueLines:
     - character:
+        name: 
+      text: '*Loud horn sounds coming from outside*'
+    - character:
         name: Player
-      text: '[PLACEHOLDER] Day 4 hasn''t been designed yet.'
-  puzzleTaskId: day4_todo
-  puzzleTaskText: '*Day 4 hasn''t been set up yet*'
-  journalPage: 4
+      text: Huh? I wonder what that honking is for.
+  puzzleTaskId: day3_check_horn
+  puzzleTaskText: '*Check the horn sound coming from outside*'
+  journalPage: 3
   requiredFlags: []
   shipCount: 9
   bedtimeCutscene:
     title: '#4 Last bedtime'
     description: 'Radio call with the higher up: "We will pick you up bright and early in the morning."'
+    scene: 

@@ -1423,6 +1423,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53ec3de206f5a4049903fdbcf26387e1, type: 2}
   - {fileID: 11400000, guid: c5251fd506e2d7a459461223d2e7f416, type: 2}
   newGameOnPlayInFirstScene: 1
+  startOnDay: 1
   titleScene: 
   introCutscene:
     title: '#1 Boat ride'
@@ -1436,6 +1437,7 @@ MonoBehaviour:
   goToLighthouseTaskText: '*Head to the top of the lighthouse when you''re ready*'
   nightShiftTaskText: '*Guide tonight''s ships*'
   startNightWhenEntering: Top Lighthouse
+  nightShiftScene: Night Scene
   skipNightForTesting: 1
   goToBedTaskText: '*Head to bed*'
   ghostShipsToLose: 3

@@ -19,6 +19,9 @@ public class DayManager : MonoBehaviour
     [Header("Starting the Game")]
     [Tooltip("Pressing Play in Day 1's start scene (Outside) starts a new game there.")]
     [SerializeField] private bool newGameOnPlayInFirstScene = true;
+    [Tooltip("Testing, Editor only: pressing Play in the first scene skips to this day, as if the earlier days were done " +
+             "(their journal pages and Required Flags are given to you). 1 = a normal new game. Builds always start on Day 1.")]
+    [SerializeField] private int startOnDay = 1;
     [Tooltip("Where to go after the ending. Leave empty to start a new game instead (until the title screen exists).")]
     [SerializeField] private string titleScene = "";
 
@@ -69,7 +72,10 @@ public class DayManager : MonoBehaviour
         SceneController.Instance.SceneReady += OnSceneReady;
 
         bool inFirstScene = days.Count > 0 && SceneManager.GetActiveScene().name == days[0].StartScene;
-        if (newGameOnPlayInFirstScene && inFirstScene && GameState.Instance.Phase == DayPhase.None) StartNewGame();
+        if (!newGameOnPlayInFirstScene || !inFirstScene || GameState.Instance.Phase != DayPhase.None) return;
+
+        if (Application.isEditor && startOnDay > 1) StartOnDay(startOnDay);
+        else StartNewGame();
     }
 
     private void OnDestroy()
@@ -91,6 +97,26 @@ public class DayManager : MonoBehaviour
         GameState.Instance.ResetAll();
         ScreenFader.Instance.SetAlpha(1f);
         PlayCutscene(introCutscene, () => BeginDay(1));
+    }
+
+    // Testing: no intro, the earlier days count as done (their pages and Required Flags), then that day starts.
+    public void StartOnDay(int day)
+    {
+        day = Mathf.Clamp(day, 1, days.Count);
+        Debug.LogWarning($"DayManager: starting on Day {day} for testing (Start On Day on the Systems prefab). Set it back to 1 for a normal new game.");
+
+        stayInScene = null;
+        isSleeping = false;
+        GameState.Instance.ResetAll();
+        for (int earlier = 1; earlier < day; earlier++) GiveResults(GetDay(earlier));
+        ScreenFader.Instance.SetAlpha(1f);
+        BeginDay(day);
+    }
+
+    private void GiveResults(DayDefinition definition)
+    {
+        if (definition.JournalPage > 0) GameState.Instance.CollectPage(definition.JournalPage);
+        foreach (string flag in definition.RequiredFlags) GameState.Instance.SetFlag(flag);
     }
 
     // Dev tool: runs the loop in the current scene instead of loading each day's start scene.

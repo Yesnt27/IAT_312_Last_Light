@@ -24,11 +24,15 @@ MonoBehaviour:
         name: Player
       text: '[PLACEHOLDER] ...Guess it''s just me and the lighthouse now.'
   puzzleTaskId: day1_explore
-  puzzleTaskText: '*Explore the place*'
-  journalPage: 1
+  puzzleTaskText: '*Explore the house*'
+  journalPage: 0
   requiredFlags:
-  - FoodFound
+  - ExploredFloor1
+  - ExploredFloor2
+  - ExploredFloor3
+  - ExploredFloor4
   shipCount: 3
   bedtimeCutscene:
     title: 
     description: 
+    scene: 
