@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   currentDay: 1
   phase: 0
-  powerOn: 1
+  powerOn: 0
   flags: []
   collectedPages: 
   activeTaskId: 
@@ -1427,6 +1427,7 @@ MonoBehaviour:
   introCutscene:
     title: '#1 Boat ride'
     description: The player sails to the island with their manager, who explains why they are being sent to look after the lighthouse.
+    scene: 
   goToLighthouseDialogue:
     dialogueLines:
     - character:
@@ -1441,12 +1442,15 @@ MonoBehaviour:
   endingCutscene:
     title: Ending
     description: The player watches a ship arrive. A boat horn sounds.
+    scene: 
   victoryCutscene:
     title: Victory
     description: It's the higher up. They pick you up and you sail away. Shift complete!
+    scene: 
   deathCutscene:
     title: Death
     description: It's a ghost ship. All the ghosts come and pull you aboard.
+    scene: 
 --- !u!114 &9149943767678771211
 MonoBehaviour:
   m_ObjectHideFlags: 0

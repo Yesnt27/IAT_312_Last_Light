@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionPrompt : MonoBehaviour
 {
@@ -18,9 +19,17 @@ public class InteractionPrompt : MonoBehaviour
         Hide();
     }
 
+    // "[E]" for whatever key the action is bound to.
+    public static string KeyHint(InputActionReference action)
+    {
+        return $"[{action.action.GetBindingDisplayString()}]";
+    }
+
+    // An empty hint ("") shows the text alone.
     public void Show(string text, string hint = null)
     {
-        promptLabel.text = $"{hint ?? keyHint} {text}";
+        string key = hint ?? keyHint;
+        promptLabel.text = key.Length > 0 ? $"{key} {text}" : text;
         if (!promptPanel.activeSelf) promptPanel.SetActive(true);
     }
 

@@ -35,6 +35,11 @@ public class FirstPersonController : MonoBehaviour
     private float verticalVelocity;
     private bool wasLocked;
 
+    // Binoculars slow the mouse down while zoomed in and stop you walking.
+    public float LookSensitivityScale { get; set; } = 1f;
+    public bool CanWalk { get; set; } = true;
+    public Transform Eyes => cameraPivot;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -72,7 +77,7 @@ public class FirstPersonController : MonoBehaviour
     {
         if (Cursor.lockState != CursorLockMode.Locked) return;
 
-        Vector2 delta = lookAction.action.ReadValue<Vector2>() * mouseSensitivity;
+        Vector2 delta = lookAction.action.ReadValue<Vector2>() * mouseSensitivity * LookSensitivityScale;
         transform.Rotate(0f, delta.x, 0f);
         pitch = Mathf.Clamp(pitch - delta.y, -maxLookAngle, maxLookAngle);
         cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
@@ -80,11 +85,11 @@ public class FirstPersonController : MonoBehaviour
 
     private void Move()
     {
-        Vector2 input = moveAction.action.ReadValue<Vector2>();
+        Vector2 input = CanWalk ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
         Vector3 walk = (transform.right * input.x + transform.forward * input.y) * moveSpeed;
 
         if (controller.isGrounded && verticalVelocity < 0f) verticalVelocity = -2f;
-        if (controller.isGrounded && jumpAction.action.WasPressedThisFrame()) Jump();
+        if (CanWalk && controller.isGrounded && jumpAction.action.WasPressedThisFrame()) Jump();
         verticalVelocity += gravity * Time.deltaTime;
 
         controller.Move((walk + Vector3.up * verticalVelocity) * Time.deltaTime);
@@ -109,6 +114,13 @@ public class FirstPersonController : MonoBehaviour
         controller.enabled = false;
         transform.position = clamped;
         controller.enabled = true;
+    }
+
+    // True when the middle of the view points at this collider, no further than reach metres away.
+    public bool IsLookingAt(Collider target, float reach)
+    {
+        if (target == null) return false;
+        return target.Raycast(new Ray(cameraPivot.position, cameraPivot.forward), out _, reach);
     }
 
     // Escape frees the cursor (Unity editor); clicking the game view captures it again.

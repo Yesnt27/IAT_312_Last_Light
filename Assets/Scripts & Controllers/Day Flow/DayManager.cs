@@ -33,7 +33,9 @@ public class DayManager : MonoBehaviour
     [SerializeField] private string nightShiftTaskText = "*Guide tonight's ships*";
     [Tooltip("Reaching this scene after the day's puzzle starts the night by itself. Empty = only the lamp controls start it.")]
     [SerializeField] private string startNightWhenEntering = "Top Lighthouse";
-    [Tooltip("Testing until the night shift exists: the night ends straight away and the next day begins (bed not needed).")]
+    [Tooltip("The 3D scene the night shift happens in (fades in from the 2D game). Its NightShift ends the night. Empty = no 3D night.")]
+    [SerializeField] private string nightShiftScene = "Night Scene";
+    [Tooltip("Only used when Night Shift Scene is empty: the night ends straight away and the next day begins.")]
     [SerializeField] private bool skipNightForTesting = true;
 
     [Header("Bedtime")]
@@ -47,6 +49,7 @@ public class DayManager : MonoBehaviour
 
     private string stayInScene;
     private bool isSleeping;
+    private System.Action cutsceneFinished;
 
     public int DayCount => days.Count;
     public DayDefinition CurrentDay => GetDay(GameState.Instance.CurrentDay);
@@ -87,7 +90,7 @@ public class DayManager : MonoBehaviour
         isSleeping = false;
         GameState.Instance.ResetAll();
         ScreenFader.Instance.SetAlpha(1f);
-        CutscenePlaceholder.Instance.Show(introCutscene, () => BeginDay(1));
+        PlayCutscene(introCutscene, () => BeginDay(1));
     }
 
     // Dev tool: runs the loop in the current scene instead of loading each day's start scene.
@@ -108,8 +111,9 @@ public class DayManager : MonoBehaviour
         state.ClearTask();
         state.SetPower(!definition.StartsWithPowerOutage);
 
-        if (stayInScene != null) StartCoroutine(WakeInPlace());
-        else SceneController.Instance.LoadScene(definition.StartScene, definition.StartSpawnId, PlayWake);
+        if (stayInScene == null) SceneController.Instance.LoadScene(definition.StartScene, definition.StartSpawnId, PlayWake);
+        else if (SceneManager.GetActiveScene().name == stayInScene) StartCoroutine(WakeInPlace());
+        else SceneController.Instance.LoadScene(stayInScene, null, PlayWake);   // e.g. back from the 3D night
     }
 
     public void StartNight()
@@ -120,6 +124,13 @@ public class DayManager : MonoBehaviour
         GameState state = GameState.Instance;
         state.SetPhase(DayPhase.Night);
         state.SetTask(NightShiftTask, $"{nightShiftTaskText} ({definition.ShipCount} ships)");
+
+        // 2D -> 3D: fade into the night shift scene; its NightShift calls FinishNightShift().
+        if (!string.IsNullOrEmpty(nightShiftScene))
+        {
+            SceneController.Instance.LoadScene(nightShiftScene);
+            return;
+        }
 
         if (skipNightForTesting)
         {
@@ -148,6 +159,17 @@ public class DayManager : MonoBehaviour
             state.SetPhase(DayPhase.Bedtime);
             state.SetTask(GoToBedTask, goToBedTaskText);
         });
+    }
+
+    // Called by the NightShift in the 3D scene: night report, then the next morning (back to 2D).
+    public void FinishNightShift()
+    {
+        if (GameState.Instance.Phase != DayPhase.Night) return;
+
+        GameState state = GameState.Instance;
+        string report = $"Ships guided: {state.ShipsGuided}\nAbnormal ships caught: {state.GhostShipsCaught}\n" +
+                        $"Abnormal ships missed: {state.GhostShipsMissed}";
+        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, () => StartCoroutine(SleepRoutine()));
     }
 
     public void GoToSleep()
@@ -241,10 +263,38 @@ public class DayManager : MonoBehaviour
         }
     }
 
+    // A card, or a cutscene scene if the card names one. onDone runs when it's over.
+    public void PlayCutscene(CutsceneCard card, System.Action onDone)
+    {
+        if (card == null || card.IsEmpty)
+        {
+            onDone?.Invoke();
+            return;
+        }
+
+        if (!card.IsScene)
+        {
+            CutscenePlaceholder.Instance.Show(card, onDone);
+            return;
+        }
+
+        cutsceneFinished = onDone;
+        SceneController.Instance.LoadScene(card.scene);
+    }
+
+    // Called by the StoryTrigger in a cutscene scene that has "Ends Cutscene" ticked.
+    public void FinishCutscene()
+    {
+        System.Action done = cutsceneFinished;
+        cutsceneFinished = null;
+        if (done != null) done();
+        else Debug.LogWarning("DayManager: a cutscene scene ended, but no cutscene was playing (pressed Play in that scene?).");
+    }
+
     private IEnumerator ShowAndWait(CutsceneCard card)
     {
         bool closed = false;
-        CutscenePlaceholder.Instance.Show(card, () => closed = true);
+        PlayCutscene(card, () => closed = true);
         while (!closed) yield return null;
     }
 }
