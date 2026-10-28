@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 317308877}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 2, z: -10}
+  m_LocalPosition: {x: -12, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab4d4d9eb4c0f04a982d77f4168ebe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomBounds
-  size: {x: 40, y: 13}
+  size: {x: 40, y: 14}
 --- !u!4 &548137943
 Transform:
   m_ObjectHideFlags: 0
@@ -490,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 548137941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 3.5, z: 0}
+  m_LocalPosition: {x: -1, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -997,7 +997,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 9, z: 1}
+  m_LocalScale: {x: 4, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1358305849}
@@ -1198,7 +1198,7 @@ Transform:
   m_GameObject: {fileID: 1358305848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 3, z: 0}
+  m_LocalPosition: {x: 14, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

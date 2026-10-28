@@ -100,7 +100,9 @@ Also added early: a minimal `FoundPage` (collect page N; the journal UI is still
 - **Day 1 is special:** before you pick up the journal, everything except doors is non-interactive, as in Figma.
 - **Check:** with the puzzles stubbed out, run through all 4 days on placeholder content.
 
-## Phase D: Placeholder environments
+## Phase D: Placeholder environments (started)
+So far: the player auto-spawns (no Player in scenes), the Environment prefabs exist (Door, Stairs, Spawn Point, Ground, Wall), and the Outside ⇄ Floor 1 example is wired and tested. Outside still has the user's own `Floor` and `Player` next to the example.
+
 - **Modular prefabs** in `Assets/Prefabs/Environment/`: `Floor`, `Wall`, `Platform`, `Stairs` (a transition), `Door` (a transition, optionally locked), `RoomBounds`, `WaterZone`. Each one has `Art` and `Collision` children.
 - **Interactables:** a placeholder prefab for each interactable (sprite plus a world-space label such as "DRAWER" or "SAFE"). Their logic components are added separately.
 - **Placeholder sprites:** colored Square and Circle sprites in `Assets/Visual Assets/Placeholders/`.
