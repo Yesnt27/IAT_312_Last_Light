@@ -169,3 +169,7 @@ Packages/packages-lock.json linguist-generated
 
 # Exceptions for .asset files such as lightning pre-baking
 LightingData.asset     binary
+
+# Terrain data .asset files are binary: line-ending conversion corrupts them
+Assets/Visual[[:space:]]Assets/Generated/Island/*.asset    binary
+Assets/Free[[:space:]]Island[[:space:]]Collection/Environment/Terrain/Terrains/*.asset    binary
