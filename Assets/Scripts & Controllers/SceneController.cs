@@ -97,4 +97,19 @@ public class SceneController : MonoBehaviour
         CameraManager cameraManager = FindAnyObjectByType<CameraManager>();
         if (cameraManager != null) cameraManager.SnapToPlayer();
     }
+
+    public void HowtoPlay() 
+    {
+        SceneManager.LoadScene("HowToPlay");
+    }
+
+    public void StartGame() 
+    {
+        SceneManager.LoadScene("Introduction");
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("Title Screen");
+    }
 }
