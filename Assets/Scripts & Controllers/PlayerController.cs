@@ -52,9 +52,12 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 
+    // Flips left/right by changing only the sign of X, so any size set on the player is kept.
     private void Face(float direction)
     {
-        transform.localScale = new Vector3(artFacesRight ? direction : -direction, 1f, 1f);
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * (artFacesRight ? direction : -direction);
+        transform.localScale = scale;
     }
 
     private void OnJump(InputAction.CallbackContext context)
