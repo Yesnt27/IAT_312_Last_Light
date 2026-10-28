@@ -23,9 +23,9 @@ public class Binoculars : MonoBehaviour
     [Header("Holding")]
     [SerializeField] private float reach = 2.5f;
     [Tooltip("Where the model sits in front of the camera while held.")]
-    [SerializeField] private Vector3 holdPosition = new Vector3(0.22f, -0.2f, 0.42f);
-    [SerializeField] private Vector3 holdRotation = Vector3.zero;
-    [SerializeField] private float holdScale = 0.6f;
+    [SerializeField] private Vector3 holdPosition = new Vector3(0.2f, -0.17f, 0.42f);
+    [SerializeField] private Vector3 holdRotation = new Vector3(90f, 180f, 0f);
+    [SerializeField] private float holdScale = 0.42f;
     [SerializeField] private string pickUpText = "Pick up binoculars";
     [SerializeField] private string putDownText = "Put down binoculars";
 

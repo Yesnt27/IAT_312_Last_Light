@@ -8,7 +8,7 @@ public class PressableButton : MonoBehaviour
     [Tooltip("Which way the button moves when pressed, in its own local axes.")]
     [SerializeField] private Vector3 pressDirection = Vector3.down;
     [Tooltip("How far it moves, in metres.")]
-    [SerializeField] private float pressDepth = 0.05f;
+    [SerializeField] private float pressDepth = 0.07f;
     [SerializeField] private float downTime = 0.06f;
     [SerializeField] private float upTime = 0.18f;
 
