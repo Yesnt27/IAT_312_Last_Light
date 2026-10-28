@@ -14,7 +14,6 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        if (player == null) player = GameObject.FindWithTag("Player");
         bounds = FindAnyObjectByType<RoomBounds>();
         SnapToPlayer();
     }
@@ -26,6 +25,8 @@ public class CameraManager : MonoBehaviour
 
     public void SnapToPlayer()
     {
+        // The player is spawned at runtime, so look for it until it exists.
+        if (player == null) player = GameObject.FindWithTag("Player");
         if (player == null) return;
 
         Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
