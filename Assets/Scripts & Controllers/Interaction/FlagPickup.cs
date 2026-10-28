@@ -8,6 +8,8 @@ public class FlagPickup : Interactable
     [SerializeField] private string flag;
     [SerializeField] private Dialogue pickupDialogue;
     [SerializeField] private bool hideAfterPickup = true;
+    [Tooltip("Applied after the pickup dialogue, e.g. change the task.")]
+    [SerializeField] private StoryOutcome afterPickup = new StoryOutcome();
 
     private void Start()
     {
@@ -17,11 +19,7 @@ public class FlagPickup : Interactable
     protected override void OnInteract()
     {
         GameState.Instance.SetFlag(flag);
-
-        if (pickupDialogue != null && pickupDialogue.dialogueLines.Count > 0)
-        {
-            DialogueManager.instance.StartDialogue(pickupDialogue);
-        }
+        DialogueManager.instance.StartDialogue(pickupDialogue, afterPickup.Apply);
 
         if (hideAfterPickup) gameObject.SetActive(false);
     }

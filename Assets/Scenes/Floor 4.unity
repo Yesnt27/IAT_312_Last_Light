@@ -1394,8 +1394,10 @@ GameObject:
   - component: {fileID: 1372751386}
   - component: {fileID: 1372751385}
   - component: {fileID: 1372751384}
+  - component: {fileID: 1372751388}
+  - component: {fileID: 1372751387}
   m_Layer: 0
-  m_Name: Test Key
+  m_Name: Basement Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1414,14 +1416,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlagPickup
   promptText: Pick up key
-  activeOnDays: 0000000000000000i
+  activeOnDays: 01000000i
   activeDuringTasks:
-  - day2_basement_key
+  - day1_find_key
   requiredFlags: []
   hiddenByFlags: []
   unlockFlag: 
   lockedDialogue:
     dialogueLines: []
+  whenTriedWhileLocked:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -1430,8 +1436,12 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: 
-      text: '*You picked up the basement key*'
+      text: '*You found the basement key!*'
   hideAfterPickup: 1
+  afterPickup:
+    newTaskId: day1_open_basement
+    newTaskText: '*Use the key to open the basement door on the first floor*'
+    setFlag: 
 --- !u!61 &1372751385
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1495,6 +1505,32 @@ Transform:
   - {fileID: 935380682}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372751387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372751383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a66afacd8384814f8be56cd6a249150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShowWhenAvailable
+--- !u!114 &1372751388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372751383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4435d7afdea5f9944a2503200c0c9a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
+  maxDistanceFromPlayer: 0
+  hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
 --- !u!1 &1477672055
 GameObject:
   m_ObjectHideFlags: 0

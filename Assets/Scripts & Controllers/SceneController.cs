@@ -17,6 +17,9 @@ public class SceneController : MonoBehaviour
 
     public bool IsLoading => isLoading;
 
+    // After a LoadScene has finished fading in.
+    public event Action SceneReady;
+
     private void Awake()
     {
         Instance = this;
@@ -54,6 +57,7 @@ public class SceneController : MonoBehaviour
         PlayerLock.Remove(this);
         isLoading = false;
         onLoaded?.Invoke();
+        SceneReady?.Invoke();
     }
 
     // Runs for every scene load, including the scene you press Play in.

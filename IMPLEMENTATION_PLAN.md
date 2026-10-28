@@ -117,7 +117,9 @@ So far: the player auto-spawns (no Player in scenes), and the Environment prefab
 - **`FoundPage.cs` (fills the stub):** a reusable "award page N" component, used by the food, the electrical box and the safe.
 - **Check:** pick up the journal, collect a page in another scene, and the page appears in the journal UI.
 
-## Phase F: The three day puzzles
+## Phase F: The three day puzzles (in progress)
+**Update 2026-10-27:** the story was redefined into Days 1–3 (see CLAUDE.md, "The story so far"). Day 1 is the basement key + food + journal, Day 2 is the power and wire puzzle (built: `Wire Puzzle` prefab + `ElectricalBox`), and Day 3 is the bottle → book. The safe and the Day 3 ending are still to do. Reaching the top of the lighthouse ends the day while the night shift isn't built. The original plan below is kept for reference.
+
 ### Puzzle 1: Basement Door (Day 2)
 - **Opening:** the wake-up radio call plays the Figma dialogue, then the task "Check around the house to find the key for the basement".
 - **Searching:** `Puzzles/SearchableContainer.cs` is used on every drawer and cupboard, and the Inspector marks which one has the key. The others say *Drawer is empty* or *Cupboard is locked*. These prompts only appear during this task.

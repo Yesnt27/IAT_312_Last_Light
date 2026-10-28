@@ -31,6 +31,10 @@ public class DayManager : MonoBehaviour
 
     [Header("Night")]
     [SerializeField] private string nightShiftTaskText = "*Guide tonight's ships*";
+    [Tooltip("Reaching this scene after the day's puzzle starts the night by itself. Empty = only the lamp controls start it.")]
+    [SerializeField] private string startNightWhenEntering = "Top Lighthouse";
+    [Tooltip("Testing until the night shift exists: the night ends straight away and the next day begins (bed not needed).")]
+    [SerializeField] private bool skipNightForTesting = true;
 
     [Header("Bedtime")]
     [SerializeField] private string goToBedTaskText = "*Head to bed*";
@@ -49,6 +53,8 @@ public class DayManager : MonoBehaviour
     public bool CanStartNight => GameState.Instance.Phase == DayPhase.Explore;
     public bool CanSleep => GameState.Instance.Phase == DayPhase.Bedtime && !isSleeping;
 
+    private bool IsInNightScene => !string.IsNullOrEmpty(startNightWhenEntering) && SceneManager.GetActiveScene().name == startNightWhenEntering;
+
     private void Awake()
     {
         Instance = this;
@@ -57,6 +63,7 @@ public class DayManager : MonoBehaviour
     private void Start()
     {
         GameState.Instance.Changed += CheckPuzzleDone;
+        SceneController.Instance.SceneReady += OnSceneReady;
 
         bool inFirstScene = days.Count > 0 && SceneManager.GetActiveScene().name == days[0].StartScene;
         if (newGameOnPlayInFirstScene && inFirstScene && GameState.Instance.Phase == DayPhase.None) StartNewGame();
@@ -65,6 +72,12 @@ public class DayManager : MonoBehaviour
     private void OnDestroy()
     {
         if (GameState.Instance != null) GameState.Instance.Changed -= CheckPuzzleDone;
+        if (SceneController.Instance != null) SceneController.Instance.SceneReady -= OnSceneReady;
+    }
+
+    private void OnSceneReady()
+    {
+        if (CanStartNight && IsInNightScene) StartNight();
     }
 
     // Intro cutscene card over a black screen, then Day 1 loads at its start spawn (Outside / Dock).
@@ -107,6 +120,15 @@ public class DayManager : MonoBehaviour
         GameState state = GameState.Instance;
         state.SetPhase(DayPhase.Night);
         state.SetTask(NightShiftTask, $"{nightShiftTaskText} ({definition.ShipCount} ships)");
+
+        if (skipNightForTesting)
+        {
+            CutscenePlaceholder.Instance.ShowCard(
+                $"NIGHT {state.CurrentDay}",
+                $"{definition.ShipCount} ships would come tonight.\n\n(Testing: the night shift isn't built yet, so the day ends here.)",
+                () => StartCoroutine(SleepRoutine()));
+            return;
+        }
 
         // Placeholder until the night shift gameplay exists (Phase G).
         CutscenePlaceholder.Instance.ShowCard(
@@ -180,8 +202,11 @@ public class DayManager : MonoBehaviour
         yield return null;
         while (DialogueManager.instance.isDialogueActive || CutscenePlaceholder.Instance.IsShowing) yield return null;
 
-        DialogueManager.instance.StartDialogue(goToLighthouseDialogue,
-            () => GameState.Instance.SetTask(GoToLighthouseTask, goToLighthouseTaskText));
+        DialogueManager.instance.StartDialogue(goToLighthouseDialogue, () =>
+        {
+            GameState.Instance.SetTask(GoToLighthouseTask, goToLighthouseTaskText);
+            if (IsInNightScene) StartNight(); // finished the puzzle while already at the top
+        });
     }
 
     private IEnumerator SleepRoutine()

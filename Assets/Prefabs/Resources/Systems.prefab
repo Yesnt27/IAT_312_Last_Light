@@ -1344,6 +1344,7 @@ GameObject:
   - component: {fileID: 1681673104147944352}
   - component: {fileID: 7582300696637108891}
   - component: {fileID: 9149943767678771211}
+  - component: {fileID: 8303603265155800288}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1433,6 +1434,8 @@ MonoBehaviour:
       text: '[PLACEHOLDER] I should head up to the top of the lighthouse before it gets dark.'
   goToLighthouseTaskText: '*Head to the top of the lighthouse when you''re ready*'
   nightShiftTaskText: '*Guide tonight''s ships*'
+  startNightWhenEntering: Top Lighthouse
+  skipNightForTesting: 1
   goToBedTaskText: '*Head to bed*'
   ghostShipsToLose: 3
   endingCutscene:
@@ -1459,6 +1462,23 @@ MonoBehaviour:
   pointAction: {fileID: 4008712629184554273, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   clickAction: {fileID: 3871702586737037931, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   clickHint: '[Click]'
+--- !u!114 &8303603265155800288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240417004231455490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45f7fede2bef96438eeeeb2ef7d484a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerLighting
+  outageIntensity: 0.3
+  unaffectedScenes:
+  - Outside
+  - Title Screen
+  - Introduction
 --- !u!1 &8000973197388327100
 GameObject:
   m_ObjectHideFlags: 0

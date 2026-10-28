@@ -14,28 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
   startScene: Floor 2
   startSpawnId: Bed
-  startsWithPowerOutage: 0
+  startsWithPowerOutage: 1
   wakeDialogue:
     dialogueLines:
     - character:
         name: 
-      text: '*Radio call*'
+      text: '*Crash sounds, lights turn off*'
     - character:
         name: Player
-      text: Umm...what am I supposed to eat...
+      text: Hello? Can you hear me? The power went out...
     - character:
-        name: Manager
-      text: OH I totally forgot! All the food is downstairs in the basement..
+        name: 
+      text: '*Static*'
     - character:
-        name: Manager
-      text: But I forgot where I put the key...
-    - character:
-        name: Manager
-      text: It should be somewhere in the house, just look around.
-  puzzleTaskId: day2_basement_key
-  puzzleTaskText: '"Figure out a way to turn the power back on"'
+        name: Player
+      text: '[PLACEHOLDER] The power box must be down in the basement.'
+  puzzleTaskId: day2_power
+  puzzleTaskText: '*Fix the power*'
   journalPage: 2
-  requiredFlags: []
+  requiredFlags:
+  - PowerFixed
   shipCount: 5
   bedtimeCutscene:
     title: '#2 Bedtime'

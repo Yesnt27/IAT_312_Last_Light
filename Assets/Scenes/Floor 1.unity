@@ -784,6 +784,14 @@ PrefabInstance:
       value: FromFloor1
       objectReference: {fileID: 0}
     - target: {fileID: 8237702987998969059, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
+      propertyPath: whenTriedWhileLocked.newTaskId
+      value: day1_find_key
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237702987998969059, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
+      propertyPath: whenTriedWhileLocked.newTaskText
+      value: '*Check around the house to find the key for the basement*'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237702987998969059, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
       propertyPath: lockedDialogue.dialogueLines.Array.size
       value: 1
       objectReference: {fileID: 0}

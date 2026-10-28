@@ -23,10 +23,11 @@ MonoBehaviour:
     - character:
         name: Player
       text: '[PLACEHOLDER] ...Guess it''s just me and the lighthouse now.'
-  puzzleTaskId: day1_find_journal
-  puzzleTaskText: '*Explore the island, then find the living quarters inside the lighthouse*'
+  puzzleTaskId: day1_explore
+  puzzleTaskText: '*Explore the place*'
   journalPage: 1
-  requiredFlags: []
+  requiredFlags:
+  - FoodFound
   shipCount: 3
   bedtimeCutscene:
     title: 

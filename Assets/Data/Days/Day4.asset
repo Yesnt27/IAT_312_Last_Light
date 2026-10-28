@@ -18,14 +18,12 @@ MonoBehaviour:
   wakeDialogue:
     dialogueLines:
     - character:
-        name: 
-      text: '*Loud horn sounds coming from outside*'
-    - character:
         name: Player
-      text: Huh? I wonder what that honking is for.
-  puzzleTaskId: day4_bottle
-  puzzleTaskText: '*Check the horn sound coming from outside*'
+      text: '[PLACEHOLDER] Day 4 hasn''t been designed yet.'
+  puzzleTaskId: day4_todo
+  puzzleTaskText: '*Day 4 hasn''t been set up yet*'
   journalPage: 4
+  requiredFlags: []
   shipCount: 9
   bedtimeCutscene:
     title: '#4 Last bedtime'
