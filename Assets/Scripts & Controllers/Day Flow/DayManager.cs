@@ -1,0 +1,209 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+// Runs the day loop: wake up → day puzzle → explore → night shift → bedtime → next day, then the ending.
+// Lives on the Systems prefab. Each day's content comes from a DayDefinition asset.
+public class DayManager : MonoBehaviour
+{
+    public const string GoToLighthouseTask = "go_to_lighthouse";
+    public const string NightShiftTask = "night_shift";
+    public const string GoToBedTask = "go_to_bed";
+
+    public static DayManager Instance { get; private set; }
+
+    [Header("Days (the number of days is the list length)")]
+    [SerializeField] private List<DayDefinition> days = new List<DayDefinition>();
+
+    [Header("Scenes")]
+    [SerializeField] private string introScene = "Introduction";
+    [SerializeField] private string titleScene = "Title Screen";
+
+    [Header("Intro")]
+    [SerializeField] private CutsceneCard introCutscene;
+
+    [Header("Explore")]
+    [SerializeField] private Dialogue goToLighthouseDialogue;
+    [SerializeField] private string goToLighthouseTaskText = "*Head to the top of the lighthouse when you're ready*";
+
+    [Header("Night")]
+    [SerializeField] private string nightShiftTaskText = "*Guide tonight's ships*";
+
+    [Header("Bedtime")]
+    [SerializeField] private string goToBedTaskText = "*Head to bed*";
+
+    [Header("Ending")]
+    [SerializeField] private int ghostShipsToLose = 3;
+    [SerializeField] private CutsceneCard endingCutscene;
+    [SerializeField] private CutsceneCard victoryCutscene;
+    [SerializeField] private CutsceneCard deathCutscene;
+
+    private string stayInScene;
+    private bool isSleeping;
+
+    public int DayCount => days.Count;
+    public DayDefinition CurrentDay => GetDay(GameState.Instance.CurrentDay);
+    public bool CanStartNight => GameState.Instance.Phase == DayPhase.Explore;
+    public bool CanSleep => GameState.Instance.Phase == DayPhase.Bedtime && !isSleeping;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        GameState.Instance.Changed += CheckPuzzleDone;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameState.Instance != null) GameState.Instance.Changed -= CheckPuzzleDone;
+    }
+
+    public void StartNewGame()
+    {
+        stayInScene = null;
+        GameState.Instance.ResetAll();
+        SceneController.Instance.LoadScene(introScene, null, () => CutscenePlaceholder.Instance.Show(introCutscene, () => BeginDay(1)));
+    }
+
+    // Dev tool: runs the loop in the current scene instead of loading each day's start scene.
+    public void StartTestFlow(int day)
+    {
+        stayInScene = SceneManager.GetActiveScene().name;
+        GameState.Instance.ResetAll();
+        ScreenFader.Instance.SetAlpha(1f);
+        BeginDay(day);
+    }
+
+    public void BeginDay(int day)
+    {
+        DayDefinition definition = GetDay(day);
+        GameState state = GameState.Instance;
+        state.SetDay(day);
+        state.SetPhase(DayPhase.Wake);
+        state.ClearTask();
+        state.SetPower(!definition.StartsWithPowerOutage);
+
+        if (stayInScene != null) StartCoroutine(WakeInPlace());
+        else SceneController.Instance.LoadScene(definition.StartScene, definition.StartSpawnId, PlayWake);
+    }
+
+    public void StartNight()
+    {
+        if (!CanStartNight) return;
+
+        DayDefinition definition = CurrentDay;
+        GameState state = GameState.Instance;
+        state.SetPhase(DayPhase.Night);
+        state.SetTask(NightShiftTask, $"{nightShiftTaskText} ({definition.ShipCount} ships)");
+
+        // Placeholder until the night shift gameplay exists (Phase G).
+        CutscenePlaceholder.Instance.ShowCard(
+            $"NIGHT {state.CurrentDay}",
+            $"{definition.ShipCount} ships are coming tonight.\n\n(Placeholder: ship guiding is added in Phase G.)",
+            EndNight);
+    }
+
+    public void EndNight()
+    {
+        GameState state = GameState.Instance;
+        string report = $"Ships guided: {state.ShipsGuided}\nGhost ships caught: {state.GhostShipsCaught}\n" +
+                        $"Ghost ships missed: {state.GhostShipsMissed}\nFalse alarms: {state.FalseAlarms}";
+
+        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, () =>
+        {
+            state.SetPhase(DayPhase.Bedtime);
+            state.SetTask(GoToBedTask, goToBedTaskText);
+        });
+    }
+
+    public void GoToSleep()
+    {
+        if (!CanSleep) return;
+        StartCoroutine(SleepRoutine());
+    }
+
+    private DayDefinition GetDay(int day)
+    {
+        return days[Mathf.Clamp(day - 1, 0, days.Count - 1)];
+    }
+
+    private IEnumerator WakeInPlace()
+    {
+        yield return ScreenFader.Instance.FadeIn();
+        PlayWake();
+    }
+
+    private void PlayWake()
+    {
+        DialogueManager.instance.StartDialogue(CurrentDay.WakeDialogue, StartPuzzle);
+    }
+
+    private void StartPuzzle()
+    {
+        DayDefinition definition = CurrentDay;
+        GameState.Instance.SetTask(definition.PuzzleTaskId, definition.PuzzleTaskText);
+        GameState.Instance.SetPhase(DayPhase.DayPuzzle);
+        CheckPuzzleDone();
+    }
+
+    private void CheckPuzzleDone()
+    {
+        GameState state = GameState.Instance;
+        if (state.Phase != DayPhase.DayPuzzle) return;
+
+        int page = CurrentDay.JournalPage;
+        if (page > 0 && !state.HasPage(page)) return;
+
+        state.SetPhase(DayPhase.Explore);
+        StartCoroutine(BeginExplore());
+    }
+
+    private IEnumerator BeginExplore()
+    {
+        // Wait a frame so the page's own dialogue has started, then let it finish first.
+        yield return null;
+        while (DialogueManager.instance.isDialogueActive || CutscenePlaceholder.Instance.IsShowing) yield return null;
+
+        DialogueManager.instance.StartDialogue(goToLighthouseDialogue,
+            () => GameState.Instance.SetTask(GoToLighthouseTask, goToLighthouseTaskText));
+    }
+
+    private IEnumerator SleepRoutine()
+    {
+        isSleeping = true;
+        GameState state = GameState.Instance;
+        state.ClearTask();
+        yield return ScreenFader.Instance.FadeOut();
+
+        CutsceneCard bedtime = CurrentDay.BedtimeCutscene;
+        if (bedtime != null && !bedtime.IsEmpty) yield return ShowAndWait(bedtime);
+
+        isSleeping = false;
+        if (state.CurrentDay >= DayCount) StartCoroutine(EndingRoutine());
+        else BeginDay(state.CurrentDay + 1);
+    }
+
+    private IEnumerator EndingRoutine()
+    {
+        GameState state = GameState.Instance;
+        state.SetPhase(DayPhase.Ending);
+
+        yield return ShowAndWait(endingCutscene);
+        yield return ShowAndWait(state.GhostShipsMissed >= ghostShipsToLose ? deathCutscene : victoryCutscene);
+
+        stayInScene = null;
+        state.ResetAll();
+        SceneController.Instance.LoadScene(titleScene);
+    }
+
+    private IEnumerator ShowAndWait(CutsceneCard card)
+    {
+        bool closed = false;
+        CutscenePlaceholder.Instance.Show(card, () => closed = true);
+        while (!closed) yield return null;
+    }
+}

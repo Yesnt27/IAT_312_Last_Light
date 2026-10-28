@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1a0db30e0eeec4fa33afe4f0c0d981, type: 3}
+  m_Name: Day3
+  m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
+  startScene: Floor 2
+  startSpawnId: Bed
+  startsWithPowerOutage: 1
+  wakeDialogue:
+    dialogueLines:
+    - character:
+        name: 
+      text: '*Crash sounds, lights turn off*'
+    - character:
+        name: Player
+      text: Hello? Can you hear me? The power went out...
+    - character:
+        name: 
+      text: '*Static*'
+  puzzleTaskId: day3_power
+  puzzleTaskText: '*Find a way to turn the electricity back on*'
+  journalPage: 3
+  shipCount: 7
+  bedtimeCutscene:
+    title: '#3 Bedtime'
+    description: The player hears strange noises in the night.

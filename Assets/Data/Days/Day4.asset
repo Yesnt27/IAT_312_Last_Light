@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1a0db30e0eeec4fa33afe4f0c0d981, type: 3}
+  m_Name: Day4
+  m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
+  startScene: Floor 2
+  startSpawnId: Bed
+  startsWithPowerOutage: 0
+  wakeDialogue:
+    dialogueLines:
+    - character:
+        name: 
+      text: '*Loud horn sounds coming from outside*'
+    - character:
+        name: Player
+      text: Huh? I wonder what that honking is for.
+  puzzleTaskId: day4_bottle
+  puzzleTaskText: '*Check the horn sound coming from outside*'
+  journalPage: 4
+  shipCount: 9
+  bedtimeCutscene:
+    title: '#4 Last bedtime'
+    description: 'Radio call with the higher up: "We will pick you up bright and early in the morning."'

@@ -1,7 +1,9 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,10 +13,17 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueArea;
     [SerializeField] private GameObject dialogueBox;
 
+    [Header("Input")]
+    [SerializeField] private InputActionReference advanceAction;
+
     [Header("Settings")]
     [SerializeField] private float typingSpeed = 0.02f;
 
     private Queue<DialogueLine> lines;
+    private DialogueLine currentLine;
+    private bool isTyping;
+    private Action onFinished;
+    private int startedFrame;
     public bool isDialogueActive = false;
 
 
@@ -30,16 +39,51 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(false);
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    private void OnEnable()
     {
+        advanceAction.action.Enable();
+        advanceAction.action.performed += OnAdvance;
+    }
+
+    private void OnDisable()
+    {
+        advanceAction.action.performed -= OnAdvance;
+    }
+
+    public void StartDialogue(Dialogue dialogue, Action onComplete = null)
+    {
+        if (dialogue == null || dialogue.dialogueLines.Count == 0)
+        {
+            onComplete?.Invoke();
+            return;
+        }
 
         isDialogueActive = true;
+        onFinished = onComplete;
+        startedFrame = Time.frameCount;
+        PlayerLock.Add(this);
         dialogueBox.SetActive(true);
         lines.Clear();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
             lines.Enqueue(dialogueLine);
+        }
+
+        DisplayNextLine();
+    }
+
+    private void OnAdvance(InputAction.CallbackContext context)
+    {
+        // Ignore the key press that started this dialogue (e.g. the one that closed a card).
+        if (!isDialogueActive || Time.frameCount == startedFrame) return;
+
+        if (isTyping)
+        {
+            StopAllCoroutines();
+            isTyping = false;
+            dialogueArea.text = currentLine.text;
+            return;
         }
 
         DisplayNextLine();
@@ -53,25 +97,34 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        DialogueLine currentline = lines.Dequeue();
-        characterNameText.text = currentline.character.name;
+        currentLine = lines.Dequeue();
+        bool hasSpeaker = currentLine.character != null && !string.IsNullOrEmpty(currentLine.character.name);
+        characterNameText.gameObject.SetActive(hasSpeaker);
+        characterNameText.text = hasSpeaker ? currentLine.character.name : "";
         StopAllCoroutines();
-        StartCoroutine(Typesentence(currentline));
+        StartCoroutine(Typesentence(currentLine));
     }
 
     IEnumerator Typesentence(DialogueLine dialogueLine)
     {
+        isTyping = true;
         dialogueArea.text = "";
         foreach (char letter in dialogueLine.text.ToCharArray())
         {
             dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        isTyping = false;
     }
 
     void EndDialogue()
     {
         isDialogueActive = false;
         dialogueBox.SetActive(false);
+        PlayerLock.Remove(this);
+
+        Action finished = onFinished;
+        onFinished = null;
+        finished?.Invoke();
     }
 }
