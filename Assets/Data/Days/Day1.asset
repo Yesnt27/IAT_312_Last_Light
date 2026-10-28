@@ -22,12 +22,11 @@ MonoBehaviour:
       text: '*The boat pulls away from the dock and fades into the distance*'
     - character:
         name: Player
-      text: '[PLACEHOLDER] ...Guess it''s just me and the lighthouse now.'
-  puzzleTaskId: day1_explore
-  puzzleTaskText: '*Explore the place*'
-  journalPage: 1
-  requiredFlags:
-  - FoodFound
+      text: ...Guess it's just me and the lighthouse now.
+  puzzleTaskId: 
+  puzzleTaskText: 
+  journalPage: 0
+  requiredFlags: []
   shipCount: 3
   bedtimeCutscene:
     title: 
