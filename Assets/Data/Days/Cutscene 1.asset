@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1a0db30e0eeec4fa33afe4f0c0d981, type: 3}
+  m_Name: Cutscene 1
+  m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
+  startScene: 
+  startSpawnId: 
+  startsWithPowerOutage: 0
+  wakeDialogue:
+    dialogueLines:
+    - character:
+        name: Manager
+      text: "Thanks for filling in so last minute! You\u2019ll be staying at the lighthouse for 4 nights, make sure to report any abnormal ship activity to us. "
+    - character:
+        name: Manager
+      text: 'Make yourself at home and explore the island! '
+  puzzleTaskId: 
+  puzzleTaskText: 
+  journalPage: 0
+  requiredFlags: []
+  shipCount: 9
+  bedtimeCutscene:
+    title: '#4 Last bedtime'
+    description: 'Radio call with the higher up: "We will pick you up bright and early in the morning."'
