@@ -5,6 +5,7 @@ using UnityEngine;
 // When In Scene: plays as soon as the player is in this scene and the conditions are met.
 // On Player Enter: plays when the player walks into this object's trigger collider.
 // It waits for fades, cutscene cards and other dialogue to finish before it starts.
+// Afterwards it can end a cutscene scene (back to DayManager) or load another scene.
 public class StoryTrigger : MonoBehaviour
 {
     public enum TriggerMode { WhenInScene, OnPlayerEnter }
@@ -21,6 +22,13 @@ public class StoryTrigger : MonoBehaviour
     [Header("What")]
     [SerializeField] private Dialogue dialogue;
     [SerializeField] private StoryOutcome outcome = new StoryOutcome();
+
+    [Header("Then (optional)")]
+    [Tooltip("In a cutscene scene that DayManager played: tick this so the story carries on afterwards.")]
+    [SerializeField] private bool endsCutscene;
+    [Tooltip("Or load this scene afterwards (must be in Build Settings).")]
+    [SerializeField] private string loadScene;
+    [SerializeField] private string loadSpawnId;
 
     private bool hasPlayed;
     private bool isWaiting;
@@ -77,5 +85,8 @@ public class StoryTrigger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(rememberAsFlag)) GameState.Instance.SetFlag(rememberAsFlag);
         outcome.Apply();
+
+        if (endsCutscene) DayManager.Instance.FinishCutscene();
+        else if (!string.IsNullOrEmpty(loadScene)) SceneController.Instance.LoadScene(loadScene, loadSpawnId);
     }
 }
