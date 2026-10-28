@@ -695,6 +695,9 @@ MonoBehaviour:
     newTaskId: day3_observe_water
     newTaskText: '*Observe what is floating in the water*'
     setFlag: 
+  endsCutscene: 0
+  loadScene: 
+  loadSpawnId: 
 --- !u!1 &548137941
 GameObject:
   m_ObjectHideFlags: 0
