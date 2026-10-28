@@ -167,8 +167,8 @@ public class DayManager : MonoBehaviour
         if (GameState.Instance.Phase != DayPhase.Night) return;
 
         GameState state = GameState.Instance;
-        string report = $"Ships guided: {state.ShipsGuided}\nGhost ships caught: {state.GhostShipsCaught}\n" +
-                        $"Ghost ships missed: {state.GhostShipsMissed}\nFalse alarms: {state.FalseAlarms}";
+        string report = $"Ships guided: {state.ShipsGuided}\nAbnormal ships caught: {state.GhostShipsCaught}\n" +
+                        $"Abnormal ships missed: {state.GhostShipsMissed}";
         CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, () => StartCoroutine(SleepRoutine()));
     }
 
