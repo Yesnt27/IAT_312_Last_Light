@@ -2,6 +2,7 @@
 public static class GameFlags
 {
     public const string BasementKey = "BasementKey";
+    public const string PowerFixed = "PowerFixed";
     public const string Journal = "Journal";
     public const string BottleMessage = "BottleMessage";
     public const string BottleDeciphered = "BottleDeciphered";

@@ -33,8 +33,9 @@ MonoBehaviour:
         name: Manager
       text: It should be somewhere in the house, just look around.
   puzzleTaskId: day2_basement_key
-  puzzleTaskText: '*Check around the house to find the key for the basement*'
+  puzzleTaskText: '"Figure out a way to turn the power back on"'
   journalPage: 2
+  requiredFlags: []
   shipCount: 5
   bedtimeCutscene:
     title: '#2 Bedtime'

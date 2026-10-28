@@ -26,6 +26,7 @@ MonoBehaviour:
   puzzleTaskId: day1_find_journal
   puzzleTaskText: '*Explore the island, then find the living quarters inside the lighthouse*'
   journalPage: 1
+  requiredFlags: []
   shipCount: 3
   bedtimeCutscene:
     title: 

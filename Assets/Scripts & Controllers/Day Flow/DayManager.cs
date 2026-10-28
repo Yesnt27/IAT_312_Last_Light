@@ -163,8 +163,12 @@ public class DayManager : MonoBehaviour
         GameState state = GameState.Instance;
         if (state.Phase != DayPhase.DayPuzzle) return;
 
-        int page = CurrentDay.JournalPage;
-        if (page > 0 && !state.HasPage(page)) return;
+        DayDefinition definition = CurrentDay;
+        if (definition.JournalPage > 0 && !state.HasPage(definition.JournalPage)) return;
+        foreach (string flag in definition.RequiredFlags)
+        {
+            if (!string.IsNullOrEmpty(flag) && !state.HasFlag(flag)) return;
+        }
 
         state.SetPhase(DayPhase.Explore);
         StartCoroutine(BeginExplore());

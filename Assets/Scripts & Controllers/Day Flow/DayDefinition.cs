@@ -10,10 +10,12 @@ public class DayDefinition : ScriptableObject
     [SerializeField] private bool startsWithPowerOutage;
     [SerializeField] private Dialogue wakeDialogue;
 
-    [Header("Day Puzzle (ends when the journal page is collected)")]
+    [Header("Day Puzzle (ends when the page is collected AND every required flag is set)")]
     [SerializeField] private string puzzleTaskId;
     [SerializeField, TextArea(1, 3)] private string puzzleTaskText;
+    [Tooltip("0 = no page needed.")]
     [SerializeField] private int journalPage;
+    [SerializeField] private string[] requiredFlags = new string[0];
 
     [Header("Night")]
     [SerializeField] private int shipCount = 3;
@@ -28,6 +30,7 @@ public class DayDefinition : ScriptableObject
     public string PuzzleTaskId => puzzleTaskId;
     public string PuzzleTaskText => puzzleTaskText;
     public int JournalPage => journalPage;
+    public string[] RequiredFlags => requiredFlags ?? new string[0];
     public int ShipCount => shipCount;
     public CutsceneCard BedtimeCutscene => bedtimeCutscene;
 }

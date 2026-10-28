@@ -27,8 +27,10 @@ MonoBehaviour:
         name: 
       text: '*Static*'
   puzzleTaskId: day3_power
-  puzzleTaskText: '*Find a way to turn the electricity back on*'
+  puzzleTaskText: '*Check the horn sounds coming from outside*'
   journalPage: 3
+  requiredFlags:
+  - PowerFixed
   shipCount: 7
   bedtimeCutscene:
     title: '#3 Bedtime'
