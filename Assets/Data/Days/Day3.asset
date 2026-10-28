@@ -19,13 +19,16 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: 
-      text: '*Loud horn sounds coming from outside*'
+      text: '*Crash sounds, lights turn off*'
     - character:
         name: Player
-      text: Huh? I wonder what that honking is for.
-  puzzleTaskId: day3_check_horn
-  puzzleTaskText: '*Check the horn sound coming from outside*'
-  journalPage: 3
+      text: Hello? Can you hear me? The power went out...
+    - character:
+        name: 
+      text: '*Static*'
+  puzzleTaskId: 
+  puzzleTaskText: '*Find a way to turn the electricity back on*'
+  journalPage: 0
   requiredFlags: []
   shipCount: 7
   bedtimeCutscene:

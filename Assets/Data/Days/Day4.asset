@@ -18,10 +18,10 @@ MonoBehaviour:
   wakeDialogue:
     dialogueLines:
     - character:
-        name: Player
-      text: '[PLACEHOLDER] Day 4 hasn''t been designed yet.'
-  puzzleTaskId: day4_todo
-  puzzleTaskText: '*Day 4 hasn''t been set up yet*'
+        name: 
+      text: '*Loud horn sounds coming from outside*'
+  puzzleTaskId: 
+  puzzleTaskText: 
   journalPage: 4
   requiredFlags: []
   shipCount: 9
