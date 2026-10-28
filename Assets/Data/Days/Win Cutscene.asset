@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1a0db30e0eeec4fa33afe4f0c0d981, type: 3}
+  m_Name: Win Cutscene
+  m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
+  startScene: 
+  startSpawnId: 
+  startsWithPowerOutage: 0
+  wakeDialogue:
+    dialogueLines:
+    - character:
+        name: Manager
+      text: Congrats! You made it through the 4 days!
+    - character:
+        name: Manager
+      text: I knew you'd be able to do it yourself! I hope there weren't too many issues along the way..
+  puzzleTaskId: 
+  puzzleTaskText: 
+  journalPage: 0
+  requiredFlags: []
+  shipCount: 0
+  bedtimeCutscene:
+    title: '#4 Last bedtime'
+    description: 'Radio call with the higher up: "We will pick you up bright and early in the morning."'
+    scene: 
