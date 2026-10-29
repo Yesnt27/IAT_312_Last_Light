@@ -26,11 +26,8 @@ MonoBehaviour:
     - character:
         name: 
       text: '*Static*'
-    - character:
-        name: Player
-      text: '[PLACEHOLDER] The power box must be down in the basement.'
   puzzleTaskId: day2_power
-  puzzleTaskText: '*Fix the power*'
+  puzzleTaskText: '*Find a way to turn the electricity back on*'
   journalPage: 2
   requiredFlags:
   - PowerFixed
