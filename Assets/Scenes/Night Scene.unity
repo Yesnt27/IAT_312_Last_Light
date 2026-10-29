@@ -672,7 +672,7 @@ MonoBehaviour:
       text: '[PLACEHOLDER] Time to keep watch. Let''s see what''s out there tonight.'
   taskText: '*Spot the ships with the binoculars and report each one at the Real / Fake buttons ({0}/{1})*'
   endDelay: 2
-  firstNightSeconds: 30
+  firstNightSeconds: 60
   extraSecondsPerNight: 15
   timerLabel: {fileID: 533840579}
   timerText: TIME LEFT  {0}
@@ -1054,7 +1054,7 @@ Light:
   m_Color: {r: 1, g: 0.94407576, b: 0.24056602, a: 1}
   m_Intensity: 150000
   m_Range: 900
-  m_SpotAngle: 30
+  m_SpotAngle: 46.612732
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7995d98357dc6184bb3a0db39889aa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateLight
-  rotationSpeed: 30
+  rotationSpeed: 50
 --- !u!114 &205399624
 MonoBehaviour:
   m_ObjectHideFlags: 0
