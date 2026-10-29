@@ -27,7 +27,7 @@ MonoBehaviour:
   puzzleTaskText: '*Check the horn sound coming from outside*'
   journalPage: 3
   requiredFlags: []
-  shipCount: 9
+  shipCount: 7
   bedtimeCutscene:
     title: '#4 Last bedtime'
     description: 'Radio call with the higher up: "We will pick you up bright and early in the morning."'

@@ -197,6 +197,10 @@ It only works when you press Play in the Editor. A build always starts on Day 1,
 | `day3_check_horn` | Day4 → Puzzle Task Id; Outside → Story/Day 4 - Horn Check → Active During Tasks |
 | `day3_observe_water` | Outside → Story/Day 4 - Horn Check → Outcome → New Task Id |
 | `day3_find_book` | Outside → Message in a Bottle → New Task Id |
-| `day3_use_message` | Floor 3 → Book - Strange Symbols → New Task Id |
+| `day3_open_safe` | Floor 3 → Book - Strange Symbols → New Task Id (replaced the old `day3_use_message`) |
 
-Flags used by the story: `ExploredFloor1`–`4`, `BasementKey`, `Day1BasementArrived`, `FoodFound`, `Journal`, `PowerFixed`, `BottleMessage`, `BottleDeciphered`.
+Flags used by the story: `ExploredFloor1`–`4`, `BasementKey`, `Day1BasementArrived`, `FoodFound`, `Journal`, `PowerFixed`, `BottleMessage`, `BottleDeciphered`, `SafeOpened`.
+
+The rest of Day 4 (the note, the safe, the last night) and the night timer are described in `Docs/Day 4 quest, night timer and ending.md`.
+
+**If Day 1 ever stops working after a merge:** check the `Day1` asset first. Its Puzzle Task Id must be `day1_explore`, and its Required Flags must be `ExploredFloor1`–`4`. A merge once emptied these, and then the floor lines never play and Day 1 ends straight after the boat leaves.

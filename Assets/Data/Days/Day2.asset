@@ -33,7 +33,7 @@ MonoBehaviour:
   - FoodFound
   - BasementKey
   - Journal
-  shipCount: 5
+  shipCount: 4
   bedtimeCutscene:
     title: '#2 Bedtime'
     description: As the player heads to the bedroom, a shadow passes by.

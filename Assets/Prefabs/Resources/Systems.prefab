@@ -1392,6 +1392,7 @@ MonoBehaviour:
   ghostShipsCaught: 0
   ghostShipsMissed: 0
   falseAlarms: 0
+  shipsNotReported: 0
 --- !u!114 &1681673104147944352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,7 +1424,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53ec3de206f5a4049903fdbcf26387e1, type: 2}
   - {fileID: 11400000, guid: c5251fd506e2d7a459461223d2e7f416, type: 2}
   newGameOnPlayInFirstScene: 1
-  startOnDay: 1
+  startOnDay: 4
   titleScene: 
   introCutscene:
     title: '#1 Boat ride'
@@ -1442,13 +1443,13 @@ MonoBehaviour:
   goToBedTaskText: '*Head to bed*'
   ghostShipsToLose: 3
   endingCutscene:
-    title: Ending
-    description: The player watches a ship arrive. A boat horn sounds.
+    title: 
+    description: 
     scene: 
   victoryCutscene:
     title: Victory
     description: It's the higher up. They pick you up and you sail away. Shift complete!
-    scene: 
+    scene: Ending 1 - Win
   deathCutscene:
     title: Death
     description: It's a ghost ship. All the ghosts come and pull you aboard.

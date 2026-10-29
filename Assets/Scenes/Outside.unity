@@ -1366,9 +1366,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1087258516}
-  - component: {fileID: 1087258519}
-  - component: {fileID: 1087258518}
   - component: {fileID: 1087258517}
+  - component: {fileID: 1087258521}
+  - component: {fileID: 1087258520}
   m_Layer: 0
   m_Name: Message in a Bottle
   m_TagString: Untagged
@@ -1405,7 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a66afacd8384814f8be56cd6a249150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShowWhenAvailable
---- !u!114 &1087258518
+--- !u!114 &1087258520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
   maxDistanceFromPlayer: 0
   hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
---- !u!114 &1087258519
+--- !u!114 &1087258521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1428,9 +1428,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087258515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2dccb8995c5031478161d30d707423c, type: 3}
+  m_Script: {fileID: 11500000, guid: 683cc5b8b7947ec4ab8f0d8ab63fd30c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractDialogue
+  m_EditorClassIdentifier: Assembly-CSharp::MessageInaBottle
   promptText: Look at the bottle
   activeOnDays: 04000000i
   activeDuringTasks: []
@@ -1447,20 +1447,23 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
-  dialogue:
+  paperNotePrefab: {fileID: 8070745585840485486, guid: 28cdb9862b14da947b8e25705ca2c8be, type: 3}
+  noteText: "\u03A8 \u0394 \u039E   \u03A9 \u03BB \u03A6   \u0416 \u03A3\n\n\u0398 \u03A0 \u0394   \u03A8 \u03A9   \u0416 \u039E \u039B\n\n\u03A6 \u03A3   \u03A9 \u0416   \u0394"
+  noteImage: {fileID: 0}
+  openDialogue:
     dialogueLines:
     - character:
         name: 
       text: '*You fish the bottle out of the water and pull out the note inside.*'
-    - character:
-        name: 
-      text: '*[PLACEHOLDER] The note is covered in strange symbols you can''t read.*'
+  readDialogue:
+    dialogueLines:
     - character:
         name: Player
       text: Hmmm...Maybe there's a book inside that'll help me understand this message.
-  setFlag: BottleMessage
-  newTaskId: day3_find_book
-  newTaskText: '*Find a book inside the lighthouse that can help read the message*'
+  afterReading:
+    newTaskId: day3_find_book
+    newTaskText: '*Find a book inside the lighthouse that can help read the message*'
+    setFlag: BottleMessage
 --- !u!1 &1097646718
 GameObject:
   m_ObjectHideFlags: 0

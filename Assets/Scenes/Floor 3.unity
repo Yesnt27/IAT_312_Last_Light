@@ -1596,16 +1596,16 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: 
-      text: '*A worn book full of strange symbols, each one paired with a letter.*'
+      text: '*A worn book full of strange symbols, each one paired with a number.*'
     - character:
         name: 
-      text: '*Matching them to the note, the message spells out a word: [PLACEHOLDER WORD]*'
+      text: '*Matching them to the note, the message spells out a code: 2 7 4 1*'
     - character:
         name: Player
-      text: What could this be used for?
+      text: A code... There's a safe up on the fourth floor. Maybe this opens it.
   setFlag: BottleDeciphered
-  newTaskId: day3_use_message
-  newTaskText: '*Figure out what this message can be used for*'
+  newTaskId: day3_open_safe
+  newTaskText: '*Open the safe on the fourth floor (code: 2741)*'
 --- !u!1001 &1216108917
 PrefabInstance:
   m_ObjectHideFlags: 0

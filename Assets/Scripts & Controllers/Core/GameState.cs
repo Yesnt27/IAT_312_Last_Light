@@ -23,6 +23,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private int ghostShipsCaught;
     [SerializeField] private int ghostShipsMissed;
     [SerializeField] private int falseAlarms;
+    [SerializeField] private int shipsNotReported;
 
     public event Action Changed;
 
@@ -36,6 +37,7 @@ public class GameState : MonoBehaviour
     public int GhostShipsCaught => ghostShipsCaught;
     public int GhostShipsMissed => ghostShipsMissed;
     public int FalseAlarms => falseAlarms;
+    public int ShipsNotReported => shipsNotReported;
 
     public bool HasBasementKey => HasFlag(GameFlags.BasementKey);
     public bool HasJournal => HasFlag(GameFlags.Journal);
@@ -119,6 +121,7 @@ public class GameState : MonoBehaviour
     public void RecordGhostShipCaught() { ghostShipsCaught++; Changed?.Invoke(); }
     public void RecordGhostShipMissed() { ghostShipsMissed++; Changed?.Invoke(); }
     public void RecordFalseAlarm() { falseAlarms++; Changed?.Invoke(); }
+    public void RecordShipNotReported() { shipsNotReported++; Changed?.Invoke(); }
 
     public void ResetAll()
     {
@@ -133,6 +136,7 @@ public class GameState : MonoBehaviour
         ghostShipsCaught = 0;
         ghostShipsMissed = 0;
         falseAlarms = 0;
+        shipsNotReported = 0;
         Changed?.Invoke();
     }
 }

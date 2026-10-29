@@ -34,7 +34,7 @@ MonoBehaviour:
   journalPage: 2
   requiredFlags:
   - PowerFixed
-  shipCount: 7
+  shipCount: 4
   bedtimeCutscene:
     title: '#3 Bedtime'
     description: The player hears strange noises in the night.

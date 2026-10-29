@@ -194,7 +194,7 @@ public class DayManager : MonoBehaviour
 
         GameState state = GameState.Instance;
         string report = $"Ships guided: {state.ShipsGuided}\nAbnormal ships caught: {state.GhostShipsCaught}\n" +
-                        $"Abnormal ships missed: {state.GhostShipsMissed}";
+                        $"Abnormal ships missed: {state.GhostShipsMissed}\nNot reported in time: {state.ShipsNotReported}";
         CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, () => StartCoroutine(SleepRoutine()));
     }
 
