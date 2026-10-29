@@ -30,8 +30,13 @@ public class MessageInaBottle : Interactable
     private void OpenNote()
     {
         PaperNote note = Instantiate(paperNotePrefab);
+        if(paperNotePrefab == null){
+            Debug.LogError($"{name}: prefab isnt assigned", this);
+            return;
+        }
         note.Open(noteText, noteImage, () => DialogueManager.instance.StartDialogue(readDialogue, FinishReading));
     }
+    
 
     private void FinishReading()
     {

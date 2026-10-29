@@ -457,7 +457,7 @@ MonoBehaviour:
     newTaskText: 
     setFlag: 
   endsCutscene: 1
-  loadScene: 
+  loadScene: Outside
   loadSpawnId: 
 --- !u!1 &1100270896
 GameObject:

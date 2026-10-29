@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MessageInaBottle
   promptText: Look at the bottle
-  activeOnDays: 04000000i
+  activeOnDays: 04000000040000000400000004000000i
   activeDuringTasks: []
   requiredFlags: []
   hiddenByFlags:

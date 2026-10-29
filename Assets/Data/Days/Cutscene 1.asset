@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1a0db30e0eeec4fa33afe4f0c0d981, type: 3}
   m_Name: Cutscene 1
   m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
-  startScene: 
+  startScene: Cutscene 1 - Intro
   startSpawnId: 
   startsWithPowerOutage: 0
   wakeDialogue:
@@ -31,3 +31,4 @@ MonoBehaviour:
   bedtimeCutscene:
     title: '#4 Last bedtime'
     description: 'Radio call with the higher up: "We will pick you up bright and early in the morning."'
+    scene: 
