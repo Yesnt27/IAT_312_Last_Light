@@ -2,6 +2,8 @@
 
 This guide records how the day order was changed, so you can make the same kind of change yourself. **The reorder needed no code**: everything was done in the Unity Inspector, by editing the Day assets and some objects in the story scenes. The only code added afterwards is the **Start On Day** testing option (see *Testing a later day*).
 
+> **Later change:** the journal (page 1) moved to **Day 1**, on Floor 2's coffee table, so it's read before the first night. Day 1 now needs page 1 + `ExploredFloor1`–`4` + `Journal`; Day 2 needs `FoodFound` + `BasementKey` and no page (its basement task reads *Look for food*). Days 2–4 now also wake at **Floor 4 / Bed** (the bed the player sleeps in after each night) instead of Floor 2 / Bed. The tables below show the state before those changes.
+
 ## The new order
 
 | Day | Wake up at | What happens | The day's puzzle is done when |
@@ -145,7 +147,7 @@ Press Play in `Outside` to start a new game, and play through it in order. To te
 ### Using it
 1. In the Project window, select `Assets/Prefabs/Resources/Systems`. You don't need to open the prefab: selecting it shows its components in the Inspector.
 2. In **Day Manager → Starting the Game**, set **Start On Day** to the day you want, e.g. `3`.
-3. Open the `Outside` scene and press Play. The intro card is skipped. Days 1–2 count as done, and Day 3 starts at its own start spot (Floor 2 / Bed) with its wake dialogue.
+3. Open the `Outside` scene and press Play. The intro card is skipped. Days 1–2 count as done, and Day 3 starts at its own start spot (Floor 4 / Bed) with its wake dialogue.
 4. A yellow warning in the Console reminds you it's on. **Set it back to `1`** when you're done.
 
 "Counts as done" means you get each skipped day's **Journal Page** and **Required Flags**, and nothing else: no ship results, and no flags that aren't in a Required Flags list. That's why each day's Required Flags should include whatever later days need from it, like the basement key.

@@ -246,6 +246,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  movingMaterial: {fileID: 6200000, guid: 7d74bf857d8c93a41add2af7bbb938f8, type: 2}
+  standingMaterial: {fileID: 6200000, guid: 4e1eded9cce18a74ba1245684b847c45, type: 2}
 --- !u!114 &5078938692872871081
 MonoBehaviour:
   m_ObjectHideFlags: 0

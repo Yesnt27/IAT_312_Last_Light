@@ -25,12 +25,13 @@ MonoBehaviour:
       text: ...Guess it's just me and the lighthouse now.
   puzzleTaskId: day1_explore
   puzzleTaskText: '*Explore the house*'
-  journalPage: 0
+  journalPage: 1
   requiredFlags:
   - ExploredFloor1
   - ExploredFloor2
   - ExploredFloor3
   - ExploredFloor4
+  - Journal
   shipCount: 3
   bedtimeCutscene:
     title: 

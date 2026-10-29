@@ -43,6 +43,11 @@ public class DayManager : MonoBehaviour
 
     [Header("Bedtime")]
     [SerializeField] private string goToBedTaskText = "*Head to bed*";
+    [Tooltip("After the 3D night shift the player is brought back here to sleep (the bed). Empty = straight to the next morning.")]
+    [SerializeField] private string afterNightScene = "Floor 4";
+    [SerializeField] private string afterNightSpawnId = "Bed";
+    [Tooltip("Plays when the player arrives at the bed after the night.")]
+    [SerializeField] private Dialogue afterNightDialogue;
 
     [Header("Ending")]
     [SerializeField] private int ghostShipsToLose = 3;
@@ -89,13 +94,13 @@ public class DayManager : MonoBehaviour
         if (CanStartNight && IsInNightScene) StartNight();
     }
 
-    // Intro cutscene card over a black screen, then Day 1 loads at its start spawn (Outside / Dock).
+    // The intro cutscene (a card over a black screen, or a cutscene scene faded into), then Day 1 at its start spawn.
     public void StartNewGame()
     {
         stayInScene = null;
         isSleeping = false;
         GameState.Instance.ResetAll();
-        ScreenFader.Instance.SetAlpha(1f);
+        if (introCutscene == null || !introCutscene.IsScene) ScreenFader.Instance.SetAlpha(1f);
         PlayCutscene(introCutscene, () => BeginDay(1));
     }
 
@@ -187,7 +192,7 @@ public class DayManager : MonoBehaviour
         });
     }
 
-    // Called by the NightShift in the 3D scene: night report, then the next morning (back to 2D).
+    // Called by the NightShift in the 3D scene: night report, then back to 2D next to the bed (or straight to the morning).
     public void FinishNightShift()
     {
         if (GameState.Instance.Phase != DayPhase.Night) return;
@@ -195,7 +200,22 @@ public class DayManager : MonoBehaviour
         GameState state = GameState.Instance;
         string report = $"Ships guided: {state.ShipsGuided}\nAbnormal ships caught: {state.GhostShipsCaught}\n" +
                         $"Abnormal ships missed: {state.GhostShipsMissed}\nNot reported in time: {state.ShipsNotReported}";
-        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, () => StartCoroutine(SleepRoutine()));
+        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, ReturnToBed);
+    }
+
+    // The player wakes back up in 2D beside the bed with the "Head to bed" task; the Bed then ends the day.
+    private void ReturnToBed()
+    {
+        if (stayInScene != null || string.IsNullOrEmpty(afterNightScene))
+        {
+            StartCoroutine(SleepRoutine());
+            return;
+        }
+
+        GameState state = GameState.Instance;
+        state.SetPhase(DayPhase.Bedtime);
+        state.SetTask(GoToBedTask, goToBedTaskText);
+        SceneController.Instance.LoadScene(afterNightScene, afterNightSpawnId, () => DialogueManager.instance.StartDialogue(afterNightDialogue));
     }
 
     public void GoToSleep()

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1a0db30e0eeec4fa33afe4f0c0d981, type: 3}
   m_Name: Day2
   m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
-  startScene: Floor 2
+  startScene: Floor 4
   startSpawnId: Bed
   startsWithPowerOutage: 0
   wakeDialogue:
@@ -31,11 +31,10 @@ MonoBehaviour:
       text: It should be somewhere in the house, just look around.
   puzzleTaskId: day1_find_key
   puzzleTaskText: '*Check around the house to find the key for the basement*'
-  journalPage: 1
+  journalPage: 0
   requiredFlags:
   - FoodFound
   - BasementKey
-  - Journal
   shipCount: 4
   bedtimeCutscene:
     title: '#2 Bedtime'

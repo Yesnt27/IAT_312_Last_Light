@@ -379,6 +379,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1069301031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1069301032}
+  - component: {fileID: 1069301033}
+  m_Layer: 0
+  m_Name: Intro Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1069301032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069301031}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1270044788}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1069301033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069301031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433fc9d852829574bb7a3531d6891c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoryTrigger
+  mode: 0
+  activeOnDays: 
+  activeDuringTasks: []
+  requiredFlags: []
+  hiddenByFlags: []
+  rememberAsFlag: 
+  dialogue:
+    dialogueLines:
+    - character:
+        name: 
+      text: '[PLACEHOLDER] *The small boat rocks over grey waves towards a lonely island.*'
+    - character:
+        name: Manager
+      text: '[PLACEHOLDER] That''s it. Your lighthouse for the next few nights.'
+    - character:
+        name: Player
+      text: '[PLACEHOLDER] Why me? I''ve never kept a light before.'
+    - character:
+        name: Manager
+      text: '[PLACEHOLDER] The last keeper left in a hurry, and nobody else would take the job.'
+    - character:
+        name: Manager
+      text: '[PLACEHOLDER] Keep the lamp burning, watch the ships that pass, and report anything strange.'
+    - character:
+        name: Player
+      text: '[PLACEHOLDER] Anything strange?'
+    - character:
+        name: Manager
+      text: '[PLACEHOLDER] You''ll know it when you see it. I''ll be back for you when it''s done.'
+  outcome:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  endsCutscene: 1
+  loadScene: 
+  loadSpawnId: 
 --- !u!1 &1100270896
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +675,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1270044787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270044788}
+  m_Layer: 0
+  m_Name: Story
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1270044788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270044787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1069301032}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1438750754
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,3 +791,4 @@ SceneRoots:
   - {fileID: 831605963}
   - {fileID: 797423985}
   - {fileID: 1202714531}
+  - {fileID: 1270044788}

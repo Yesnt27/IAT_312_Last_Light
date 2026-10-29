@@ -1425,11 +1425,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5251fd506e2d7a459461223d2e7f416, type: 2}
   newGameOnPlayInFirstScene: 1
   startOnDay: 1
-  titleScene: 
+  titleScene: Title Screen
   introCutscene:
     title: '#1 Boat ride'
     description: The player sails to the island with their manager, who explains why they are being sent to look after the lighthouse.
-    scene: 
+    scene: Cut Scene 1 - Intro
   goToLighthouseDialogue:
     dialogueLines:
     - character:
@@ -1441,6 +1441,13 @@ MonoBehaviour:
   nightShiftScene: Night Scene
   skipNightForTesting: 1
   goToBedTaskText: '*Head to bed*'
+  afterNightScene: Floor 4
+  afterNightSpawnId: Bed
+  afterNightDialogue:
+    dialogueLines:
+    - character:
+        name: Player
+      text: '[PLACEHOLDER] That''s the night over. I should get some sleep.'
   ghostShipsToLose: 3
   endingCutscene:
     title: 

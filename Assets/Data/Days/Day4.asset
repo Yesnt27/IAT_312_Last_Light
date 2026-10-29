@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1a0db30e0eeec4fa33afe4f0c0d981, type: 3}
   m_Name: Day4
   m_EditorClassIdentifier: Assembly-CSharp::DayDefinition
-  startScene: Floor 2
+  startScene: Floor 4
   startSpawnId: Bed
   startsWithPowerOutage: 0
   wakeDialogue:

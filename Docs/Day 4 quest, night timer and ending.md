@@ -9,7 +9,7 @@ This covers what was built for the end of the game, and where to change each par
 It also covers re-applying the Day 1 settings that a merge had emptied.
 
 ## The whole Day 4, in order
-1. Wake up in Floor 2 to the horn. Go outside, and the "What's that floating in the water?" lines play.
+1. Wake up in the Floor 4 bed to the horn. Go outside, and the "What's that floating in the water?" lines play.
 2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper** covered in strange symbols. Click or press Enter to put it away.
 3. The player says a book might help. Task: *Find a book inside the lighthouse that can help read the message*.
 4. On **Floor 3**, press E on the books. The decoys say "not this one". **Book - Strange Symbols** matches the symbols to numbers and gives the code **2 7 4 1**. Task: *Open the safe on the fourth floor (code: 2741)*.
@@ -67,7 +67,7 @@ Instantiate(paperNotePrefab).Open(text, sprite, onClosed);
 It closes on click or Enter (the `Click` and `Dialogue` actions). To restyle the paper, open the prefab and change **Paper** (colour/size), **Note Text** (font size/colour) or **Hint**.
 
 ## The book
-`Floor 3` → **Interactables/Book - Strange Symbols** (Interact Dialogue): the dialogue now gives the code. After the dialogue it sets `BottleDeciphered` and the task `day3_open_safe`, *Open the safe on the fourth floor (code: 2741)*. The three other books are unchanged decoys.
+The books now live on **`Floor 2`** (moved there with the bookshelf art; they're clicked). When they moved, this book's text and task went back to the old version, so they were set again. `Floor 2` → **Interactables/Book - Strange Symbols** (Interact Dialogue): the dialogue now gives the code. After the dialogue it sets `BottleDeciphered` and the task `day3_open_safe`, *Open the safe on the fourth floor (code: 2741)*. The three other books are unchanged decoys.
 
 ## The safe
 `Floor 4` → **Safe**, at x −3.5 on the floor between the two staircases. It is new and uses `Safe.cs` (an empty stub until now):

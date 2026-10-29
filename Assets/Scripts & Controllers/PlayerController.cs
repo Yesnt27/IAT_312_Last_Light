@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Stairs and Slopes")]
+    [Tooltip("Used while moving or in the air: no friction, so the player can walk up stairs.")]
+    [SerializeField] private PhysicsMaterial2D movingMaterial;
+    [Tooltip("Used while standing still on the ground: high friction, so the player doesn't slide down stairs.")]
+    [SerializeField] private PhysicsMaterial2D standingMaterial;
+
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
@@ -50,6 +56,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+        PhysicsMaterial2D material = moveInput == 0f && isGrounded ? standingMaterial : movingMaterial;
+        if (material != null && rb.sharedMaterial != material) rb.sharedMaterial = material;
     }
 
     // Flips left/right by changing only the sign of X, so any size set on the player is kept.
