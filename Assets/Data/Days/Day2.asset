@@ -18,14 +18,17 @@ MonoBehaviour:
   wakeDialogue:
     dialogueLines:
     - character:
-        name: Manager
-      text: '*Radio static*'
-    - character:
-        name: Manager
-      text: You need food, there might be some in the storage.
-    - character:
         name: Player
-      text: '[PLACEHOLDER] The storage is down in the basement... and that door was locked. There has to be a key somewhere in the house.'
+      text: Umm...What am I supposed to eat...
+    - character:
+        name: Manager
+      text: OH I totally forgot! All the food is downstairs in the basement..
+    - character:
+        name: Manager
+      text: But I forgot where I put the key..
+    - character:
+        name: Manager
+      text: It should be somewhere in the house, just look around.
   puzzleTaskId: day1_find_key
   puzzleTaskText: '*Check around the house to find the key for the basement*'
   journalPage: 1
