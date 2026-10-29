@@ -19,6 +19,8 @@ public class BinocularHud : MonoBehaviour
     [SerializeField] private string noShipText = "NO SHIP SELECTED";
     [SerializeField] private string shipSelectedText = "SHIP SELECTED";
     [SerializeField] private string aimText = "[Right Click] Select ship";
+    [Tooltip("Shown when the crosshair is on a ship the beam hasn't lit.")]
+    [SerializeField] private string darkText = "Too dark to make out. Wait for the light.";
 
     [Header("Crosshair")]
     [SerializeField] private Color idleColor = new Color(0.25f, 1f, 0.35f, 0.45f);
@@ -52,10 +54,11 @@ public class BinocularHud : MonoBehaviour
         if (heldHint.activeSelf != visible) heldHint.SetActive(visible);
     }
 
-    public void SetAimed(NightShip ship)
+    public void SetAimed(NightShip ship, bool canSelect)
     {
-        crosshair.color = ship != null ? onShipColor : idleColor;
-        aimLabel.text = ship != null && ship != NightShip.Selected ? aimText : "";
+        crosshair.color = ship != null && canSelect ? onShipColor : idleColor;
+        if (ship == null || ship == NightShip.Selected) aimLabel.text = "";
+        else aimLabel.text = canSelect ? aimText : darkText;
     }
 
     private void Refresh()

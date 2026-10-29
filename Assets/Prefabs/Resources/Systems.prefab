@@ -1424,7 +1424,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53ec3de206f5a4049903fdbcf26387e1, type: 2}
   - {fileID: 11400000, guid: c5251fd506e2d7a459461223d2e7f416, type: 2}
   newGameOnPlayInFirstScene: 1
-  startOnDay: 4
+  startOnDay: 1
   titleScene: 
   introCutscene:
     title: '#1 Boat ride'

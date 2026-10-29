@@ -37,6 +37,12 @@ public class Binoculars : MonoBehaviour
     [Tooltip("Seconds after selecting a ship before the binoculars lower by themselves. 0 = stay up until you click.")]
     [SerializeField] private float lowerAfterSelecting = 0f;
 
+    [Header("Light")]
+    [Tooltip("Ships can only be selected while a Searchlight (the lighthouse beam) is on them. Ignored if the scene has no Searchlight.")]
+    [SerializeField] private bool needsLight = true;
+    [Tooltip("Seconds a ship stays selectable after the beam has passed it.")]
+    [SerializeField] private float selectableAfterLit = 1.5f;
+
     private Transform restParent;
     private Vector3 restPosition;
     private Quaternion restRotation;
@@ -83,7 +89,7 @@ public class Binoculars : MonoBehaviour
         if (IsLooking && PlayerLock.IsLocked) SetLooking(false);
 
         aimedShip = IsLooking ? FindAimedShip() : null;
-        hud.SetAimed(aimedShip);
+        hud.SetAimed(aimedShip, CanSelect(aimedShip));
         hud.ShowHeldHint(IsHeld && !IsLooking && !PlayerLock.IsLocked);
         UpdatePrompt();
         UpdateLowerTimer();
@@ -112,7 +118,7 @@ public class Binoculars : MonoBehaviour
 
     private void OnSelect(InputAction.CallbackContext context)
     {
-        if (!IsLooking || aimedShip == null) return;
+        if (!IsLooking || !CanSelect(aimedShip)) return;
 
         aimedShip.Select();
         if (lowerAfterSelecting > 0f) lowerTimer = lowerAfterSelecting;
@@ -167,6 +173,13 @@ public class Binoculars : MonoBehaviour
         float target = IsLooking ? zoomFieldOfView : normalFieldOfView;
         float speed = (normalFieldOfView - zoomFieldOfView) / Mathf.Max(zoomTime, 0.01f);
         viewCamera.fieldOfView = Mathf.MoveTowards(viewCamera.fieldOfView, target, speed * Time.deltaTime);
+    }
+
+    private bool CanSelect(NightShip ship)
+    {
+        if (ship == null) return false;
+        if (!needsLight || Searchlight.All.Count == 0) return true;
+        return Time.time - ship.LastLitTime <= selectableAfterLit;
     }
 
     // The ship closest to the crosshair, if the crosshair is on (or just around) it.

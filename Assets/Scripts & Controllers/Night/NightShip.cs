@@ -42,6 +42,7 @@ public class NightShip : MonoBehaviour
     public bool IsGhost => isGhost;
     public bool IsReported { get; private set; }
     public bool CanBeSelected => !IsReported && isActiveAndEnabled;
+    public float LastLitTime { get; private set; } = float.NegativeInfinity;
 
     private void Awake()
     {
@@ -63,6 +64,11 @@ public class NightShip : MonoBehaviour
     private void Start()
     {
         RefreshOutline();
+    }
+
+    private void Update()
+    {
+        if (Searchlight.AnyLights(GetBounds())) LastLitTime = Time.time;
     }
 
     public bool SailsOnNight(int night)

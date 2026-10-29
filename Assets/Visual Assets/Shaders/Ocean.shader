@@ -1,6 +1,7 @@
 // Moving ocean for URP (3D renderer). Four Gerstner waves move the surface; small ripples,
 // a sky reflection, a sun highlight and crest foam are added per pixel. No textures needed.
 // Waves fade out with distance from the camera so the far ocean stays calm and cheap.
+// Spotlights and point lights (e.g. the lighthouse beam) light up the water they reach.
 Shader "Lighthouse/Ocean"
 {
     Properties
@@ -11,8 +12,10 @@ Shader "Lighthouse/Ocean"
         _SkyColor ("Sky Reflection (overhead)", Color) = (0.42, 0.57, 0.76, 1)
         _HorizonColor ("Sky Reflection (horizon)", Color) = (0.72, 0.79, 0.87, 1)
         _FoamColor ("Foam Colour", Color) = (0.9, 0.95, 1, 1)
+        _HorizonSharpness ("Horizon Reflection Sharpness", Float) = 2
+        _LitWaterColor ("Water Colour In Spotlights", Color) = (0.18, 0.26, 0.28, 1)
 
-        [Header(Waves (direction X, direction Z, steepness, wavelength in metres))]
+        [Header(Waves . XZ direction then steepness then wavelength in metres)]
         _WaveSpeed ("Wave Speed", Float) = 0.8
         _WaveA ("Wave A", Vector) = (1, 0.3, 0.18, 60)
         _WaveB ("Wave B", Vector) = (0.6, 1, 0.15, 31)
@@ -42,6 +45,8 @@ Shader "Lighthouse/Ocean"
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_fog
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -52,6 +57,8 @@ Shader "Lighthouse/Ocean"
                 half4 _SkyColor;
                 half4 _HorizonColor;
                 half4 _FoamColor;
+                half _HorizonSharpness;
+                half4 _LitWaterColor;
                 float _WaveSpeed;
                 float4 _WaveA;
                 float4 _WaveB;
@@ -115,6 +122,26 @@ Shader "Lighthouse/Ocean"
                 return slope * 0.15;
             }
 
+            // Light from spotlights / point lights: a soft glow on the water plus glints on the waves.
+            half3 AdditionalLights(float3 positionWS, float4 positionCS, float3 normal, float3 reflected)
+            {
+                half3 result = 0;
+            #if defined(_ADDITIONAL_LIGHTS) || defined(_CLUSTER_LIGHT_LOOP)
+                InputData inputData = (InputData)0;
+                inputData.positionWS = positionWS;
+                inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(positionCS);
+                uint lightCount = GetAdditionalLightsCount();
+                LIGHT_LOOP_BEGIN(lightCount)
+                    Light light = GetAdditionalLight(lightIndex, positionWS);
+                    half3 radiance = light.color * light.distanceAttenuation * light.shadowAttenuation;
+                    half diffuse = saturate(dot(normal, light.direction));
+                    half glint = pow(saturate(dot(reflected, light.direction)), _Glossiness * 0.25) * _SpecularStrength;
+                    result += radiance * (_LitWaterColor.rgb * diffuse + glint);
+                LIGHT_LOOP_END
+            #endif
+                return result;
+            }
+
             Varyings vert(Attributes input)
             {
                 Varyings output;
@@ -152,7 +179,9 @@ Shader "Lighthouse/Ocean"
                 float3 reflected = reflect(-viewDir, normal);
 
                 half fresnel = 0.04 + 0.96 * pow(1.0 - saturate(dot(normal, viewDir)), 5.0);
-                half3 sky = lerp(_HorizonColor.rgb, _SkyColor.rgb, saturate(reflected.y * 2.0));
+                // Only reflections pointing close to the horizon pick up its glow.
+                half horizonBand = saturate(1.0 - abs(reflected.y) * _HorizonSharpness);
+                half3 sky = lerp(_SkyColor.rgb, _HorizonColor.rgb, horizonBand);
 
                 half crest = saturate(input.height / max(_FoamHeight, 0.01) * 0.5 + 0.5);
                 half3 water = lerp(_DeepColor.rgb, _ShallowColor.rgb, crest);
@@ -165,6 +194,7 @@ Shader "Lighthouse/Ocean"
 
                 half3 color = lerp(lit, sky, fresnel) + mainLight.color * sun;
                 color = lerp(color, _FoamColor.rgb, foam * _FoamStrength);
+                color += AdditionalLights(input.positionWS, input.positionCS, normal, reflected);
                 color = MixFog(color, input.fogFactor);
                 return half4(color, 1);
             }
