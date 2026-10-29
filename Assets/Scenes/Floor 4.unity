@@ -1318,7 +1318,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3678131307992028788, guid: 9b7e60e56e459764f888118eee20469e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2071,11 +2071,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7103363744692913540, guid: 9b270955b6ae1eb41ac6850b6eef116e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: -4.21
       objectReference: {fileID: 0}
     - target: {fileID: 7103363744692913540, guid: 9b270955b6ae1eb41ac6850b6eef116e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 7103363744692913540, guid: 9b270955b6ae1eb41ac6850b6eef116e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2640,7 +2640,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8937129176323195211, guid: 57fd491d1701f7740b6440352ae914f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2686,11 +2686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142559140634572566, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.5
+      value: 9.71
       objectReference: {fileID: 0}
     - target: {fileID: 3142559140634572566, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 3142559140634572566, guid: 7ef15693c0882994eaebd612dc1fa63c, type: 3}
       propertyPath: m_LocalPosition.z
