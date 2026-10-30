@@ -51,7 +51,7 @@ The bottle is `Outside` → **Interactables/Message in a Bottle**. Its old **Int
 | Field | What it is |
 |---|---|
 | Prompt Text, Active On Days (4), Hidden By Flags (BottleMessage) | Same as before: it only floats there on Day 4, until it's read |
-| **Paper Note Prefab** | `Assets/Prefabs/UI/Paper Note` |
+| **Paper Note Prefab** | `Assets/Prefabs/UI/Paper Note`. If it's ever empty, clicking the bottle logs an error and skips the paper (Read Dialogue and After Reading still run), so the quest can't get stuck |
 | **Note Text** | What's written on the paper. Right now it's placeholder symbols (Greek/Cyrillic letters) |
 | **Note Image** | Optional. Drop a sprite here (e.g. a drawing of the note) and it shows on the paper above the text |
 | **Open Dialogue** | Plays before the paper opens (*You fish the bottle out...*) |
@@ -115,7 +115,15 @@ On the Systems prefab → **Day Manager → Ending**:
 - **Victory Cutscene → Scene** = `Ending 1 - Win`.
 - **Death Cutscene** is unchanged. It still plays instead of Victory if the player reported **Ghost Ships To Lose** (3) or more abnormal ships as Real.
 
-So after Day 4's bedtime card, the morning loads **Ending 1 - Win** (it's in Build Settings). That scene has no Story Trigger with *Ends Cutscene*, so the game stays on the ending. To return to a title screen or start over afterwards, add a Story Trigger there with Ends Cutscene ticked, and set Day Manager's **Title Scene**.
+So after Day 4's bedtime card, the morning loads **Ending 1 - Win** (it's in Build Settings).
+
+**The ending dialogue:** `Ending 1 - Win` → **Story/Ending Dialogue** is a Story Trigger (When In Scene) that plays the Manager's two lines over the painting as soon as the scene opens:
+- *"Congrats! You made it through the 4 days!"*
+- *"I knew you'd be able to do it yourself! I hope there weren't too many issues along the way.."*
+
+The lines were copied from `Assets/Data/Days/Win Cutscene.asset`. To change them, edit the trigger's **Dialogue**; the asset isn't used by anything (don't add it to Day Manager's Days list, or it becomes a 5th day). The dialogue box draws over the painting because the Systems UI canvas sorts at 100 and the ending's canvas at 0.
+
+Its **Ends Cutscene** is off, so the game stays on the painting after the lines. Tick it to go back to the Title Screen instead: Day Manager then resets the game and loads its **Title Scene**.
 
 **Ending 1 - Win** and **Cut Scene 1 - Intro** each had their own **EventSystem**. With the Systems prefab's EventSystem, that's two, and Unity printed *"There are 2 event systems in the scene"* every frame. Both are now switched off (unticked, not deleted). New scenes shouldn't get one: the Systems prefab always provides it.
 
