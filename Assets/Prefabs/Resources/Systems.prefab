@@ -1381,7 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03aec38d3ecb59941b639ca3c82e38ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
-  currentDay: 1
+  currentDay: 0
   phase: 0
   powerOn: 0
   flags: []

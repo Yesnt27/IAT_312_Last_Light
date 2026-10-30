@@ -672,7 +672,7 @@ MonoBehaviour:
       text: Time to keep watch. Let's see what's out there tonight.
   taskText: '*Spot the ships with the binoculars and report each one at the Real / Fake buttons ({0}/{1})*'
   endDelay: 2
-  firstNightSeconds: 10
+  firstNightSeconds: 5
   extraSecondsPerNight: 0
   timerLabel: {fileID: 533840579}
   timerText: TIME LEFT  {0}

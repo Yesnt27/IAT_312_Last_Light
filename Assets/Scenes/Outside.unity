@@ -1129,7 +1129,10 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: Player
-      text: Hmmm...Maybe there's a book inside that'll help me decipher this message.
+      text: Hmmm...What could this mean..
+    - character:
+        name: Player
+      text: Maybe there is a book inside that can help me figure out what this is.
   afterReading:
     newTaskId: day3_find_book
     newTaskText: '*Find a book inside the lighthouse that can help decipher the message*'

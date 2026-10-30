@@ -1503,8 +1503,8 @@ MonoBehaviour:
         name: 
       text: '*You open the box. A journal page is taped to the inside of the door.*'
     - character:
-        name: 
-      text: '*Inside, the wires have been pulled loose.*'
+        name: Player
+      text: That's strange. The wires seem like they've been cut..
   wirePuzzlePrefab: {fileID: 5444484977122758838, guid: 61f4f11a97714cf4ba0fbf0ea5b28886, type: 3}
   solvedFlag: PowerFixed
   restorePower: 1

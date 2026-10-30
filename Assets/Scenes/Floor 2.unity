@@ -877,10 +877,10 @@ MonoBehaviour:
       text: '*A worn book full of strange symbols, each one paired with a number.*'
     - character:
         name: 
-      text: '*Matching them to the note, the message spells out a code: 2 7 4 1*'
+      text: '*Matching them to the note, the message spells out: 2 7 4 1*'
     - character:
         name: Player
-      text: A code... There's a safe up on the fourth floor. Maybe this opens it.
+      text: A code... There's a safe up on the fourth floor. Maybe this can be used to it.
   setFlag: BottleDeciphered
   newTaskId: day3_open_safe
   newTaskText: '*Open the safe on the fourth floor (code: 2741)*'
