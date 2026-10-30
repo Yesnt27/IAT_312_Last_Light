@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 6f;
-    [SerializeField] private float jumpForce = 16f;
+    [SerializeField] private float jumpForce = 3f;
     [SerializeField] private bool artFacesRight = false;
 
     [Header("Ground Check")]
