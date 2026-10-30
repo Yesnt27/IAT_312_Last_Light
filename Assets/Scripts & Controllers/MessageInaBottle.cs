@@ -27,10 +27,23 @@ public class MessageInaBottle : Interactable
         DialogueManager.instance.StartDialogue(openDialogue, OpenNote);
     }
 
+    // Without a Paper Note Prefab the note is skipped, so the quest can still go on.
     private void OpenNote()
     {
+        if (paperNotePrefab == null)
+        {
+            Debug.LogError($"{name}: Paper Note Prefab is empty, so the note can't open. Drag Assets/Prefabs/UI/Paper Note into it.", this);
+            ReadNote();
+            return;
+        }
+
         PaperNote note = Instantiate(paperNotePrefab);
-        note.Open(noteText, noteImage, () => DialogueManager.instance.StartDialogue(readDialogue, FinishReading));
+        note.Open(noteText, noteImage, ReadNote);
+    }
+
+    private void ReadNote()
+    {
+        DialogueManager.instance.StartDialogue(readDialogue, FinishReading);
     }
 
     private void FinishReading()
