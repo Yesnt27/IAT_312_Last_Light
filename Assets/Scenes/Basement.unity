@@ -740,7 +740,7 @@ MonoBehaviour:
       text: '*You found some canned food*'
     - character:
         name: Player
-      text: '[PLACEHOLDER] Better than nothing.'
+      text: Better than nothing.
   hideAfterPickup: 1
   afterPickup:
     newTaskId: 
