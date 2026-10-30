@@ -433,25 +433,25 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: 
-      text: '[PLACEHOLDER] *The small boat rocks over grey waves towards a lonely island.*'
+      text: '*The small boat rocks over grey waves towards a lonely island.*'
     - character:
         name: Manager
-      text: '[PLACEHOLDER] That''s it. Your lighthouse for the next few nights.'
+      text: "Thanks for filling in so last minute! You\u2019ll be staying at the lighthouse for 4 nights, make sure to report any abnormal ship activity to us."
     - character:
         name: Player
-      text: '[PLACEHOLDER] Why me? I''ve never kept a light before.'
+      text: No problem..But why am I keeping alone? Shouldn't there be another person?
     - character:
         name: Manager
-      text: '[PLACEHOLDER] The last keeper left in a hurry, and nobody else would take the job.'
+      text: The last keeper left in a hurry, and you were the only one available for the job. Don't worry it should be fine!
     - character:
         name: Manager
-      text: '[PLACEHOLDER] Keep the lamp burning, watch the ships that pass, and report anything strange.'
+      text: Guide the ships at night, monitor them passing, and report anything that you think is strange.
     - character:
         name: Player
-      text: '[PLACEHOLDER] Anything strange?'
+      text: Strange..?
     - character:
         name: Manager
-      text: '[PLACEHOLDER] You''ll know it when you see it. I''ll be back for you when it''s done.'
+      text: You'll know it when you see it. I'll be back for you when it's done.
   outcome:
     newTaskId: 
     newTaskText: 

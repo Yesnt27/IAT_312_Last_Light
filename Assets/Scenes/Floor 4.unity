@@ -387,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.02
+      value: -0.24000001
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -634,7 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.02
+      value: -0.24000001
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -733,7 +733,10 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: Player
-      text: '[PLACEHOLDER] The fourth floor. Only the lamp room is left above me.'
+      text: The fourth floor. Cozy enough I guess.
+    - character:
+        name: Player
+      text: The lamp room should be the last floor.
   outcome:
     newTaskId: 
     newTaskText: 
@@ -2449,7 +2452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6807855928991073925, guid: e2d2b990813b39241842828c4bed1b19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.52
+      value: -3.74
       objectReference: {fileID: 0}
     - target: {fileID: 6807855928991073925, guid: e2d2b990813b39241842828c4bed1b19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2771,7 +2774,7 @@ MonoBehaviour:
       text: '*Inside is the last page of the journal.*'
     - character:
         name: Player
-      text: '[PLACEHOLDER] The last page... I should read this, then get through one more night.'
+      text: The last page... I should read this, then get through one more night.
   afterOpened:
     newTaskId: 
     newTaskText: 
@@ -3294,7 +3297,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 008f833497bff924a933d2b90126d23b, type: 3}
   m_Color: {r: 1, g: 0.85, b: 0.2, a: 1}

@@ -485,7 +485,7 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: Player
-      text: '[PLACEHOLDER] The ground floor. That door must lead down to the basement.'
+      text: The ground floor. That door must lead down to the basement.
   outcome:
     newTaskId: 
     newTaskText: 
@@ -606,7 +606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.98
+      value: -0.32999992
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1464,7 +1464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.98
+      value: -0.32999992
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2232,7 +2232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6807855928991073925, guid: e2d2b990813b39241842828c4bed1b19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.48
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: 6807855928991073925, guid: e2d2b990813b39241842828c4bed1b19, type: 3}
       propertyPath: m_LocalPosition.z

@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9499998
+      value: -0.28999996
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2dccb8995c5031478161d30d707423c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractDialogue
-  promptText: Read the book of symbols
+  promptText: Read the book
   activeOnDays: 
   activeDuringTasks: []
   requiredFlags:
@@ -1027,7 +1027,7 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: Player
-      text: '[PLACEHOLDER] The second floor. Cozy enough, I guess.'
+      text: The second floor. So many old books..
   outcome:
     newTaskId: 
     newTaskText: 
@@ -1759,7 +1759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9499998
+      value: -0.28999996
       objectReference: {fileID: 0}
     - target: {fileID: 8975723303572204651, guid: 79c558aa4d6fe50469437308e0ca3720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3506,7 +3506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[0].text
@@ -3514,14 +3514,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[1].text
-      value: '*[PLACEHOLDER] Entry 1: "Every night the keeper must climb to the top of the lighthouse, watch the ships that pass, and guide them correctly. Watch out for a black shadow on the ship...'
+      value: '*November 13th: First day on the island weird that they sent me out on my own...but the money is good.*'
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[2].text
-      value: '[PLACEHOLDER] So that''s my job. I should head to the top of the lighthouse tonight.'
+      value: '*This place has an eerie feeling I can''t explain. It''s probably nothing though*'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: foundDialogue.dialogueLines.Array.data[3].text
+      value: '*What I''ve noticed is that some of these ships coming by are...different. As if they don''t belong*'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: foundDialogue.dialogueLines.Array.data[4].text
+      value: '*The number of valves are a sign, normal ships have 2 valves but for some reason there were a few with 4..*'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: foundDialogue.dialogueLines.Array.data[5].text
+      value: This must be the old keepers journal. I wonder what happened to the other pages.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: foundDialogue.dialogueLines.Array.data[1].character.name
+      value: Journal
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[2].character.name
+      value: Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: foundDialogue.dialogueLines.Array.data[3].character.name
+      value: Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: foundDialogue.dialogueLines.Array.data[4].character.name
+      value: Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: foundDialogue.dialogueLines.Array.data[5].character.name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5762670660553750941, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
@@ -3631,7 +3659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6807855928991073925, guid: e2d2b990813b39241842828c4bed1b19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.45
+      value: -3.79
       objectReference: {fileID: 0}
     - target: {fileID: 6807855928991073925, guid: e2d2b990813b39241842828c4bed1b19, type: 3}
       propertyPath: m_LocalPosition.z
