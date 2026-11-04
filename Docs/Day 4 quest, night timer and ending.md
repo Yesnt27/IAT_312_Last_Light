@@ -10,7 +10,7 @@ It also covers re-applying the Day 1 settings that a merge had emptied.
 
 ## The whole Day 4, in order
 1. Wake up in the Floor 4 bed to the horn. Go outside, and the "What's that floating in the water?" lines play.
-2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper** covered in strange symbols. Click or press Enter to put it away.
+2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper** covered in strange symbols. Click to put it away.
 3. The player says a book might help. Task: *Find a book inside the lighthouse that can help read the message*.
 4. On **Floor 3**, press E on the books. The decoys say "not this one". **Book - Strange Symbols** matches the symbols to numbers and gives the code **2 7 4 1**. Task: *Open the safe on the fourth floor (code: 2741)*.
 5. On **Floor 4**, press E at the **Safe** to open its keypad. Type the digits or click the buttons; the code is checked once 4 digits are in. A wrong code shows "Wrong code" and clears. The right one shows *Click*, the safe swings open, and **the last journal page (page 3)** is inside.
@@ -64,7 +64,7 @@ The bottle is `Outside` → **Interactables/Message in a Bottle**. Its old **Int
 Instantiate(paperNotePrefab).Open(text, sprite, onClosed);
 ```
 
-It closes on click or Enter (the `Click` and `Dialogue` actions). To restyle the paper, open the prefab and change **Paper** (colour/size), **Note Text** (font size/colour) or **Hint**.
+It closes on a left click (the `Click` and `Dialogue` actions, both on the left mouse button). To restyle the paper, open the prefab and change **Paper** (colour/size), **Note Text** (font size/colour) or **Hint**.
 
 ## The book
 The books now live on **`Floor 2`** (moved there with the bookshelf art; they're clicked). When they moved, this book's text and task went back to the old version, so they were set again. `Floor 2` → **Interactables/Book - Strange Symbols** (Interact Dialogue): the dialogue now gives the code. After the dialogue it sets `BottleDeciphered` and the task `day3_open_safe`, *Open the safe on the fourth floor (code: 2741)*. The three other books are unchanged decoys.
