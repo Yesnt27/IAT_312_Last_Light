@@ -810,7 +810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &365394211
 Transform:
   m_ObjectHideFlags: 0
@@ -901,7 +901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &472478626
 Transform:
   m_ObjectHideFlags: 0
@@ -1210,7 +1210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &531338950
 Transform:
   m_ObjectHideFlags: 0
@@ -1608,6 +1608,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 952953622}
+  - component: {fileID: 952953624}
+  - component: {fileID: 952953623}
   m_Layer: 0
   m_Name: Bookshelf
   m_TagString: Untagged
@@ -1632,6 +1634,124 @@ Transform:
   - {fileID: 234929945}
   m_Father: {fileID: 1565971589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &952953623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952953621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4435d7afdea5f9944a2503200c0c9a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
+  maxDistanceFromPlayer: 0
+  hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+--- !u!114 &952953624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952953621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef57d8f76976a1b46be0ad8e4fef2d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bookshelf
+  promptText: Search the bookshelf
+  activeOnDays: 04000000i
+  activeDuringTasks: []
+  requiredFlags:
+  - BottleMessage
+  hiddenByFlags:
+  - SafeOpened
+  unlockFlag: 
+  lockedDialogue:
+    dialogueLines: []
+  whenTriedWhileLocked:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  puzzlePrefab: {fileID: 7515702703941011334, guid: c06d38fac0f08294e8fdcb6dccf5375f, type: 3}
+  books:
+  - title: Fishing Almanac
+    spineColor: {r: 0.75, g: 0.2, b: 0.2, a: 1}
+    leftPage: '*An old fishing almanac.*
+
+
+      Tide tables, moon phases and the best months for herring.'
+    rightPage: 'Spring tides on the new moon.
+
+      Neap tides on the half moon.
+
+
+      Nothing here about symbols.'
+    isClue: 0
+  - title: Weather Logs
+    spineColor: {r: 0.2, g: 0.55, b: 0.3, a: 1}
+    leftPage: '*Years of weather logs, written in neat handwriting.*'
+    rightPage: 'Fog.
+
+      Fog.
+
+      Fog, and a horn in the night.
+
+      Fog.
+
+
+      The last pages are blank.'
+    isClue: 0
+  - title: Strange Symbols
+    spineColor: {r: 0.55, g: 0.25, b: 0.75, a: 1}
+    leftPage: '*A worn book full of strange symbols, each one paired with a number.*
+
+
+      The old keepers wrote their numbers this way, so passing crews could not read the logs.'
+    rightPage: "\u0398 = 0      \u03A3 = 5\n\u0394 = 1      \u039E = 6\n\u0416 = 2      \u03A9 = 7\n\u03A0 = 3      \u03A6 = 8\n\u03A8 = 4      \u03BB = 9"
+    isClue: 1
+  - title: Ship Registry
+    spineColor: {r: 0.25, g: 0.4, b: 0.8, a: 1}
+    leftPage: '*A registry of ships that pass the island.*'
+    rightPage: 'Marigold
+
+      Saint Ives
+
+      Northern Star
+
+      Kittiwake
+
+
+      Interesting, but it won''t help with the note.'
+    isClue: 0
+  - title: Keeper's Manual
+    spineColor: {r: 0.55, g: 0.45, b: 0.2, a: 1}
+    leftPage: '*The lighthouse keeper''s manual.*
+
+
+      Trim the wick. Wind the clockwork. Keep the glass clean.'
+    rightPage: 'Rule 1: The light must never go out.
+
+
+      Rule 2: Report every ship that passes.'
+    isClue: 0
+  clueItem: {fileID: 11400000, guid: bc884d1bc0c97164597940fc53d186a7, type: 2}
+  clueFoundDialogue:
+    dialogueLines:
+    - character:
+        name: Player
+      text: Every symbol on the note is in that book... each one stands for a number.
+    - character:
+        name: Player
+      text: Four symbols, four numbers. The safe on the fourth floor has a four-digit lock.
+  afterFindingClue:
+    newTaskId: day3_open_safe
+    newTaskText: '*Decode the note with the symbol book, then open the safe on the fourth floor*'
+    setFlag: BottleDeciphered
 --- !u!1 &957284628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,7 +1940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1021084166
 Transform:
   m_ObjectHideFlags: 0

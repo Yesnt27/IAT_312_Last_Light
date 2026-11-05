@@ -10,9 +10,9 @@ It also covers re-applying the Day 1 settings that a merge had emptied.
 
 ## The whole Day 4, in order
 1. Wake up in the Floor 4 bed to the horn. Go outside, and the "What's that floating in the water?" lines play.
-2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper** covered in strange symbols. Click to put it away.
+2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper**: four strange symbols, `Ж Ω Ψ Δ`. Click to put it away. The note is now in the **inventory** (right of the screen), and F reads it again at any time.
 3. The player says a book might help. Task: *Find a book inside the lighthouse that can help read the message*.
-4. On **Floor 3**, press E on the books. The decoys say "not this one". **Book - Strange Symbols** matches the symbols to numbers and gives the code **2 7 4 1**. Task: *Open the safe on the fourth floor (code: 2741)*.
+4. On **Floor 2**, click the **bookshelf**. The shelf opens full-screen with five books. Click a spine to open that book; *Put the book back* (or Esc) returns to the shelf. With **Strange Symbols** open, press **F** with the note selected to hold it up beside the book: *"The symbols on the note match the ones in this book!"* The book's table turns the note into **2 7 4 1**, but the game never says the number. Closing the shelf plays two lines, sets `BottleDeciphered` and the task *Decode the note with the symbol book, then open the safe on the fourth floor*.
 5. On **Floor 4**, press E at the **Safe** to open its keypad. Type the digits or click the buttons; the code is checked once 4 digits are in. A wrong code shows "Wrong code" and clears. The right one shows *Click*, the safe swings open, and **the last journal page (page 3)** is inside.
 6. Page 3 finishes Day 4's puzzle. "Head to the top" plays, and going up starts the **last night: 7 ships, 75 seconds**.
 7. After the night report: fade, then the Day 4 bedtime card (*"We will pick you up bright and early in the morning."*). In the morning, **Ending 1 - Win** loads.
@@ -52,8 +52,8 @@ The bottle is `Outside` → **Interactables/Message in a Bottle**. Its old **Int
 |---|---|
 | Prompt Text, Active On Days (4), Hidden By Flags (BottleMessage) | Same as before: it only floats there on Day 4, until it's read |
 | **Paper Note Prefab** | `Assets/Prefabs/UI/Paper Note`. If it's ever empty, clicking the bottle logs an error and skips the paper (Read Dialogue and After Reading still run), so the quest can't get stuck |
-| **Note Text** | What's written on the paper. Right now it's placeholder symbols (Greek/Cyrillic letters) |
-| **Note Image** | Optional. Drop a sprite here (e.g. a drawing of the note) and it shows on the paper above the text |
+| **Note Item** | `Assets/Data/Items/Bottle Note`. The note's text and picture now come from this inventory item, so the paper here, the inventory copy and the one held up at the bookshelf always match. Edit the note on that asset |
+| Note Text / Note Image | Only used if Note Item is empty. Note Text still holds the old placeholder symbols |
 | **Open Dialogue** | Plays before the paper opens (*You fish the bottle out...*) |
 | **Read Dialogue** | Plays after the paper is put away |
 | **After Reading** | Set Flag `BottleMessage`, New Task `day3_find_book` |
@@ -66,8 +66,37 @@ Instantiate(paperNotePrefab).Open(text, sprite, onClosed);
 
 It closes on a left click (the `Click` and `Dialogue` actions, both on the left mouse button). To restyle the paper, open the prefab and change **Paper** (colour/size), **Note Text** (font size/colour) or **Hint**.
 
-## The book
-The books now live on **`Floor 2`** (moved there with the bookshelf art; they're clicked). When they moved, this book's text and task went back to the old version, so they were set again. `Floor 2` → **Interactables/Book - Strange Symbols** (Interact Dialogue): the dialogue now gives the code. After the dialogue it sets `BottleDeciphered` and the task `day3_open_safe`, *Open the safe on the fourth floor (code: 2741)*. The three other books are unchanged decoys.
+## The bookshelf
+`Floor 2` → **Interactables/Bookshelf** now has **Bookshelf** (`Bookshelf.cs`) + **Click To Interact**. Its clickable area is its placeholder **Art** square over the shelf. The four separate book objects (`Book - Fishing Almanac`, `Weather Logs`, `Strange Symbols`, `Ship Registry`) are **switched off, not deleted**; their lines were reused as book pages.
+
+| Field | Value |
+|---|---|
+| Prompt Text | Search the bookshelf |
+| Active On Days / Required Flags / Hidden By Flags | 4 / `BottleMessage` / `SafeOpened`. So it opens once the note is read, and stays open for a second look until the safe is open |
+| Puzzle Prefab | `Assets/Prefabs/UI/Bookshelf Puzzle` |
+| **Books** | One entry per book: **Title** (on the spine and the left page), **Spine Color**, **Left Page**, **Right Page**, **Is Clue**. Add, remove or reorder books here; the shelf builds the spines from this list |
+| Clue Item | `Assets/Data/Items/Bottle Note`: what must be held up next to the clue book |
+| Clue Found Dialogue | Two player lines, played after the shelf closes (only the first time) |
+| After Finding Clue | Task `day3_open_safe`, *Decode the note with the symbol book, then open the safe on the fourth floor*; Set Flag `BottleDeciphered` (unlocks the safe) |
+
+**Bookshelf Puzzle** (`Assets/Prefabs/UI/Bookshelf Puzzle.prefab`, script `Puzzles/BookshelfPuzzle.cs`) is the close-up: its own canvas (sorting 150, scaler *Expand*, so it fits any window shape), a dark Dim, the **Shelf** with a **Spine Row** (spines are copies of the hidden **Spine Template**), the **Open Book** (two pages + *Put the book back*), the **Held Note** paper on the right, the red X, a status line at the top and the item hint at the bottom. All its texts (instructions, *That won't help with this.*, the match message) are on the component. While it's open it takes over F from the inventory: a readable item is held up beside the book (F again puts it away); anything else gets *That won't help with this.* It's solved when the **Is Clue** book is open and the **Clue Item** is held up, in either order.
+
+### The cipher
+The note says `Ж Ω Ψ Δ`. The Strange Symbols book's right page is the key:
+
+| Θ | Δ | Ж | Π | Ψ | Σ | Ξ | Ω | Φ | λ |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+
+So the note reads 2 7 4 1. These letters come from the TextMesh Pro fallback font; pick others from the same Greek/Cyrillic range if you change them.
+
+## The inventory
+Slots on the right of the screen (Systems prefab → **UI Canvas/Inventory HUD**): at least 2 boxes, one per item carried (up to 4), the selected one outlined in yellow with its name and `[Scroll] Switch   [F] Use` under it. It hides in scenes without the 2D player (title, cutscenes, the 3D night). **Mouse wheel** picks an item, **F** uses it (`UseItem` / `CycleItem` in the `Controls` action map).
+
+- **Items** are assets in `Assets/Data/Items/` (*Create → Lighthouse → Inventory Item*): name, icon, **Held While Flag** (the player has it while that flag is set), optional **Gone When Flag**, and what F does: **Note Text / Note Image** make it readable (F opens it on the Paper Note), otherwise **Use Dialogue** plays.
+- **The list** is Systems prefab → **Inventory → All Items**, in slot order: `Basement Key` (held while `BasementKey`), `Bottle Note` (held while `BottleMessage`).
+- **To add an item:** create the asset, set its flag, add it to All Items, and set that flag when it's picked up (e.g. a FlagPickup or a StoryOutcome). Because items come from flags, a new game empties the inventory and Start On Day fills it with earlier days' items.
+- Scripts: `Inventory/Inventory.cs` (on Systems), `Inventory/InventoryHud.cs`, `Inventory/InventoryItem.cs`, and `Inventory/IItemUseHandler.cs` (how a puzzle like the bookshelf takes over F while it's open).
 
 ## The safe
 `Floor 4` → **Safe**, at x −3.5 on the floor between the two staircases. It is new and uses `Safe.cs` (an empty stub until now):
@@ -86,9 +115,10 @@ The books now live on **`Floor 2`** (moved there with the bookshelf art; they're
 
 It also has a Box Collider 2D trigger (1.8 × 1.6) so the E prompt shows when you stand at it, and a **Label** copied from the key's.
 
-**To change the code, change it in both places:**
+**To change the code, change it in all three places:**
 1. **Safe → Code**
-2. **Book - Strange Symbols** → its 2nd dialogue line, and its **New Task Text**
+2. **`Data/Items/Bottle Note` → Note Text**: the symbols for the new digits
+3. **Floor 2 → Bookshelf → Books → Strange Symbols → Right Page**: only if you change which symbol means which digit
 
 **Safe Keypad** (`Assets/Prefabs/UI/Safe Keypad.prefab`, script `Puzzles/SafeKeypad.cs`) has its own canvas (sorting 150):
 - **Buttons:** each digit button's **On Click** calls `SafeKeypad.PressDigit` with its digit; **C** calls `ClearDigits`, **<** calls `DeleteDigit`, **X** closes.
