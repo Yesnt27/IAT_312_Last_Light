@@ -253,7 +253,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -28, y: 20}
-  m_SizeDelta: {x: 360, y: 400}
+  m_SizeDelta: {x: 360, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2530225700201593628
 MonoBehaviour:
@@ -329,8 +329,8 @@ RectTransform:
   - {fileID: 5880848600527426139}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -785,8 +785,8 @@ RectTransform:
   - {fileID: 3880075862498290716}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1353,8 +1353,8 @@ RectTransform:
   - {fileID: 6175901758979987776}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1855,8 +1855,8 @@ RectTransform:
   - {fileID: 8232609776909113959}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2068,8 +2068,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 360, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2123,7 +2123,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -2636,7 +2636,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53ec3de206f5a4049903fdbcf26387e1, type: 2}
   - {fileID: 11400000, guid: c5251fd506e2d7a459461223d2e7f416, type: 2}
   newGameOnPlayInFirstScene: 1
-  startOnDay: 4
+  startOnDay: 1
   titleScene: Title Screen
   introCutscene:
     title: '#1 Boat ride'
@@ -2912,8 +2912,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 360, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2967,7 +2967,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
