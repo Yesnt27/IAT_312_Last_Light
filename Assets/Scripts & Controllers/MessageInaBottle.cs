@@ -7,6 +7,8 @@ public class MessageInaBottle : Interactable
 {
     [Header("Note")]
     [SerializeField] private PaperNote paperNotePrefab;
+    [Tooltip("Optional: the inventory item the note becomes. When set, its text and picture are used instead of the two below.")]
+    [SerializeField] private InventoryItem noteItem;
     [TextArea(3, 8)]
     [SerializeField] private string noteText;
     [Tooltip("Optional picture on the note.")]
@@ -38,7 +40,8 @@ public class MessageInaBottle : Interactable
         }
 
         PaperNote note = Instantiate(paperNotePrefab);
-        note.Open(noteText, noteImage, ReadNote);
+        if (noteItem != null) note.Open(noteItem.NoteText, noteItem.NoteImage, ReadNote);
+        else note.Open(noteText, noteImage, ReadNote);
     }
 
     private void ReadNote()

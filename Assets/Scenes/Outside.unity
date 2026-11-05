@@ -1118,6 +1118,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   paperNotePrefab: {fileID: 8070745585840485486, guid: 28cdb9862b14da947b8e25705ca2c8be, type: 3}
+  noteItem: {fileID: 11400000, guid: bc884d1bc0c97164597940fc53d186a7, type: 2}
   noteText: "\u03A8 \u0394 \u039E   \u03A9 \u03BB \u03A6   \u0416 \u03A3\n\n\u0398 \u03A0 \u0394   \u03A8 \u03A9   \u0416 \u039E \u039B\n\n\u03A6 \u03A3   \u03A9 \u0416   \u0394"
   noteImage: {fileID: 0}
   openDialogue:
