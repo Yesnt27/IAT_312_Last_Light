@@ -2,9 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// The Real / Fake buttons on the control panel. While a ship is selected, a label floats over each
-// button; look at the buttons and press Q (fake) or E (real). The button clicks down and the
-// selected ship is reported (NightShip.Report).
+// The Report / Safe buttons on the control panel. While a ship is selected, a label floats over each
+// button; look at the buttons and press Q (report it as a ghost) or E (it's safe). The button clicks down
+// and the selected ship is reported (NightShip.Report).
 public class ShipReportPanel : MonoBehaviour
 {
     [Header("Input")]
@@ -23,8 +23,8 @@ public class ShipReportPanel : MonoBehaviour
 
     [Header("Text")]
     [SerializeField] private float reach = 3f;
-    [SerializeField] private string fakeText = "FAKE";
-    [SerializeField] private string realText = "REAL";
+    [SerializeField] private string fakeText = "Report";
+    [SerializeField] private string realText = "Safe";
     [SerializeField] private string noShipText = "Select a ship with the binoculars first";
 
     private bool showingPrompt;
@@ -72,7 +72,7 @@ public class ShipReportPanel : MonoBehaviour
         bool show = IsAiming;
         if (show)
         {
-            string text = ship != null ? $"Report {ship.ShipName}:   {FakeChoice}   {RealChoice}" : noShipText;
+            string text = ship != null ? $"{ship.ShipName}:   {FakeChoice}   {RealChoice}" : noShipText;
             InteractionPrompt.Instance.Show(text, "");
         }
         else if (showingPrompt) InteractionPrompt.Instance.Hide();

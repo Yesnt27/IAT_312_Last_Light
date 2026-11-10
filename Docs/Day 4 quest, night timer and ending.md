@@ -13,7 +13,7 @@ It also covers re-applying the Day 1 settings that a merge had emptied.
 2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper**: four strange symbols, `Ж Ω Ψ Δ`. Click to put it away. The note is now in the **inventory** (right of the screen), and F reads it again at any time.
 3. The player says a book might help. Task: *Find a book inside the lighthouse that can help read the message*.
 4. On **Floor 2**, click the **bookshelf**. The shelf opens full-screen with five books. Click a spine to open that book; *Put the book back* (or Esc) returns to the shelf. With **Strange Symbols** open, press **F** with the note selected to hold it up beside the book: *"The symbols on the note match the ones in this book!"* The book's table turns the note into **2 7 4 1**, but the game never says the number. Closing the shelf plays two lines, sets `BottleDeciphered` and the task *Decode the note with the symbol book, then open the safe on the fourth floor*.
-5. On **Floor 4**, press E at the **Safe** to open its keypad. Type the digits or click the buttons; the code is checked once 4 digits are in. A wrong code shows "Wrong code" and clears. The right one shows *Click*, the safe swings open, and **the last journal page (page 4)** is inside.
+5. On **Floor 4**, click the **Safe** (it lights up on hover, like the electrical box) to open its keypad. Type the digits or click the buttons; the code is checked once 4 digits are in. A wrong code shows "Wrong code" and clears. The right one shows *Click*, the safe swings open, and **the last journal page (page 4)** is inside.
 6. Page 4 finishes Day 4's puzzle. "Head to the top" plays, and going up starts the **last night: 7 ships, 75 seconds**.
 7. After the night report: fade, then the Day 4 bedtime card (*"We will pick you up bright and early in the morning."*). In the morning, **Ending 1 - Win** loads.
 
@@ -111,9 +111,9 @@ Slots on the right of the screen (Systems prefab → **UI Canvas/Inventory HUD**
 | Page Number | 4, the last journal page, which finishes Day 4's puzzle |
 | Opened Dialogue | *The safe clicks open.* / *Inside is the last page of the journal.* / a placeholder player line |
 | After Opened | Set Flag `SafeOpened` |
-| Closed Art / Open Art | The two child objects **Closed** (grey box + keypad) and **Open** (dark inside + swung door). They're placeholder squares: replace their sprites with real art |
+| Closed Art / Open Art | **Closed/Safe_0** (the closed safe art) and **Closed/open safe_0** (the open safe art). Opening the safe hides the first and shows the second |
 
-It also has a Box Collider 2D trigger (1.8 × 1.6) so the E prompt shows when you stand at it, and a **Label** copied from the key's.
+It has **Click To Interact**: the clickable area is its art, which tints yellow on hover, and E no longer does anything there. Its old Box Collider 2D trigger is still on it but unused. The art is under **Closed**: **Safe_0** (closed, the safe's Closed Art) and **open safe_0** (the Open Art).
 
 **To change the code, change it in all three places:**
 1. **Safe → Code**

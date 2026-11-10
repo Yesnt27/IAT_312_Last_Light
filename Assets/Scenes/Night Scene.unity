@@ -374,7 +374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Q] FAKE'
+  m_text: '[Q] Report'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
   m_sharedMaterial: {fileID: 4636976108514950532, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
@@ -868,7 +868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[E] REAL'
+  m_text: '[E] Safe'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
   m_sharedMaterial: {fileID: 4636976108514950532, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
@@ -5256,8 +5256,8 @@ MonoBehaviour:
   fakeLabel: {fileID: 95379325}
   realLabel: {fileID: 169207028}
   reach: 3
-  fakeText: FAKE
-  realText: REAL
+  fakeText: Report
+  realText: Safe
   noShipText: Select a ship with the binoculars first
 --- !u!1 &1785940606
 GameObject:

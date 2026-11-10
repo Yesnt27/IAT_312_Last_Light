@@ -77,7 +77,7 @@ The hook-up is on `zoom_collider` → Camera Trigger → **On Zoom Out**: *Zoom 
 **Where it's used:**
 - **The Systems prefab UI:** dialogue box (name, text, *Click to continue*), task box, interaction prompt, cutscene cards, inventory labels.
 - **Paper Note, Wire Puzzle, Safe Keypad, Bookshelf Puzzle.**
-- **Night Scene:** binocular HUD, night timer, and the `[Q] FAKE` / `[E] REAL` labels.
+- **Night Scene:** binocular HUD, night timer, and the `[Q] Report` / `[E] Safe` labels.
 - **It's also the TextMeshPro default font**, so new text you create uses it automatically (*Edit → Project Settings → TextMesh Pro → Settings → Default Font Asset*).
 
 **Not changed:**

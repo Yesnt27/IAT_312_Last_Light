@@ -32,6 +32,8 @@ There's one page per day: entry N is found on Day N, before night N.
 
 In each case the finding line plays first, then the paper opens. Click to put it away.
 
+**Picked up by walking into it:** Floor 2's Journal has a trigger **Box Collider 2D** and **Found Page → Pick Up On Touch** ticked. Walking onto it picks it up, and clicking still works. To do the same for another page, add a Box Collider 2D with **Is Trigger** ticked and tick Pick Up On Touch. Without Is Trigger, the collider blocks the player instead.
+
 **Each day's page is required.** A day's puzzle only ends once that day's page is collected: each Day asset's **Journal Page** = its day number. Day 2 now needs page 2 + `FoodFound` + `BasementKey`.
 
 **Where the page number is set:**
