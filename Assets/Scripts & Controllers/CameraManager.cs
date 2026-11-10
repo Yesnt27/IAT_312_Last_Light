@@ -31,6 +31,7 @@ public class CameraManager : MonoBehaviour
 
         Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
         transform.position = ClampToBounds(target);
+
     }
 
     private Vector3 ClampToBounds(Vector3 position)
@@ -47,4 +48,7 @@ public class CameraManager : MonoBehaviour
         position.y = rect.height > halfHeight * 2f ? Mathf.Clamp(position.y, rect.yMin + halfHeight, rect.yMax - halfHeight) : rect.center.y;
         return position;
     }
+
+
+    
 }
