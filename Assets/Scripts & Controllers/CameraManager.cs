@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour
 
     private Camera cam;
     private RoomBounds bounds;
+    private Rect? boundsOverride;
 
     private void Awake()
     {
@@ -34,13 +35,24 @@ public class CameraManager : MonoBehaviour
 
     }
 
+    // While set, the camera stays inside this area instead of the RoomBounds (CameraTrigger uses it while zoomed out).
+    public void SetBoundsOverride(Rect rect)
+    {
+        boundsOverride = rect;
+    }
+
+    public void ClearBoundsOverride()
+    {
+        boundsOverride = null;
+    }
+
     private Vector3 ClampToBounds(Vector3 position)
     {
         if (cam == null) cam = GetComponent<Camera>();
         if (bounds == null) bounds = FindAnyObjectByType<RoomBounds>();
-        if (bounds == null || cam == null || !cam.orthographic) return position;
+        if ((bounds == null && boundsOverride == null) || cam == null || !cam.orthographic) return position;
 
-        Rect rect = bounds.Rect;
+        Rect rect = boundsOverride ?? bounds.Rect;
         float halfHeight = cam.orthographicSize;
         float halfWidth = halfHeight * cam.aspect;
 
