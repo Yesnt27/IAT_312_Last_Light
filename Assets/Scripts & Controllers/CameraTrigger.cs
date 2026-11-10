@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 // Zooms the camera out while the player is inside this trigger. Sprite Renderer = the scene's whole background
 // (Outside: Outside_0): the zoom never goes past its edges, and CameraManager keeps the camera inside it while zoomed.
+// On Zoom Out / On Zoom In run when the player walks in / out (e.g. fade music or a title text in and out).
 public class CameraTrigger : MonoBehaviour
 {
     public Camera mainCamera;
@@ -10,6 +12,10 @@ public class CameraTrigger : MonoBehaviour
     [Tooltip("World units kept back from the background's edges. 0 = zoom out as far as the background allows.")]
     public float padding = 0f;
     public float zoomSpeed = 4f;
+
+    [Header("Events")]
+    public UnityEvent onZoomOut;
+    public UnityEvent onZoomIn;
 
     private float targetSize;
     private CameraManager cameraManager;
@@ -53,6 +59,7 @@ public class CameraTrigger : MonoBehaviour
             targetSize = calculateZoomedOutSize(spriteRenderer);
             Bounds background = spriteRenderer.bounds;
             if (cameraManager != null) cameraManager.SetBoundsOverride(new Rect(background.min, background.size));
+            onZoomOut?.Invoke();
         }
     }
 
@@ -61,6 +68,7 @@ public class CameraTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             targetSize = normalSize;
+            onZoomIn?.Invoke();
         }
     }
 
