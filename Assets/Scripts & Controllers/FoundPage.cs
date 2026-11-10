@@ -10,10 +10,17 @@ public class FoundPage : Interactable
     [SerializeField] private Dialogue foundDialogue;
     [Tooltip("Applied after the found dialogue, e.g. set the Journal flag when the book itself is found.")]
     [SerializeField] private StoryOutcome afterFound = new StoryOutcome();
+    [Tooltip("Picked up as soon as the player walks into its trigger collider (a click still works too).")]
+    [SerializeField] private bool pickUpOnTouch;
 
     private void Start()
     {
         if (GameState.Instance.HasPage(pageNumber)) gameObject.SetActive(false);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (pickUpOnTouch && other.CompareTag("Player") && IsAvailable && !IsLocked && !PlayerLock.IsLocked) Interact();
     }
 
     protected override void OnInteract()
