@@ -8,6 +8,9 @@ How the night shift works after the rework, which ship is which on each night, a
 2. **Picking up the binoculars** (look at them + E) starts the clock.
    - Nights last 60 / 75 / 90 / 105 s (Night Shift → **First Night Seconds** 60 + **Extra Seconds Per Night** 15).
 3. **Sit in the chair:** look at it + E. You can look all around and use the binoculars, but you can't walk. **Space** stands you up; the game doesn't say so.
+   - **It's a swivel chair.** It turns with you, so its backrest is always behind you and never blocks the view.
+   - **Seated view:** your eyes stay as high as when standing (y 8.55), above the backrest, so you see over the window sill all round.
+   - **Standing up:** the chair swings back to face the windows.
 4. **Click** to raise the binoculars, wait for the lighthouse beam to light a ship, then **right click** to select it (green outline).
 5. **Report it from the chair:**
    - **Q** = Report (it's a ghost), **E** = Safe.
@@ -64,4 +67,4 @@ All in the Night Scene under **Ships**. Each `Ship N` matches your per-day ship 
 | `Night/ShipReportPanel.cs` | Seated: Q/E report the selected ship from the chair (even while looking through the binoculars). Standing: look at the buttons as before |
 | `Night/BinocularHud.cs` | Shows the report keys under `SHIP SELECTED` when you can report from where you sit |
 | `First Person/FirstPersonController.cs` | `SitAt` / `StandUp`; Space stands up while seated |
-| `First Person/Seat.cs` | New: the chair. Look at it + E to sit |
+| `First Person/Seat.cs` | New: the chair. Look at it + E to sit. Its **Chair** model swivels with you around **Eye Point** (keep Eye Point on the chair's stem) and turns back to **Chair Facing** when you stand |
