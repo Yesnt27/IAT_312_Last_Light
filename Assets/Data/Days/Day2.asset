@@ -38,7 +38,7 @@ MonoBehaviour:
   requiredFlags:
   - FoodFound
   - BasementKey
-  shipCount: 4
+  shipCount: 5
   bedtimeCutscene:
     title: '#2 Bedtime'
     description: As the player heads to the bedroom, a shadow passes by.

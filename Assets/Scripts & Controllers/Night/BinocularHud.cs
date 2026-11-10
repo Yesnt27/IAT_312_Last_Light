@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // The binocular overlay on the night scene's own canvas: lens mask, crosshair and the green text.
-// Top left says which ship is selected; Binoculars tells it what is under the crosshair.
+// Top left says which ship is selected (plus the report keys when you can report from where you sit);
+// Binoculars tells it what is under the crosshair.
 public class BinocularHud : MonoBehaviour
 {
     [Header("References")]
@@ -25,6 +26,8 @@ public class BinocularHud : MonoBehaviour
     [Header("Crosshair")]
     [SerializeField] private Color idleColor = new Color(0.25f, 1f, 0.35f, 0.45f);
     [SerializeField] private Color onShipColor = new Color(0.25f, 1f, 0.35f, 1f);
+
+    private string reportHint = "";
 
     private void Awake()
     {
@@ -54,6 +57,14 @@ public class BinocularHud : MonoBehaviour
         if (heldHint.activeSelf != visible) heldHint.SetActive(visible);
     }
 
+    // "" hides it. ShipReportPanel sets it every frame.
+    public void SetReportHint(string hint)
+    {
+        if (hint == reportHint) return;
+        reportHint = hint;
+        Refresh();
+    }
+
     public void SetAimed(NightShip ship, bool canSelect)
     {
         crosshair.color = ship != null && canSelect ? onShipColor : idleColor;
@@ -72,5 +83,6 @@ public class BinocularHud : MonoBehaviour
 
         selectedLabel.text = $"{shipSelectedText}: {ship.ShipName}";
         if (!string.IsNullOrEmpty(ship.Details)) selectedLabel.text += $"\n<size=70%>{ship.Details}</size>";
+        if (!string.IsNullOrEmpty(reportHint)) selectedLabel.text += $"\n<size=80%>{reportHint}</size>";
     }
 }

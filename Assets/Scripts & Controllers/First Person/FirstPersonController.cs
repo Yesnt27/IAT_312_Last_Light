@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 // First-person player for 3D scenes (the night shift). WASD to walk, mouse to look, Space to jump.
 // The camera is a child at eye height. Walls and floor come from the scene's colliders;
 // Play Area Radius is an extra invisible limit around Play Area Center (0 = off).
+// SitAt() seats the player (a Seat does this): they can still look around but not walk, and Space stands up.
 // Freezes (and frees the mouse cursor) while PlayerLock is on, e.g. during dialogue.
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
@@ -34,10 +35,15 @@ public class FirstPersonController : MonoBehaviour
     private float pitch;
     private float verticalVelocity;
     private bool wasLocked;
+    private Vector3 standPosition;
+    private int satDownFrame = -1;
 
     // Binoculars slow the mouse down while zoomed in and stop you walking.
     public float LookSensitivityScale { get; set; } = 1f;
     public bool CanWalk { get; set; } = true;
+    public bool IsSeated { get; private set; }
+    // So the E that sat you down isn't also read as another E action.
+    public bool SatDownThisFrame => Time.frameCount == satDownFrame;
     public Transform Eyes => cameraPivot;
 
     private void Awake()
@@ -69,8 +75,36 @@ public class FirstPersonController : MonoBehaviour
         if (locked) return;
 
         Look();
+        if (IsSeated)
+        {
+            if (jumpAction.action.WasPressedThisFrame()) StandUp();
+            return;
+        }
         Move();
         KeepInPlayArea();
+    }
+
+    // Puts the player's eyes at eyePosition and keeps them there until they stand up.
+    public void SitAt(Vector3 eyePosition)
+    {
+        if (IsSeated) return;
+
+        standPosition = transform.position;
+        controller.enabled = false;
+        transform.position = eyePosition - Vector3.up * cameraPivot.localPosition.y;
+        verticalVelocity = 0f;
+        IsSeated = true;
+        satDownFrame = Time.frameCount;
+    }
+
+    // Back to where they stood before sitting down.
+    public void StandUp()
+    {
+        if (!IsSeated) return;
+
+        transform.position = standPosition;
+        controller.enabled = true;
+        IsSeated = false;
     }
 
     private void Look()

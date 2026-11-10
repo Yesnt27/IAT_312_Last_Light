@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// One ship in the night scene, with its own values. A ghost ship should be reported Fake, any other ship Real.
-// Ghost ships carry a dark outline; the ship selected through the binoculars gets a green one.
+// One ship in the night scene, with its own values. A ghost ship should be reported (Q), any other ship marked
+// Safe (E). Nothing gives a ghost away except how its model looks (the journal's Night Notes say what to look for).
+// The ship selected through the binoculars gets a green outline.
 // Active On Nights limits which nights it sails (empty = every night); NightShift hides it on the others.
 public class NightShip : MonoBehaviour
 {
@@ -25,7 +26,6 @@ public class NightShip : MonoBehaviour
     [Header("Outline")]
     [SerializeField] private ModelOutline outline;
     [SerializeField] private Color selectedColor = new Color(0.25f, 1f, 0.35f);
-    [SerializeField] private Color ghostColor = new Color(0.02f, 0.02f, 0.03f);
 
     [Header("After Reporting")]
     [Tooltip("Ships sail on after being reported...")]
@@ -61,11 +61,6 @@ public class NightShip : MonoBehaviour
         if (Selected == this) ClearSelection();
     }
 
-    private void Start()
-    {
-        RefreshOutline();
-    }
-
     private void Update()
     {
         if (Searchlight.AnyLights(GetBounds())) LastLitTime = Time.time;
@@ -96,7 +91,7 @@ public class NightShip : MonoBehaviour
         SelectionChanged?.Invoke();
     }
 
-    // Q at the panel = reported as a ghost (fake), E = reported as real.
+    // Q = reported as a ghost, E = marked safe.
     public void Report(bool reportedAsGhost)
     {
         if (IsReported) return;
@@ -143,7 +138,6 @@ public class NightShip : MonoBehaviour
         if (outline == null) return;
 
         if (Selected == this) outline.Show(selectedColor);
-        else if (isGhost && !IsReported) outline.Show(ghostColor);
         else outline.Hide();
     }
 }

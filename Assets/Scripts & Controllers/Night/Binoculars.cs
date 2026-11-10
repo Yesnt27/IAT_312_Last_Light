@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // The binoculars on the lamp room desk. Look at their spot and press E to pick them up (E at the
-// same spot puts them back). While holding them, click to look through them: the camera zooms in,
-// you stand still and the binocular HUD shows. Right click selects the ship under the crosshair
-// (green outline); then report it at the Real / Fake buttons (ShipReportPanel).
+// same spot puts them back). The first pick-up starts the night's clock (NightShift). While holding them,
+// click to look through them: the camera zooms in, you stand still and the binocular HUD shows. Right click
+// selects the ship under the crosshair (green outline); then Report it or mark it Safe (ShipReportPanel).
 public class Binoculars : MonoBehaviour
 {
     [Header("Input")]

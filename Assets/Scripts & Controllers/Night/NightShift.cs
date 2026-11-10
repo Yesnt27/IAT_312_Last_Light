@@ -4,21 +4,26 @@ using TMPro;
 using UnityEngine;
 
 // Runs the night shift in the 3D Night Scene. When the day loop sends you here it shows only the ships
-// that sail tonight (each NightShip's Active On Nights), plays an optional opening line, then starts the
-// clock: First Night Seconds on night 1, plus Extra Seconds Per Night for each night after that.
-// The night ends when every ship is reported Real or Fake, or when time runs out; ships nobody reported
-// in time don't count (they're only listed as "not reported" on the night report).
-// Pressing Play directly in this scene shows every ship so you can try the binoculars; no clock, no end.
+// that sail tonight (each NightShip's Active On Nights) and plays an optional opening line. The clock starts
+// the first time the player picks up the binoculars: First Night Seconds on night 1, plus Extra Seconds Per
+// Night for each night after that. The night ends when every ship is reported or marked safe, or when time
+// runs out; ships nobody reported in time don't count (they're only listed as "not reported" on the night report).
+// Pressing Play directly in this scene shows Preview Night's ships so you can try them; no clock, no end.
 public class NightShift : MonoBehaviour
 {
     [Header("Ships")]
     [Tooltip("Parent of all the NightShips.")]
     [SerializeField] private Transform ships;
+    [Tooltip("Pressing Play directly in this scene shows this night's ships (0 = every ship).")]
+    [SerializeField] private int previewNight = 1;
 
     [Header("Shift")]
+    [SerializeField] private Binoculars binoculars;
     [SerializeField] private Dialogue startDialogue;
+    [Tooltip("Shown until the binoculars are picked up (the clock waits until then).")]
+    [SerializeField] private string waitingTaskText = "*Pick up the binoculars on the desk to start your watch*";
     [Tooltip("{0} = ships reported so far, {1} = ships tonight.")]
-    [SerializeField] private string taskText = "*Spot the ships with the binoculars and report each one at the Real / Fake buttons ({0}/{1})*";
+    [SerializeField] private string taskText = "*Spot each ship with the binoculars, then Report it or mark it Safe ({0}/{1})*";
     [Tooltip("Seconds after the last report (or after time runs out) before the night ends.")]
     [SerializeField] private float endDelay = 2f;
 
@@ -47,10 +52,10 @@ public class NightShift : MonoBehaviour
     {
         timerLabel.gameObject.SetActive(false);
         isRunning = GameState.Instance.Phase == DayPhase.Night;
-        int night = GameState.Instance.CurrentDay;
+        int night = isRunning ? GameState.Instance.CurrentDay : previewNight;
         foreach (NightShip ship in ships.GetComponentsInChildren<NightShip>(true))
         {
-            bool sails = !isRunning || ship.SailsOnNight(night);
+            bool sails = night <= 0 || ship.SailsOnNight(night);
             ship.gameObject.SetActive(sails);
             if (sails) tonight.Add(ship);
         }
@@ -73,7 +78,6 @@ public class NightShift : MonoBehaviour
         DialogueManager.instance.StartDialogue(startDialogue, () => talked = true);
         while (!talked) yield return null;
 
-        ShowTask();
         if (tonight.Count == 0)
         {
             DayManager.Instance.FinishNightShift();
@@ -82,6 +86,11 @@ public class NightShift : MonoBehaviour
 
         float timeLeft = TimeLimit(GameState.Instance.CurrentDay);
         timerLabel.gameObject.SetActive(true);
+        ShowTime(timeLeft);
+        GameState.Instance.SetTask(DayManager.NightShiftTask, waitingTaskText);
+        while (!binoculars.IsHeld) yield return null;
+
+        ShowTask();
         while (isRunning && timeLeft > 0f)
         {
             if (!PlayerLock.IsLocked) timeLeft -= Time.deltaTime;
