@@ -34,7 +34,7 @@ MonoBehaviour:
       text: Where could the key be...Maybe I should look through all the cupboards and drawers.
   puzzleTaskId: day1_find_key
   puzzleTaskText: '*Check around the house to find the key for the basement*'
-  journalPage: 0
+  journalPage: 2
   requiredFlags:
   - FoodFound
   - BasementKey

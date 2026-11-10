@@ -601,6 +601,143 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
+--- !u!1 &2458509967566685901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8481652919757333849}
+  - component: {fileID: 6884690377653049337}
+  - component: {fileID: 3349039637632382453}
+  m_Layer: 5
+  m_Name: Label
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8481652919757333849
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458509967566685901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213865426227309498}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 220, y: 44}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!222 &6884690377653049337
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458509967566685901}
+  m_CullTransparentMesh: 1
+--- !u!114 &3349039637632382453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458509967566685901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: '[R] Journal'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
+  m_sharedMaterial: {fileID: 4636976108514950532, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 28
+  m_fontSizeBase: 28
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656bu
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2523474689223514967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1215,7 @@ RectTransform:
   m_Children:
   - {fileID: 1269524960510669350}
   - {fileID: 7414839744753302619}
+  - {fileID: 1213865426227309498}
   - {fileID: 6233637317964619860}
   - {fileID: 6620498996417821893}
   - {fileID: 6403620617605807865}
@@ -1821,6 +1959,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4843136988646344366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756341662941503410}
+  - component: {fileID: 4974475813696141852}
+  - component: {fileID: 8730616232546576620}
+  m_Layer: 5
+  m_Name: Book
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &756341662941503410
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843136988646344366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213865426227309498}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 119.55923, y: 150}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!222 &4974475813696141852
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843136988646344366}
+  m_CullTransparentMesh: 1
+--- !u!114 &8730616232546576620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843136988646344366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b0d84db92d0bbfa47b84b7b37c66a5ea, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4945120288532711328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +2111,43 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5111376362598109318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213865426227309498}
+  m_Layer: 5
+  m_Name: Journal HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1213865426227309498
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111376362598109318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 756341662941503410}
+  - {fileID: 8481652919757333849}
+  m_Father: {fileID: 8844697935035836597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -36, y: 30}
+  m_SizeDelta: {x: 170, y: 200}
+  m_Pivot: {x: 1, y: 0}
 --- !u!1 &5282637547173580934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,6 +2807,7 @@ GameObject:
   - component: {fileID: 9149943767678771211}
   - component: {fileID: 8303603265155800288}
   - component: {fileID: 3118163055954191726}
+  - component: {fileID: 8417828378547886703}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -2646,7 +2897,7 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: Player
-      text: '[PLACEHOLDER] I should head up to the top of the lighthouse before it gets dark.'
+      text: I should head up to the top of the lighthouse before it gets dark.
   goToLighthouseTaskText: '*Head to the top of the lighthouse when you''re ready*'
   nightShiftTaskText: '*Guide tonight''s ships*'
   startNightWhenEntering: Top Lighthouse
@@ -2723,6 +2974,87 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4d8f94698fa10d45bf2e56fed76bc33, type: 2}
   - {fileID: 11400000, guid: bc884d1bc0c97164597940fc53d186a7, type: 2}
   paperNotePrefab: {fileID: 8070745585840485486, guid: 28cdb9862b14da947b8e25705ca2c8be, type: 3}
+--- !u!114 &8417828378547886703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240417004231455490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd4eff963ff82e42a7e3da9a11b2b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Journal
+  openAction: {fileID: 7436092149301977739, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
+  pages:
+  - '<align=left><b>Journal Entry 1</b>
+
+
+    <b>Diary:</b>
+
+    First day here on the island! It''s a little weird that they sent me out on my own...but the money is too good to pass up that offer.
+
+
+    This place has an eerie feeling that I can''t explain. It''s probably nothing though.
+
+
+    <b>Features:</b>
+
+    Night 1 Notes:
+
+
+    Valve numbers are always an even number. There were a few abnormal ships that had odd numbers which doesn''t make any sense.
+
+
+    Colours of ships are always bright for safety reasons. Some were dull colours, I reported a few.'
+  - '<align=left><b>Journal Entry 2</b>
+
+
+    <b>Diary:</b>
+
+    The ships keep getting stranger and stranger the more that I stare at them. The weather is getting worse as well. Only 2 more days until I head home.
+
+
+    <b>Features:</b>
+
+    Night 2 Notes:
+
+
+    Ship codes are usually 6 digits, half letters, half numbers. Anything else is wrong.'
+  - '<align=left><b>Journal Entry 3</b>
+
+
+    <b>Diary:</b>
+
+    I keep hearing random noises around me. The lights are also flickering every so often, maybe the wires are messed up.
+
+
+    <b>Features:</b>
+
+    Night 3 Notes:
+
+
+    Aquatic Animals Symbols on the ship (small), it should always point towards the nose of the ship.'
+  - '<align=left><b>Journal Entry 4</b>
+
+
+    <b>Diary:</b>
+
+    I feel uncomfortable here. I couldn''t sleep at all and I''m always cold and shivering. I hear whispering in my ears when there is no one around me. HELP ME!!
+
+
+    <b>Features:</b>
+
+    Night 4 Notes:
+
+
+    Figures appear on the ship, odd ones flicker every once in awhile. Not sure if I''m just seeing things...'
+  paperNotePrefab: {fileID: 8070745585840485486, guid: 28cdb9862b14da947b8e25705ca2c8be, type: 3}
+  icon: {fileID: 5111376362598109318}
+  iconLabel: {fileID: 3349039637632382453}
+  iconText: '{0} Journal'
+  missingPageText: Page {0}
 --- !u!1 &8000973197388327100
 GameObject:
   m_ObjectHideFlags: 0

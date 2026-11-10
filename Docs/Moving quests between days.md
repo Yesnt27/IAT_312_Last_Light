@@ -3,6 +3,8 @@
 This guide records how the day order was changed, so you can make the same kind of change yourself. **The reorder needed no code**: everything was done in the Unity Inspector, by editing the Day assets and some objects in the story scenes. The only code added afterwards is the **Start On Day** testing option (see *Testing a later day*).
 
 > **Later change:** the journal (page 1) moved to **Day 1**, on Floor 2's coffee table, so it's read before the first night. Day 1 now needs page 1 + `ExploredFloor1`–`4` + `Journal`; Day 2 needs `FoodFound` + `BasementKey` and no page (its basement task reads *Look for food*). Days 2–4 now also wake at **Floor 4 / Bed** (the bed the player sleeps in after each night) instead of Floor 2 / Bed. The tables below show the state before those changes.
+>
+> **Later still:** there is now **one journal page per day** (Journal Entry 1–4, page N found on Day N): page 2 is new, beside the food in the Basement (so Day 2 needs page 2 + `FoodFound` + `BasementKey`); the electrical box now holds page 3 (Day 3) and the safe page 4 (Day 4). See `Docs/Journal pages.md`.
 
 ## The new order
 

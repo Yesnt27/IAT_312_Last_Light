@@ -1,6 +1,7 @@
 using UnityEngine;
 
-// A journal page in the world. Interact to collect it; collecting the day's page ends the day puzzle
+// A journal page in the world. Interact to collect it: Found Dialogue plays, then the page opens on paper
+// (its text is on the Journal, Systems prefab). Collecting the day's page ends the day puzzle
 // (together with any Required Flags on the day).
 public class FoundPage : Interactable
 {
@@ -19,6 +20,6 @@ public class FoundPage : Interactable
     {
         gameObject.SetActive(false);
         GameState.Instance.CollectPage(pageNumber);
-        DialogueManager.instance.StartDialogue(foundDialogue, afterFound.Apply);
+        DialogueManager.instance.StartDialogue(foundDialogue, () => Journal.Instance.ShowPage(pageNumber, afterFound.Apply));
     }
 }

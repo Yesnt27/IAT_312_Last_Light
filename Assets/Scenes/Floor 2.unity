@@ -3082,7 +3082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.size
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[0].text
@@ -3090,7 +3090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[1].text
-      value: '*November 13th: First day on the island weird that they sent me out on my own...but the money is good.*'
+      value: This must be the old keepers journal. I wonder what happened to the other pages.
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[2].text
@@ -3110,7 +3110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[1].character.name
-      value: Journal
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4544230747063777731, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: foundDialogue.dialogueLines.Array.data[2].character.name

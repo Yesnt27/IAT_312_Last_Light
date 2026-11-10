@@ -2674,7 +2674,7 @@ MonoBehaviour:
       m_Calls: []
   code: 2741
   keypadPrefab: {fileID: 2187961004418153458, guid: 180dca84a071dd74799352b71a5f57a7, type: 3}
-  pageNumber: 3
+  pageNumber: 4
   openedDialogue:
     dialogueLines:
     - character:
