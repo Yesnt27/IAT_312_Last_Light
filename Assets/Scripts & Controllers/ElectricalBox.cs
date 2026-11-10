@@ -26,7 +26,7 @@ public class ElectricalBox : Interactable
         if (pageNumber > 0 && !GameState.Instance.HasPage(pageNumber))
         {
             GameState.Instance.CollectPage(pageNumber);
-            DialogueManager.instance.StartDialogue(pageFoundDialogue, OpenPuzzle);
+            DialogueManager.instance.StartDialogue(pageFoundDialogue, () => Journal.Instance.ShowPage(pageNumber, OpenPuzzle));
         }
         else
         {

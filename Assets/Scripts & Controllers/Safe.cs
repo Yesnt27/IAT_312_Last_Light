@@ -38,7 +38,7 @@ public class Safe : Interactable
     {
         ShowOpen(true);
         GameState.Instance.CollectPage(pageNumber);
-        DialogueManager.instance.StartDialogue(openedDialogue, afterOpened.Apply);
+        DialogueManager.instance.StartDialogue(openedDialogue, () => Journal.Instance.ShowPage(pageNumber, afterOpened.Apply));
     }
 
     private void ShowOpen(bool open)

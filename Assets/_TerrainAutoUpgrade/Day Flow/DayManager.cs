@@ -266,9 +266,9 @@ public class DayManager : MonoBehaviour
 
     private IEnumerator BeginExplore()
     {
-        // Wait a frame so the page's own dialogue has started, then let it finish first.
+        // Wait a frame so the page's own dialogue has started, then let it (and the page on paper) finish first.
         yield return null;
-        while (DialogueManager.instance.isDialogueActive || CutscenePlaceholder.Instance.IsShowing) yield return null;
+        while (DialogueManager.instance.isDialogueActive || CutscenePlaceholder.Instance.IsShowing || PlayerLock.IsLocked) yield return null;
 
         DialogueManager.instance.StartDialogue(goToLighthouseDialogue, () =>
         {

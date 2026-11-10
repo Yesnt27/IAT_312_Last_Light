@@ -13,8 +13,8 @@ It also covers re-applying the Day 1 settings that a merge had emptied.
 2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper**: four strange symbols, `Ж Ω Ψ Δ`. Click to put it away. The note is now in the **inventory** (right of the screen), and F reads it again at any time.
 3. The player says a book might help. Task: *Find a book inside the lighthouse that can help read the message*.
 4. On **Floor 2**, click the **bookshelf**. The shelf opens full-screen with five books. Click a spine to open that book; *Put the book back* (or Esc) returns to the shelf. With **Strange Symbols** open, press **F** with the note selected to hold it up beside the book: *"The symbols on the note match the ones in this book!"* The book's table turns the note into **2 7 4 1**, but the game never says the number. Closing the shelf plays two lines, sets `BottleDeciphered` and the task *Decode the note with the symbol book, then open the safe on the fourth floor*.
-5. On **Floor 4**, press E at the **Safe** to open its keypad. Type the digits or click the buttons; the code is checked once 4 digits are in. A wrong code shows "Wrong code" and clears. The right one shows *Click*, the safe swings open, and **the last journal page (page 3)** is inside.
-6. Page 3 finishes Day 4's puzzle. "Head to the top" plays, and going up starts the **last night: 7 ships, 75 seconds**.
+5. On **Floor 4**, press E at the **Safe** to open its keypad. Type the digits or click the buttons; the code is checked once 4 digits are in. A wrong code shows "Wrong code" and clears. The right one shows *Click*, the safe swings open, and **the last journal page (page 4)** is inside.
+6. Page 4 finishes Day 4's puzzle. "Head to the top" plays, and going up starts the **last night: 7 ships, 75 seconds**.
 7. After the night report: fade, then the Day 4 bedtime card (*"We will pick you up bright and early in the morning."*). In the morning, **Ending 1 - Win** loads.
 
 ---
@@ -108,7 +108,7 @@ Slots on the right of the screen (Systems prefab → **UI Canvas/Inventory HUD**
 | **Lock → Unlock Flag** | `BottleDeciphered`. Until the book is read, E only says *"A heavy safe with a keypad. I don't know the code."* |
 | **Code** | `2741` |
 | Keypad Prefab | `Assets/Prefabs/UI/Safe Keypad` |
-| Page Number | 3, the last journal page, which finishes Day 4's puzzle |
+| Page Number | 4, the last journal page, which finishes Day 4's puzzle |
 | Opened Dialogue | *The safe clicks open.* / *Inside is the last page of the journal.* / a placeholder player line |
 | After Opened | Set Flag `SafeOpened` |
 | Closed Art / Open Art | The two child objects **Closed** (grey box + keypad) and **Open** (dark inside + swung door). They're placeholder squares: replace their sprites with real art |
@@ -173,7 +173,7 @@ Set **Start On Day** to `4` on the Systems prefab, press Play in `Outside`, and 
 What I tested:
 - Day 1's task is "Explore the house".
 - Night 1 with nothing reported: the timer counts down from 0:30, turns red, shows TIME'S UP, and the report says "Not reported in time: 3".
-- Day 4 from start to finish: the bottle, the note, the book (code 2741), and the safe (a wrong code, then 2741, page 3, safe open).
+- Day 4 from start to finish: the bottle, the note, the book (code 2741), and the safe (a wrong code, then 2741, the last page, safe open).
 - The last night: 7 ships, 1:15 on the clock, and the timer top-right clear of the task box. Then the report, the bedtime card, and **Ending 1 - Win** showing your painting.
 - Real keyboard typing and the keypad buttons.
 

@@ -25,7 +25,7 @@ MonoBehaviour:
       text: Huh? I wonder what that honking is for.
   puzzleTaskId: day3_check_horn
   puzzleTaskText: '*Check the horn sound coming from outside*'
-  journalPage: 3
+  journalPage: 4
   requiredFlags: []
   shipCount: 7
   bedtimeCutscene:
