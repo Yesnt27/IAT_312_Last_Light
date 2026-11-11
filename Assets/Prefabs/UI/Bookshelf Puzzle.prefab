@@ -712,6 +712,7 @@ GameObject:
   - component: {fileID: 2721228241037528527}
   - component: {fileID: 5860281781334804044}
   - component: {fileID: 2065281461795495715}
+  - component: {fileID: 7363423416783427281}
   m_Layer: 5
   m_Name: Spine Template
   m_TagString: Untagged
@@ -845,6 +846,19 @@ MonoBehaviour:
   m_LayoutPriority: 1
   m_MaxWidth: -1
   m_MaxHeight: -1
+--- !u!114 &7363423416783427281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618867274210490439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1950d1aa3f92e8446a2d16323f9fe5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverReveal
+  target: {fileID: 7659923859146191448}
 --- !u!1 &4738293808496479072
 GameObject:
   m_ObjectHideFlags: 0

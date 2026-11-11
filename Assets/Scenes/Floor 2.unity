@@ -692,10 +692,18 @@ MonoBehaviour:
     spineColor: {r: 0.2, g: 0.55, b: 0.3, a: 1}
     openPages: {fileID: 21300000, guid: 68642c19b00720a4eb1b0f6604d09580, type: 3}
     isClue: 0
+  - title: Supernatural Creatures
+    spineColor: {r: 0.32, g: 0.2, b: 0.42, a: 1}
+    openPages: {fileID: 21300000, guid: 4214d768ef5aa754f84224b2bdefb683, type: 3}
+    isClue: 0
   - title: Symbols
     spineColor: {r: 0.55, g: 0.25, b: 0.75, a: 1}
     openPages: {fileID: 21300000, guid: 2ae1ee0925399c546b76e63c3c1fff32, type: 3}
     isClue: 1
+  - title: Grocery List
+    spineColor: {r: 0.62, g: 0.46, b: 0.18, a: 1}
+    openPages: {fileID: 21300000, guid: 59832c42e16cb7f4a9c0e4725bfcb228, type: 3}
+    isClue: 0
   - title: Ship Registry
     spineColor: {r: 0.25, g: 0.4, b: 0.8, a: 1}
     openPages: {fileID: 21300000, guid: bc58638ac96362a48a0dd501037782fc, type: 3}

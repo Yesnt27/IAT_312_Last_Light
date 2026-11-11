@@ -81,7 +81,8 @@ It closes on a left click (the `Click` and `Dialogue` actions, both on the left 
 
 **Bookshelf Puzzle** (`Assets/Prefabs/UI/Bookshelf Puzzle.prefab`, script `Puzzles/BookshelfPuzzle.cs`) is the close-up: its own canvas (sorting 150, scaler *Expand*, so it fits any window shape), a dark Dim, the **Shelf** with a **Spine Row** (spines are copies of the hidden **Spine Template**), the **Open Book** (two pages + *Put the book back*), the **Held Note** paper on the right, the red X and a status line at the top. All its texts (instructions, *Compare the book with the note*, the match message) are on the component.
 
-- **Hover:** spines tint yellow under the mouse, like the electrical box (**Hover Tint**, default (1, 1, 0.55)).
+- **Hover:** spines tint yellow under the mouse, like the electrical box (**Hover Tint**, default (1, 1, 0.55)), and the book's **title appears only while the mouse is over its spine**. That's the **Hover Reveal** component on the Spine Template, whose Target is the spine's Label.
+- **The books** (Floor 2 → Bookshelf → Books), in shelf order: Fishing Almanac, Sailor's Poems, Supernatural Creatures, **Symbols** (the clue), Grocery List and Ship Registry. Each one opens to its picture in `Visual Assets/Journal Assets`.
 - **The note shows by itself:** if the player carries the **Clue Item**, its paper appears beside every open book. There's no F step any more, and the old item hint at the bottom was removed.
 - **Solving:** opening the **Is Clue** book while carrying the Clue Item solves it.
 
