@@ -1029,7 +1029,7 @@ MonoBehaviour:
     dialogueLines:
     - character:
         name: Player
-      text: The fourth floor. Cozy enough I guess.
+      text: The third floor. Cozy enough I guess.
     - character:
         name: Player
       text: The lamp room should be the last floor.
@@ -3451,7 +3451,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.29323184, y: 1.4335239}
+  m_Offset: {x: 0.29323184, y: 2.920035}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3461,7 +3461,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.3740275, y: 4.075049}
+  m_Size: {x: 2.3740275, y: 1.7864637}
   m_EdgeRadius: 0
 --- !u!4 &1455671561
 Transform:
