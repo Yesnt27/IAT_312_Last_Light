@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 // The bookshelf close-up: a full-screen prefab (Assets/Prefabs/UI/Bookshelf Puzzle) with its own canvas.
 // Bookshelf spawns it and calls Open(); it destroys itself when it closes. Spines light up under the mouse;
-// click one to open that book. If the player carries the Clue Item (the bottle's note), it's shown beside
+// click one to open that book (its picture). If the player carries the Clue Item (the bottle's note), it's shown beside
 // every open book, and opening the clue book solves it. Esc puts the book back, then steps away.
 public class BookshelfPuzzle : MonoBehaviour
 {
@@ -20,15 +20,12 @@ public class BookshelfPuzzle : MonoBehaviour
 
     [Header("Open Book")]
     [SerializeField] private GameObject openBook;
-    [SerializeField] private TextMeshProUGUI bookTitle;
-    [SerializeField] private TextMeshProUGUI leftPage;
-    [SerializeField] private TextMeshProUGUI rightPage;
+    [Tooltip("Shows the open book's picture (Preserve Aspect).")]
+    [SerializeField] private Image bookPages;
     [SerializeField] private Button putBackButton;
 
     [Header("Clue Note")]
-    [SerializeField] private GameObject heldNote;
-    [SerializeField] private TextMeshProUGUI heldNoteText;
-    [SerializeField] private Image heldNoteImage;
+    [SerializeField] private NoteDisplay clueNote;
 
     [Header("References")]
     [SerializeField] private Button closeButton;
@@ -85,12 +82,10 @@ public class BookshelfPuzzle : MonoBehaviour
     public void OpenBook(int index)
     {
         currentBook = books[index];
-        bookTitle.text = currentBook.title;
-        leftPage.text = currentBook.leftPage;
-        rightPage.text = currentBook.rightPage;
+        bookPages.sprite = currentBook.openPages;
         shelf.SetActive(false);
         openBook.SetActive(true);
-        heldNote.SetActive(HasClueItem);
+        clueNote.gameObject.SetActive(HasClueItem);
 
         if (HasClueItem && currentBook.isClue)
         {
@@ -107,7 +102,7 @@ public class BookshelfPuzzle : MonoBehaviour
     {
         currentBook = null;
         openBook.SetActive(false);
-        heldNote.SetActive(false);
+        clueNote.gameObject.SetActive(false);
         shelf.SetActive(true);
         ShowStatus(shelfText, normalColor);
     }
@@ -142,12 +137,8 @@ public class BookshelfPuzzle : MonoBehaviour
     // The note from the bottle, filled in once; it's shown whenever a book is open.
     private void ShowClueNote()
     {
-        heldNote.SetActive(false);
-        if (!HasClueItem) return;
-
-        heldNoteText.text = clueItem.NoteText;
-        heldNoteImage.gameObject.SetActive(clueItem.NoteImage != null);
-        heldNoteImage.sprite = clueItem.NoteImage;
+        clueNote.gameObject.SetActive(false);
+        if (HasClueItem) clueNote.Show(clueItem.NoteText, clueItem.NoteImage);
     }
 
     private void ShowStatus(string text, Color color)

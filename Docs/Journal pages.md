@@ -15,15 +15,11 @@ Element 0 is page 1 (found on Day 1), element 1 is page 2, and so on. Each eleme
 | 1 | 1 | Day 1 Journal | (none: you find the book) |
 | 2 | 2 | Day 2 Journal | Day 2 Pages |
 | 3 | 3 | Day 3 Journal | Day 3 Pages |
-| 4 | 4 | **(none yet)** | Day 4 Pages |
+| 4 | 4 | Day 4 Journal | Day 4 Pages |
 
-**A day with only one of the two pictures shows that one everywhere.** Day 4 has no book spread yet, so the book shows the Day 4 loose page.
+**A day with only one of the two pictures shows that one everywhere.** All four days now have both. Day 4's spread holds the Night 4 notes (figures on the ship; abnormal ones flicker).
 
-**When the Day 4 spread is drawn:**
-1. Import it into `Journal Assets` as **Texture Type = Sprite (2D and UI)**.
-2. Drag it into Pages → Element 3 → **Book Spread**.
-
-The Night 4 notes that used to be written in the text version ("figures appear on the ship, odd ones flicker…") aren't in any picture yet. Put them on that spread.
+**New art:** import it into `Journal Assets` as **Texture Type = Sprite (2D and UI)**, then drag it into the page's slot. A plain texture won't go into the slot.
 
 **To add a page 5:** raise the list's size to 5 and fill in Element 4.
 

@@ -253,7 +253,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -28, y: 20}
-  m_SizeDelta: {x: 360, y: 766}
+  m_SizeDelta: {x: 360, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2530225700201593628
 MonoBehaviour:
@@ -330,9 +330,9 @@ RectTransform:
   - {fileID: 127340184566761326}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280, y: -596}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8275350227723847290
@@ -1061,9 +1061,9 @@ RectTransform:
   - {fileID: 5786604258082648867}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280, y: -252}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6491635373977601605
@@ -1631,9 +1631,9 @@ RectTransform:
   - {fileID: 7370513631935891591}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280, y: -424}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5111052972900320837
@@ -2209,9 +2209,9 @@ RectTransform:
   - {fileID: 8105213493599229188}
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280, y: -80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8500330376192608425
@@ -2733,9 +2733,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180, y: -706}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 360, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &704275057076257656
@@ -3308,7 +3308,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53ec3de206f5a4049903fdbcf26387e1, type: 2}
   - {fileID: 11400000, guid: c5251fd506e2d7a459461223d2e7f416, type: 2}
   newGameOnPlayInFirstScene: 1
-  startOnDay: 1
+  startOnDay: 4
   titleScene: Title Screen
   introCutscene:
     title: '#1 Boat ride'
@@ -3415,7 +3415,7 @@ MonoBehaviour:
     foundPage: {fileID: 9214816946985267111, guid: 1d3267d824dacb749837b740eb1fa504, type: 3}
   - bookSpread: {fileID: 3638499654237179317, guid: 39222fc696cac58488df4c76211fafed, type: 3}
     foundPage: {fileID: -4611435276321336991, guid: 9da6db1bac25c604887cec6129a67a79, type: 3}
-  - bookSpread: {fileID: 0}
+  - bookSpread: {fileID: 2125934211355784956, guid: c84007f3a64504143b9803a8a8668fc2, type: 3}
     foundPage: {fileID: -7038762881617369298, guid: 90a333f17ed2c984dbffbdb65f063239, type: 3}
   openBookAfterFinding: 1
   viewPrefab: {fileID: 903559887857326056, guid: b5182ab67782c064bb05920dbb0c83b9, type: 3}
@@ -3748,9 +3748,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4091836066110894039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180, y: -751}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 360, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6402260052997311638

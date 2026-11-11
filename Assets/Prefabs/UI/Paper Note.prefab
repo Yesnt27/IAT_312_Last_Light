@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &684059457343975690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 433142630695666933}
+  - component: {fileID: 330744831942531221}
+  - component: {fileID: 796577085214402843}
+  m_Layer: 0
+  m_Name: Full Picture
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &433142630695666933
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684059457343975690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5616225565308486880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &330744831942531221
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684059457343975690}
+  m_CullTransparentMesh: 1
+--- !u!114 &796577085214402843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684059457343975690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3957553191914138533
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,8 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PaperNote
   closeAction: {fileID: 8804062662992266057, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   clickAction: {fileID: -7597958053436329044, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
-  noteLabel: {fileID: 6582462563733660085}
-  noteImage: {fileID: 6775670418041758760}
+  note: {fileID: 1507107881543834322}
 --- !u!1 &4280134416253611406
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +556,7 @@ GameObject:
   - component: {fileID: 5616225565308486880}
   - component: {fileID: 202564235041027958}
   - component: {fileID: 8273399308773918568}
+  - component: {fileID: 1507107881543834322}
   m_Layer: 5
   m_Name: Paper
   m_TagString: Untagged
@@ -501,6 +576,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 433142630695666933}
   - {fileID: 8481737269551604482}
   - {fileID: 730799799029782211}
   m_Father: {fileID: 1398005533090363152}
@@ -548,6 +624,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1507107881543834322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7229436437279096211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515f7592334eb114da0bb4cebed922ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteDisplay
+  paper: {fileID: 8273399308773918568}
+  text: {fileID: 6582462563733660085}
+  picture: {fileID: 6775670418041758760}
+  fullPicture: {fileID: 796577085214402843}
 --- !u!1 &7932502501407381116
 GameObject:
   m_ObjectHideFlags: 0

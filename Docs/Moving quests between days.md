@@ -201,7 +201,7 @@ It only works when you press Play in the Editor. A build always starts on Day 1,
 | `day3_check_horn` | Day4 → Puzzle Task Id; Outside → Story/Day 4 - Horn Check (Bridge) → Active During Tasks |
 | `day3_observe_water` | Outside → Story/Day 4 - Horn Check (Bridge) → Outcome → New Task Id |
 | `day3_find_book` | Outside → Message in a Bottle → New Task Id |
-| `day3_open_safe` | Floor 3 → Book - Strange Symbols → New Task Id (replaced the old `day3_use_message`) |
+| `day3_open_safe` | Floor 2 → Interactables/Bookshelf → After Finding Clue → New Task Id (the old `Book - Strange Symbols` object, which set it before, was deleted) |
 
 Flags used by the story: `ExploredFloor1`–`4`, `BasementKey`, `Day1BasementArrived`, `FoodFound`, `Journal`, `PowerFixed`, `BottleMessage`, `BottleDeciphered`, `SafeOpened`.
 

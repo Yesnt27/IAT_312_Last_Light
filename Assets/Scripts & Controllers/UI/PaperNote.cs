@@ -1,8 +1,6 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 // A full-screen piece of paper to read (the message in a bottle, readable inventory items). It's a prefab
 // (Assets/Prefabs/UI/Paper Note) with its own canvas: spawn it and call Open(text, image, onClosed).
@@ -14,9 +12,8 @@ public class PaperNote : MonoBehaviour
     [SerializeField] private InputActionReference clickAction;
 
     [Header("References")]
-    [SerializeField] private TextMeshProUGUI noteLabel;
-    [Tooltip("Optional picture on the paper; hidden when Open gets no sprite.")]
-    [SerializeField] private Image noteImage;
+    [Tooltip("The paper: text, an optional picture, or a picture-only note drawn as the whole paper.")]
+    [SerializeField] private NoteDisplay note;
 
     private Action onClosed;
     private int openedFrame;
@@ -45,9 +42,7 @@ public class PaperNote : MonoBehaviour
     {
         onClosed = onClosedCallback;
         openedFrame = Time.frameCount;
-        noteLabel.text = text;
-        noteImage.gameObject.SetActive(image != null);
-        if (image != null) noteImage.sprite = image;
+        note.Show(text, image);
         PlayerLock.Add(this);
     }
 
