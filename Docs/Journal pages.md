@@ -36,7 +36,8 @@ Step 3 only happens when the book shows something different from step 2. For Day
 
 **Reading it again:**
 - **R** opens the book at the newest page collected so far.
-- The **Left / Right arrow keys** turn back and forward through every collected page. The label at the bottom says `Page 2 / 3`; it's hidden when there's only one page.
+- The **Left / Right arrow keys** turn back and forward through every collected page. So do the **clickable arrows** on the book itself, at the lower corners of the left and right pages, exactly where the How To Play book puts its arrows. They use the same art (`Visual Assets/How to Play/Arrow Left` and `Arrow Right`) and light up yellow under the mouse. The left arrow hides on the first page and the right one on the last; with only one page, the label and both arrows are hidden.
+- Clicking an arrow only turns the page. A click anywhere else closes the journal.
 - A **click** or **R** closes it.
 - R does nothing while a dialogue, puzzle or other paper is open, or in scenes without the 2D player.
 - The journal icon (`journal.png`, bottom-right, `[R] Journal`) appears once a page is collected. It hides during dialogue and puzzles.
@@ -47,7 +48,7 @@ Step 3 only happens when the book shows something different from step 2. For Day
 |---|---|
 | `Journal.cs` (Systems prefab) | The list of pages, the R key, the corner icon, and `Journal.Instance.ShowPage(page, onClosed)` for when a page is found |
 | `JournalPage.cs` | One page's two pictures (Book Spread, Found Page) |
-| `UI/JournalView.cs` + `Assets/Prefabs/UI/Journal View.prefab` | The full-screen picture: a dark backdrop, the **Page** image (Preserve Aspect, so a book spread and a tall loose page both fit), **Page Label** (arrow-key hint and page number) and **Hint** ("[Click] Close"). It has its own canvas (Sort Order 150), freezes the player while open, and destroys itself when closed |
+| `UI/JournalView.cs` + `Assets/Prefabs/UI/Journal View.prefab` | The full-screen picture: a dark backdrop, the **Page** image (Preserve Aspect, so a book spread and a tall loose page both fit), **Book Area/Page** (the picture; an Aspect Ratio Fitter sizes Page to exactly the book spread, so things placed on it stay on the drawing), the **Previous Page** / **Next Page** arrow buttons inside Page (JournalView's Previous Button / Next Button; their anchors are the How To Play arrow spots as fractions of the book: (−518, −301) and (519, −299) on its 1375 × 1080 page), **Page Label** (`Page 2 / 3`), and **Hint** (*Arrows or arrow keys turn the page · [Click] or [Esc] Close*). It has its own canvas (Sort Order 150), freezes the player while open, and destroys itself when closed |
 | `TurnPage` action | In `PlayerControls.inputactions` → Controls: a 1D axis with Left Arrow (−) and Right Arrow (+). Rebind it there |
 
 **To change the look:** open `Journal View.prefab`.

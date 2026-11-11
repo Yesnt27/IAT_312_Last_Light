@@ -121,7 +121,7 @@ public class BookshelfPuzzle : MonoBehaviour
         Button spine = Instantiate(spineTemplate, spineRow);
         spine.gameObject.SetActive(true);
         spine.GetComponent<Image>().color = books[index].spineColor;
-        spine.GetComponentInChildren<TextMeshProUGUI>().text = books[index].title;
+        spine.GetComponentInChildren<TextMeshProUGUI>(true).text = books[index].title; // hidden until hovered (HoverReveal)
 
         ColorBlock colors = spine.colors;
         colors.normalColor = Color.white;
