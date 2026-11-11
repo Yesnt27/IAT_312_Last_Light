@@ -9,7 +9,8 @@ How the night shift works after the rework, which ship is which on each night, a
    - Nights last 60 / 75 / 90 / 105 s (Night Shift → **First Night Seconds** 60 + **Extra Seconds Per Night** 15).
 3. **Sit in the chair:** look at it + E. You can look all around and use the binoculars, but you can't walk. **Space** stands you up; the game doesn't say so.
    - **It's a swivel chair.** It turns with you, so its backrest is always behind you and never blocks the view.
-   - **Seated view:** your eyes stay as high as when standing (y 8.55), above the backrest, so you see over the window sill all round.
+   - **Seated view:** your eyes are high up, at y 10.0 (1.45 m above standing height), so you see over the desk console and the window sill all round.
+   - **To change the seated height:** move `Night Controls/Chair Seat/Eye Point` up or down (Position Y). Keep X and Z as they are; that's the chair's stem, which it swivels around.
    - **Standing up:** the chair swings back to face the windows.
 4. **Click** to raise the binoculars, wait for the lighthouse beam to light a ship, then **right click** to select it (green outline).
 5. **Report it from the chair:**

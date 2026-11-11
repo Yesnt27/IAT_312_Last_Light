@@ -9,4 +9,5 @@ public static class GameFlags
     public const string BottleDeciphered = "BottleDeciphered";
     public const string CipherBook = "CipherBook";
     public const string SafeOpened = "SafeOpened";
+    public const string ZoomIntroPlayed = "ZoomIntroPlayed";
 }
