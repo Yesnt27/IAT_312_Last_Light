@@ -39,7 +39,9 @@ public class Cabinets : MonoBehaviour
         else
         {
             CloseCabinet();
-            hideKey();
+            if (openCabinet.name == "Open right") {
+                hideKey();
+            }
         }
 
     }
