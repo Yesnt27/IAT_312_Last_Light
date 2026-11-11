@@ -5,6 +5,7 @@ public class Cabinets : MonoBehaviour
 {
     public SpriteRenderer closedCabinet;
     public SpriteRenderer openCabinet;
+    private bool isOpen = false;
 
     public void Awake()
     {
@@ -16,10 +17,26 @@ public class Cabinets : MonoBehaviour
     {
         closedCabinet.enabled = false;
         openCabinet.enabled = true;
+        isOpen = true;
+    }
+
+    public void CloseCabinet()
+    {
+        closedCabinet.enabled = true;
+        openCabinet.enabled = false;
+        isOpen = false;
     }
 
     public void OnMouseDown()
     {
-        OpenCabinet();
+        if (!isOpen) 
+        {
+            OpenCabinet();
+        }
+        else
+        {
+            CloseCabinet();
+        }
+
     }
 }
