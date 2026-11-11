@@ -5,12 +5,14 @@ public class Cabinets : MonoBehaviour
 {
     public SpriteRenderer closedCabinet;
     public SpriteRenderer openCabinet;
+    public SpriteRenderer key;
     private bool isOpen = false;
 
     public void Awake()
     {
         closedCabinet.enabled = true;
         openCabinet.enabled = false;
+        key.enabled = false;
     }
 
     public void OpenCabinet()
@@ -32,11 +34,25 @@ public class Cabinets : MonoBehaviour
         if (!isOpen) 
         {
             OpenCabinet();
+            showKey();
         }
         else
         {
             CloseCabinet();
+            hideKey();
         }
 
+    }
+
+    public void showKey()
+    {
+        if (openCabinet.name == "Open right" && isOpen) {
+            key.enabled = true;
+        }
+    }
+
+    public void hideKey()
+    {
+        key.enabled = false;
     }
 }
