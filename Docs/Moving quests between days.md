@@ -96,7 +96,7 @@ Open `Basement`:
 ### Step 5: Outside, the bottle
 Open `Outside`:
 - **Interactables/Message in a Bottle**: **Active On Days** `3` → **`4`**
-- **Story/Day 3 - Horn Check**: only renamed to **Day 4 - Horn Check**. It is tied to the task `day3_check_horn`, which is now Day 4's puzzle task.
+- **Story/Day 3 - Horn Check**: only renamed to **Day 4 - Horn Check** (now **Day 4 - Horn Check (Bridge)**: it plays when the player walks onto the bridge, not on arrival). It is tied to the task `day3_check_horn`, which is now Day 4's puzzle task.
 - The Floor 3 books need nothing: they depend on the `BottleMessage` flag, not a day.
 
 ### Step 6: New Day 1 "explore" lines (Floors 1–4)
@@ -198,8 +198,8 @@ It only works when you press Play in the Editor. A build always starts on Day 1,
 | `day1_open_basement` | Floor 4 → Basement Key → After Pickup → New Task Id |
 | `day1_food_journal` | Basement → Story/Day 2 - Basement Arrival → Outcome → New Task Id |
 | `day2_power` | Day3 → Puzzle Task Id; Basement → Electrical Box → Active During Tasks |
-| `day3_check_horn` | Day4 → Puzzle Task Id; Outside → Story/Day 4 - Horn Check → Active During Tasks |
-| `day3_observe_water` | Outside → Story/Day 4 - Horn Check → Outcome → New Task Id |
+| `day3_check_horn` | Day4 → Puzzle Task Id; Outside → Story/Day 4 - Horn Check (Bridge) → Active During Tasks |
+| `day3_observe_water` | Outside → Story/Day 4 - Horn Check (Bridge) → Outcome → New Task Id |
 | `day3_find_book` | Outside → Message in a Bottle → New Task Id |
 | `day3_open_safe` | Floor 3 → Book - Strange Symbols → New Task Id (replaced the old `day3_use_message`) |
 

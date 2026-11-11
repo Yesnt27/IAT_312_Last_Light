@@ -2988,73 +2988,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Journal
   openAction: {fileID: 7436092149301977739, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   pages:
-  - '<align=left><b>Journal Entry 1</b>
-
-
-    <b>Diary:</b>
-
-    First day here on the island! It''s a little weird that they sent me out on my own...but the money is too good to pass up that offer.
-
-
-    This place has an eerie feeling that I can''t explain. It''s probably nothing though.
-
-
-    <b>Features:</b>
-
-    Night 1 Notes:
-
-
-    Valve numbers are always an even number. There were a few abnormal ships that had odd numbers which doesn''t make any sense.
-
-
-    Colours of ships are always bright for safety reasons. Some were dull colours, I reported a few.'
-  - '<align=left><b>Journal Entry 2</b>
-
-
-    <b>Diary:</b>
-
-    The ships keep getting stranger and stranger the more that I stare at them. The weather is getting worse as well. Only 2 more days until I head home.
-
-
-    <b>Features:</b>
-
-    Night 2 Notes:
-
-
-    Ship codes are usually 6 digits, half letters, half numbers. Anything else is wrong.'
-  - '<align=left><b>Journal Entry 3</b>
-
-
-    <b>Diary:</b>
-
-    I keep hearing random noises around me. The lights are also flickering every so often, maybe the wires are messed up.
-
-
-    <b>Features:</b>
-
-    Night 3 Notes:
-
-
-    Aquatic Animals Symbols on the ship (small), it should always point towards the nose of the ship.'
-  - '<align=left><b>Journal Entry 4</b>
-
-
-    <b>Diary:</b>
-
-    I feel uncomfortable here. I couldn''t sleep at all and I''m always cold and shivering. I hear whispering in my ears when there is no one around me. HELP ME!!
-
-
-    <b>Features:</b>
-
-    Night 4 Notes:
-
-
-    Figures appear on the ship, odd ones flicker every once in awhile. Not sure if I''m just seeing things...'
-  paperNotePrefab: {fileID: 8070745585840485486, guid: 28cdb9862b14da947b8e25705ca2c8be, type: 3}
+  - bookSpread: {fileID: 8832308268934830296, guid: 5238568045ff6e84d9dc8b1d55ffff9a, type: 3}
+    foundPage: {fileID: 0}
+  - bookSpread: {fileID: -5165441539038719397, guid: 392e58b3fd168fa41aad19efc5257e9d, type: 3}
+    foundPage: {fileID: 9214816946985267111, guid: 1d3267d824dacb749837b740eb1fa504, type: 3}
+  - bookSpread: {fileID: 3638499654237179317, guid: 39222fc696cac58488df4c76211fafed, type: 3}
+    foundPage: {fileID: -4611435276321336991, guid: 9da6db1bac25c604887cec6129a67a79, type: 3}
+  - bookSpread: {fileID: 0}
+    foundPage: {fileID: -7038762881617369298, guid: 90a333f17ed2c984dbffbdb65f063239, type: 3}
+  openBookAfterFinding: 1
+  viewPrefab: {fileID: 903559887857326056, guid: b5182ab67782c064bb05920dbb0c83b9, type: 3}
   icon: {fileID: 5111376362598109318}
   iconLabel: {fileID: 3349039637632382453}
   iconText: '{0} Journal'
-  missingPageText: Page {0}
 --- !u!1 &8000973197388327100
 GameObject:
   m_ObjectHideFlags: 0
