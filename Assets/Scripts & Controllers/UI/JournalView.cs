@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 // Full-screen picture of journal pages (Assets/Prefabs/UI/Journal View, its own canvas). Spawn it and call
 // Open(pages, startPage, onClosed). The arrow keys (TurnPage) or the clickable arrows either side of the page
-// number flip through the pages; a click anywhere else, or Esc, closes it.
+// number flip through the pages; a click anywhere else, or Esc, closes it. An optional title shows at the top
+// (Journal.ShowCloseUp uses this for single pictures like the key).
 // The player is frozen while it's open, and it destroys itself when it closes.
 public class JournalView : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class JournalView : MonoBehaviour
     [SerializeField] private Image pageImage;
     [Tooltip("Page number; hidden when there's only one page.")]
     [SerializeField] private TextMeshProUGUI pageLabel;
+    [Tooltip("Optional heading at the top (e.g. \"Key\" for the key close-up); hidden when Open gets no title.")]
+    [SerializeField] private TextMeshProUGUI titleLabel;
     [Tooltip("The clickable arrows (the How To Play arrows). Each hides at its end of the journal.")]
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
@@ -62,8 +65,10 @@ public class JournalView : MonoBehaviour
         if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame && Time.frameCount != openedFrame) Close();
     }
 
-    public void Open(Sprite[] journalPages, int startPage, Action onClosedCallback)
+    public void Open(Sprite[] journalPages, int startPage, Action onClosedCallback, string title = null)
     {
+        titleLabel.gameObject.SetActive(!string.IsNullOrEmpty(title));
+        titleLabel.text = title;
         pages = journalPages;
         onClosed = onClosedCallback;
         openedFrame = Time.frameCount;
