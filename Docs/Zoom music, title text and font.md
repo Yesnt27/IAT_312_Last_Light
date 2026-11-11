@@ -8,12 +8,24 @@ The zoom zone is `Outside` → **zoom_collider** (Camera Trigger). Its **Events*
 
 Anything you add to these lists happens at those moments, with no code.
 
+## Only the first time
+
+The camera zooms out every time the player walks into the zone. The music and the **Last Light** title only come with the **first** zoom-out of a game; after that, the camera zooms on its own.
+
+This is done by a **Play Once Per Game** component (`Core/PlayOncePerGame.cs`) on `zoom_collider`:
+- Camera Trigger → **On Zoom Out** has one entry: *zoom_collider → PlayOncePerGame.Play*.
+- Play Once Per Game → **On First Time** holds what used to be in On Zoom Out: *Zoom Title → FadeGroup.Show* and *zoom_music → MusicFader.FadeIn*.
+- **Remember As Flag** (`ZoomIntroPlayed`) is the GameState flag that records it has played. A new game clears all flags, so a new playthrough gets the intro once more.
+- **On Zoom In** still fades both out. That's harmless once they've stopped, and it still cuts the music short if the player leaves the zone during the first zoom.
+
+**To make something happen every time again**, move it from On First Time back into On Zoom Out. Play Once Per Game works for any other one-time beat too: give it its own flag name.
+
 ---
 
 ## Music when it zooms out (set up)
 
-`Outside` → **zoom_music** plays `Assets/Visual Assets/puppet_combo.mp3.wav`, an 8.6-second track, once:
-- It starts at full volume when the camera zooms out.
+`Outside` → **zoom_music** plays `Assets/Visual Assets/Audio Assets/puppet_combo.mp3.wav`, an 8.6-second track, once:
+- It starts at full volume the first time the camera zooms out (see **Only the first time**).
 - It fades out over its last 2 seconds instead of cutting off.
 - Walking out of the zone early fades it out over 2 seconds.
 
@@ -30,9 +42,9 @@ Anything you add to these lists happens at those moments, with no code.
   - **Fade Out At End** (on): with Loop off, fade over the last Fade Out Seconds of the track.
   - **Resume Where It Stopped** (off): off restarts the track every zoom; on continues from where it faded out.
 
-**The hook-up** is on `zoom_collider` → Camera Trigger → Events:
-- **On Zoom Out** → *zoom_music → MusicFader.FadeIn*.
-- **On Zoom In** → *zoom_music → MusicFader.FadeOut*.
+**The hook-up** is on `zoom_collider`:
+- **Play Once Per Game → On First Time** → *zoom_music → MusicFader.FadeIn* (Camera Trigger's On Zoom Out calls Play Once Per Game).
+- **Camera Trigger → On Zoom In** → *zoom_music → MusicFader.FadeOut*.
 
 The fade commands only appear in an event's function list under **MusicFader**, and only when the object in the slot has a Music Fader component. An Audio Source on its own only offers Play / Stop / Pause, which have no fade.
 
@@ -56,11 +68,11 @@ The scene's Main Camera already has the **Audio Listener** Unity needs to hear s
 | **Zoom Title/Title** → TextMeshPro - Text (UI) | The words (*Text Input*), **Font Size** (120), colour, alignment |
 | **Zoom Title/Title** → Rect Transform | **Pos Y** (−150) moves it up or down from the top of the screen |
 
-The hook-up is on `zoom_collider` → Camera Trigger → **On Zoom Out**: *Zoom Title → FadeGroup.Show*, and **On Zoom In**: *FadeGroup.Hide*.
+The hook-up is on `zoom_collider`: **Play Once Per Game → On First Time**: *Zoom Title → FadeGroup.Show*, and **Camera Trigger → On Zoom In**: *FadeGroup.Hide*.
 
 - **More lines** (e.g. a subtitle): duplicate **Title** inside Zoom Title and move it. Everything inside Zoom Title fades together.
 - **To see it while editing:** set Canvas Group → Alpha to 1, then put it back to 0.
-- It shows **every time** the player walks into the zone. The zone covers the dock and the lighthouse door, so it also shows when you come out of the lighthouse.
+- It shows **once per game**: the first time the player walks into the zone. Later zoom-outs (coming out of the lighthouse, the Day 4 horn check) don't show it again.
 
 `UI/FadeGroup.cs` works on any UI with a Canvas Group: call **Show** / **Hide** from any event.
 

@@ -1598,6 +1598,7 @@ GameObject:
   - component: {fileID: 1190946988}
   - component: {fileID: 1190946987}
   - component: {fileID: 1190946986}
+  - component: {fileID: 1190946989}
   m_Layer: 0
   m_Name: zoom_collider
   m_TagString: Untagged
@@ -1625,25 +1626,13 @@ MonoBehaviour:
   onZoomOut:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 628256435}
-        m_TargetAssemblyTypeName: FadeGroup, Assembly-CSharp
-        m_MethodName: Show
+      - m_Target: {fileID: 1190946989}
+        m_TargetAssemblyTypeName: PlayOncePerGame, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 906042543}
-        m_TargetAssemblyTypeName: MusicFader, Assembly-CSharp
-        m_MethodName: FadeIn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1737,6 +1726,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1190946989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190946985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c9c5909f2eb134b814ca7ac18c2986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayOncePerGame
+  rememberAsFlag: ZoomIntroPlayed
+  onFirstTime:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 628256435}
+        m_TargetAssemblyTypeName: FadeGroup, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 906042543}
+        m_TargetAssemblyTypeName: MusicFader, Assembly-CSharp
+        m_MethodName: FadeIn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1212903876
 GameObject:
   m_ObjectHideFlags: 0
