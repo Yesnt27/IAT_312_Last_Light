@@ -2866,6 +2866,8 @@ MonoBehaviour:
     newTaskId: day1_open_basement
     newTaskText: '*Use the key to open the basement door on the first floor*'
     setFlag: 
+  closeUpPicture: {fileID: 8202599118445402821, guid: c6184ac264000d040aa18495c3ea38de, type: 3}
+  closeUpTitle: Key
 --- !u!61 &1372751385
 BoxCollider2D:
   m_ObjectHideFlags: 0

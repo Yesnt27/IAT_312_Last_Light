@@ -56,6 +56,14 @@ Step 3 only happens when the book shows something different from step 2. For Day
 - **Dim**'s colour sets how dark the game gets behind it.
 - The hint text is on **Journal View → Page Text** and on the **Hint** object.
 
+## Other close-ups (the key)
+
+The same full-screen view shows single pictures too, with a **title** at the top: `Journal.Instance.ShowCloseUp(picture, title, onClosed)`. The Journal View prefab has a **Title** text object for this; it's hidden when there's no title.
+
+- **The basement key** (Floor 4 → **Basement Key**, a Flag Pickup) uses it. Its **Close-Up Picture** is `Backgrounds and Furnish/key_normal` and its **Close-Up Title** is `Key`. After *"You found the basement key!"* the key fills the screen with **Key** above it. A click or Esc puts it away, and then the next task starts.
+- **Any other Flag Pickup** can do the same: fill in **Close-Up Picture** (and optionally **Close-Up Title**) on it. Leave the picture empty for no close-up.
+- With a single picture, the arrows and the page number stay hidden, so only *[Click] or [Esc] Close* shows. The page number line, *Page 2 / 3 (or use the arrow keys)*, only appears in the book.
+
 ## Where pages are found
 
 There's one page per day. Each day's puzzle only ends once that day's page is collected: each Day asset's **Journal Page** = its day number.

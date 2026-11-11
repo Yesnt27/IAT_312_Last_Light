@@ -77,6 +77,12 @@ public class Journal : MonoBehaviour
         Open(new[] { page.WhenFound }, 0, bookShowsMore ? () => OpenBookAt(pageNumber, onClosed) : onClosed);
     }
 
+    // Any single picture shown the same way, with an optional title at the top (e.g. the key close-up on pickup).
+    public void ShowCloseUp(Sprite picture, string title, Action onClosed)
+    {
+        Open(picture != null ? new[] { picture } : new Sprite[0], 0, onClosed, title);
+    }
+
     private void OnOpen(InputAction.CallbackContext context)
     {
         if (openView != null) openView.Close();
@@ -102,7 +108,7 @@ public class Journal : MonoBehaviour
         Open(spreads.ToArray(), start >= 0 ? start : spreads.Count - 1, onClosed);
     }
 
-    private void Open(Sprite[] sprites, int startIndex, Action onClosed)
+    private void Open(Sprite[] sprites, int startIndex, Action onClosed, string title = null)
     {
         if (openView != null || viewPrefab == null || sprites.Length == 0)
         {
@@ -115,7 +121,7 @@ public class Journal : MonoBehaviour
         {
             openView = null;
             onClosed?.Invoke();
-        });
+        }, title);
     }
 
     private JournalPage GetPage(int pageNumber)
