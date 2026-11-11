@@ -12,7 +12,8 @@ How the night shift works after the rework, which ship is which on each night, a
    - **Seated view:** your eyes are high up, at y 10.0 (1.45 m above standing height), so you see over the desk console and the window sill all round.
    - **To change the seated height:** move `Night Controls/Chair Seat/Eye Point` up or down (Position Y). Keep X and Z as they are; that's the chair's stem, which it swivels around.
    - **Standing up:** the chair swings back to face the windows.
-4. **Click** to raise the binoculars, wait for the lighthouse beam to light a ship, then **right click** to select it (green outline).
+4. **Right click** to raise the binoculars (right click again lowers them), wait for the lighthouse beam to light a ship, then **left click** to select it (green outline).
+   - The buttons are the `Use` (right mouse) and `Select` (left mouse) actions in the `FirstPerson` map; swap them back there if needed, and change the three hint texts to match (`Binocular HUD` → Aim Text, the `Held Hint` and `Lower Hint` objects).
 5. **Report it from the chair:**
    - **Q** = Report (it's a ghost), **E** = Safe.
    - This works even with the binoculars still up; the binocular HUD shows `[Q] Report   [E] Safe` under `SHIP SELECTED`.

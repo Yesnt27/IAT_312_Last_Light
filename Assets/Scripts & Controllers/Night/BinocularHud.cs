@@ -19,7 +19,7 @@ public class BinocularHud : MonoBehaviour
     [Header("Text")]
     [SerializeField] private string noShipText = "NO SHIP SELECTED";
     [SerializeField] private string shipSelectedText = "SHIP SELECTED";
-    [SerializeField] private string aimText = "[Right Click] Select ship";
+    [SerializeField] private string aimText = "[Click] Select ship";
     [Tooltip("Shown when the crosshair is on a ship the beam hasn't lit.")]
     [SerializeField] private string darkText = "Too dark to make out. Wait for the light.";
 

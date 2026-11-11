@@ -77,16 +77,6 @@
                     "priority": 0
                 },
                 {
-                    "name": "CycleItem",
-                    "type": "Value",
-                    "id": "503b33af-bcd3-4895-b9f2-cf5dc9d9c462",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
                     "name": "Journal",
                     "type": "Button",
                     "id": "32af8f3b-558e-48a8-a2d4-44c64b9164ae",
@@ -101,6 +91,16 @@
                     "type": "Value",
                     "id": "be2ea999-1ad9-4bd8-a5c1-a75d3720b832",
                     "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "SelectSlot",
+                    "type": "Button",
+                    "id": "2ec7ba9f-8b5e-468e-b054-96cf4c32570f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false,
@@ -220,17 +220,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b9236022-14ca-48fa-92c7-9d83e2cde7b1",
-                    "path": "<Mouse>/scroll/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CycleItem",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9f713e0f-8037-494f-861d-3d9538ba8ad1",
                     "path": "<Keyboard>/r",
                     "interactions": "",
@@ -272,6 +261,50 @@
                     "action": "TurnPage",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ccfd23a0-9c3a-497d-b040-01519df4d2c4",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da97ff3e-79ae-4513-ae7f-73b41900e18c",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cf2282f-56af-4cdf-856f-d03405c3a8c9",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e3c1da7-1964-4f68-a4cc-50b8ab3c4893",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -507,7 +540,7 @@
                 {
                     "name": "",
                     "id": "702b89dc-1826-4ad0-982f-1f91d2b4b97f",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -518,7 +551,7 @@
                 {
                     "name": "",
                     "id": "870cb960-cf67-4ef9-aefd-1388d52c1a9f",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

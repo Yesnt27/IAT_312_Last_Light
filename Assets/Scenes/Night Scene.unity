@@ -4623,7 +4623,7 @@ MonoBehaviour:
   heldHint: {fileID: 1455612889}
   noShipText: NO SHIP SELECTED
   shipSelectedText: SHIP SELECTED
-  aimText: '[Right Click] Select ship'
+  aimText: '[Click] Select ship'
   darkText: Too dark to make out. Wait for the light.
   idleColor: {r: 0.25, g: 1, b: 0.35, a: 0.45}
   onShipColor: {r: 0.25, g: 1, b: 0.35, a: 1}
@@ -6979,7 +6979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Click] Look through binoculars'
+  m_text: '[Right Click] Look through binoculars'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
   m_sharedMaterial: {fileID: 4636976108514950532, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
@@ -9406,7 +9406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Click] Lower binoculars'
+  m_text: '[Right Click] Lower binoculars'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}
   m_sharedMaterial: {fileID: 4636976108514950532, guid: 6b27efe372e659448a9c25b2b795f333, type: 2}

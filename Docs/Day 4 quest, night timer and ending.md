@@ -52,7 +52,7 @@ The bottle is `Outside` → **Interactables/Message in a Bottle**. Its old **Int
 |---|---|
 | Prompt Text, Active On Days (4), Hidden By Flags (BottleMessage) | Same as before: it only floats there on Day 4, until it's read |
 | **Paper Note Prefab** | `Assets/Prefabs/UI/Paper Note`. If it's ever empty, clicking the bottle logs an error and skips the paper (Read Dialogue and After Reading still run), so the quest can't get stuck |
-| **Note Item** | `Assets/Data/Items/Bottle Note`. The note's text and picture now come from this inventory item, so the paper here, the inventory copy and the one held up at the bookshelf always match. Edit the note on that asset |
+| **Note Item** | `Assets/Data/Items/Bottle Note`. The note's text and picture now come from this inventory item, so the paper here, the inventory copy and the one shown beside the books at the bookshelf always match. Edit the note on that asset |
 | Note Text / Note Image | Only used if Note Item is empty. Note Text still holds the old placeholder symbols |
 | **Open Dialogue** | Plays before the paper opens (*You fish the bottle out...*) |
 | **Read Dialogue** | Plays after the paper is put away |
@@ -75,11 +75,15 @@ It closes on a left click (the `Click` and `Dialogue` actions, both on the left 
 | Active On Days / Required Flags / Hidden By Flags | 4 / `BottleMessage` / `SafeOpened`. So it opens once the note is read, and stays open for a second look until the safe is open |
 | Puzzle Prefab | `Assets/Prefabs/UI/Bookshelf Puzzle` |
 | **Books** | One entry per book: **Title** (on the spine and the left page), **Spine Color**, **Left Page**, **Right Page**, **Is Clue**. Add, remove or reorder books here; the shelf builds the spines from this list |
-| Clue Item | `Assets/Data/Items/Bottle Note`: what must be held up next to the clue book |
+| Clue Item | `Assets/Data/Items/Bottle Note`: the note shown beside every open book; opening the clue book while carrying it solves the puzzle |
 | Clue Found Dialogue | Two player lines, played after the shelf closes (only the first time) |
 | After Finding Clue | Task `day3_open_safe`, *Decode the note with the symbol book, then open the safe on the fourth floor*; Set Flag `BottleDeciphered` (unlocks the safe) |
 
-**Bookshelf Puzzle** (`Assets/Prefabs/UI/Bookshelf Puzzle.prefab`, script `Puzzles/BookshelfPuzzle.cs`) is the close-up: its own canvas (sorting 150, scaler *Expand*, so it fits any window shape), a dark Dim, the **Shelf** with a **Spine Row** (spines are copies of the hidden **Spine Template**), the **Open Book** (two pages + *Put the book back*), the **Held Note** paper on the right, the red X, a status line at the top and the item hint at the bottom. All its texts (instructions, *That won't help with this.*, the match message) are on the component. While it's open it takes over F from the inventory: a readable item is held up beside the book (F again puts it away); anything else gets *That won't help with this.* It's solved when the **Is Clue** book is open and the **Clue Item** is held up, in either order.
+**Bookshelf Puzzle** (`Assets/Prefabs/UI/Bookshelf Puzzle.prefab`, script `Puzzles/BookshelfPuzzle.cs`) is the close-up: its own canvas (sorting 150, scaler *Expand*, so it fits any window shape), a dark Dim, the **Shelf** with a **Spine Row** (spines are copies of the hidden **Spine Template**), the **Open Book** (two pages + *Put the book back*), the **Held Note** paper on the right, the red X and a status line at the top. All its texts (instructions, *Compare the book with the note*, the match message) are on the component.
+
+- **Hover:** spines tint yellow under the mouse, like the electrical box (**Hover Tint**, default (1, 1, 0.55)).
+- **The note shows by itself:** if the player carries the **Clue Item**, its paper appears beside every open book. There's no F step any more, and the old item hint at the bottom was removed.
+- **Solving:** opening the **Is Clue** book while carrying the Clue Item solves it.
 
 ### The cipher
 The note says `Ж Ω Ψ Δ`. The Strange Symbols book's right page is the key:
@@ -91,12 +95,12 @@ The note says `Ж Ω Ψ Δ`. The Strange Symbols book's right page is the key:
 So the note reads 2 7 4 1. These letters come from the TextMesh Pro fallback font; pick others from the same Greek/Cyrillic range if you change them.
 
 ## The inventory
-Slots on the right of the screen (Systems prefab → **UI Canvas/Inventory HUD**): at least 2 boxes, one per item carried (up to 4), the selected one outlined in yellow with its name and `[Scroll] Switch   [F] Use` under it. It hides in scenes without the 2D player (title, cutscenes, the 3D night). **Mouse wheel** picks an item, **F** uses it (`UseItem` / `CycleItem` in the `Controls` action map).
+Slots on the right of the screen (Systems prefab → **UI Canvas/Inventory HUD**): at least 2 boxes, one per item carried (up to 4), the selected one outlined in yellow with its name and `[1-2] Switch   [F] Use` under it (just `[F] Use` while you carry one item). Each slot has its key number to its left. It hides in scenes without the 2D player (title, cutscenes, the 3D night). The **number keys 1–4** pick the item in that slot (keys past the last item do nothing), **F** uses it. Both are actions in the `Controls` map: `SelectSlot` (one binding per slot, in slot order; rebind there) and `UseItem`. The mouse wheel no longer switches items.
 
 - **Items** are assets in `Assets/Data/Items/` (*Create → Lighthouse → Inventory Item*): name, icon, **Held While Flag** (the player has it while that flag is set), optional **Gone When Flag**, and what F does: **Note Text / Note Image** make it readable (F opens it on the Paper Note), otherwise **Use Dialogue** plays.
 - **The list** is Systems prefab → **Inventory → All Items**, in slot order: `Basement Key` (held while `BasementKey`), `Bottle Note` (held while `BottleMessage`).
 - **To add an item:** create the asset, set its flag, add it to All Items, and set that flag when it's picked up (e.g. a FlagPickup or a StoryOutcome). Because items come from flags, a new game empties the inventory and Start On Day fills it with earlier days' items.
-- Scripts: `Inventory/Inventory.cs` (on Systems), `Inventory/InventoryHud.cs`, `Inventory/InventoryItem.cs`, and `Inventory/IItemUseHandler.cs` (how a puzzle like the bookshelf takes over F while it's open).
+- Scripts: `Inventory/Inventory.cs` (on Systems), `Inventory/InventoryHud.cs`, `Inventory/InventoryItem.cs`, and `Inventory/IItemUseHandler.cs` (how a puzzle can take over F while it's open; nothing uses it at the moment).
 
 ## The safe
 `Floor 4` → **Safe**, at x −3.5 on the floor between the two staircases. It is new and uses `Safe.cs` (an empty stub until now):

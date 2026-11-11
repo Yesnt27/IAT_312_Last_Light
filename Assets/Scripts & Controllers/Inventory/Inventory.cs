@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // On the Systems prefab. Which items the player carries comes from GameState flags (see InventoryItem),
-// in the order of All Items. The scroll wheel picks one, F uses it. It only works in scenes with the 2D player.
+// in the order of All Items. The number keys pick one (1 = first slot), F uses it. It only works in scenes with the 2D player.
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance { get; private set; }
 
     [Header("Input")]
     [SerializeField] private InputActionReference useAction;
-    [SerializeField] private InputActionReference cycleAction;
+    [Tooltip("One binding per slot, in slot order (1, 2, 3, 4).")]
+    [SerializeField] private InputActionReference selectSlotAction;
 
     [Header("Items")]
     [SerializeField] private InventoryItem[] allItems;
@@ -31,6 +32,8 @@ public class Inventory : MonoBehaviour
     public InventoryItem Selected => held.Count > 0 ? held[selectedIndex] : null;
     public InputActionReference UseAction => useAction;
     public bool IsAvailableHere => GameObject.FindWithTag("Player") != null;
+    // "[1-2]" when there's more than one item to pick from, otherwise "".
+    public string SwitchKeys => held.Count < 2 ? "" : $"[1-{Mathf.Min(held.Count, selectSlotAction.action.bindings.Count)}]";
 
     private void Awake()
     {
@@ -51,20 +54,23 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         useAction.action.Enable();
-        cycleAction.action.Enable();
+        selectSlotAction.action.Enable();
         useAction.action.performed += OnUse;
+        selectSlotAction.action.performed += OnSelectSlot;
     }
 
     private void OnDisable()
     {
         useAction.action.performed -= OnUse;
+        selectSlotAction.action.performed -= OnSelectSlot;
     }
 
-    private void Update()
+    // The binding that was pressed is the slot: 1 = the first item carried.
+    private void OnSelectSlot(InputAction.CallbackContext context)
     {
-        float scroll = cycleAction.action.ReadValue<float>();
-        if (scroll == 0f || held.Count < 2 || !CanUse()) return;
-        Select(selectedIndex + (scroll > 0f ? -1 : 1));
+        int slot = context.action.GetBindingIndexForControl(context.control);
+        if (slot < 0 || slot >= held.Count || !CanUse()) return;
+        Select(slot);
     }
 
     public void AddUseHandler(IItemUseHandler handler)

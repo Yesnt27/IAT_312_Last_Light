@@ -11,6 +11,8 @@ public class InventoryHud : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private Image[] slotFrames;
     [SerializeField] private Image[] slotIcons;
+    [Tooltip("The key number in each slot's corner; shown on slots with an item.")]
+    [SerializeField] private TextMeshProUGUI[] slotNumbers;
     [SerializeField] private TextMeshProUGUI itemNameLabel;
     [SerializeField] private TextMeshProUGUI hintLabel;
 
@@ -18,7 +20,10 @@ public class InventoryHud : MonoBehaviour
     [SerializeField] private int minSlots = 2;
     [SerializeField] private Color frameColor = new Color(0f, 0f, 0f, 0.9f);
     [SerializeField] private Color selectedFrameColor = new Color(1f, 0.85f, 0.4f, 1f);
-    [SerializeField] private string hintText = "[Scroll] Switch   {0} Use";
+    [Tooltip("{0} = the switch keys (e.g. [1-2]), {1} = the use key.")]
+    [SerializeField] private string hintText = "{0} Switch   {1} Use";
+    [Tooltip("Used while there's only one item, so nothing to switch to.")]
+    [SerializeField] private string singleItemHintText = "{0} Use";
 
     private Inventory inventory;
 
@@ -58,10 +63,22 @@ public class InventoryHud : MonoBehaviour
                 slotIcons[i].color = item.IconColor;
             }
             slotFrames[i].color = item != null && itemIndex == inventory.SelectedIndex ? selectedFrameColor : frameColor;
+            if (slotNumbers != null && i < slotNumbers.Length)
+            {
+                slotNumbers[i].gameObject.SetActive(item != null);
+                slotNumbers[i].text = (itemIndex + 1).ToString();
+            }
         }
 
         InventoryItem selected = inventory.Selected;
         itemNameLabel.text = selected != null ? selected.ItemName : "";
-        hintLabel.text = selected != null ? string.Format(hintText, InteractionPrompt.KeyHint(inventory.UseAction)) : "";
+        hintLabel.text = selected != null ? Hint() : "";
+    }
+
+    private string Hint()
+    {
+        string useKey = InteractionPrompt.KeyHint(inventory.UseAction);
+        string switchKeys = inventory.SwitchKeys;
+        return switchKeys.Length > 0 ? string.Format(hintText, switchKeys, useKey) : string.Format(singleItemHintText, useKey);
     }
 }
