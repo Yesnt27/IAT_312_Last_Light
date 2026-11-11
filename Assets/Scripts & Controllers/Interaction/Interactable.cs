@@ -24,7 +24,7 @@ public class Interactable : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent onInteract;
 
-    public string PromptText => promptText;
+    public virtual string PromptText => promptText;
     public bool IsLocked => !string.IsNullOrEmpty(unlockFlag) && !GameState.Instance.HasFlag(unlockFlag);
 
     public bool IsAvailable => isActiveAndEnabled && StoryConditions.AreMet(activeOnDays, activeDuringTasks, requiredFlags, hiddenByFlags);

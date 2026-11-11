@@ -12,6 +12,8 @@ public class ClickToInteract : MonoBehaviour
     [Tooltip("0 = clickable from anywhere on screen.")]
     [SerializeField] private float maxDistanceFromPlayer = 0f;
     [SerializeField] private Color hoverTint = new Color(1f, 1f, 0.55f);
+    [Tooltip("The sprites you click (and that tint). Empty = this object's own sprites and its children's.")]
+    [SerializeField] private SpriteRenderer[] clickableSprites;
 
     private Interactable interactable;
     private SpriteRenderer[] sprites;
@@ -35,7 +37,7 @@ public class ClickToInteract : MonoBehaviour
     private void Awake()
     {
         interactable = GetComponent<Interactable>();
-        sprites = GetComponentsInChildren<SpriteRenderer>(true);
+        sprites = clickableSprites != null && clickableSprites.Length > 0 ? clickableSprites : GetComponentsInChildren<SpriteRenderer>(true);
         baseColors = new Color[sprites.Length];
         for (int i = 0; i < sprites.Length; i++) baseColors[i] = sprites[i].color;
     }

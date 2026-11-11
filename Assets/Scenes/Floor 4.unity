@@ -609,6 +609,7 @@ GameObject:
   - component: {fileID: 254747244}
   - component: {fileID: 254747243}
   - component: {fileID: 254747242}
+  - component: {fileID: 254747245}
   m_Layer: 0
   m_Name: Table Controller 2 (2)
   m_TagString: Untagged
@@ -646,7 +647,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -674,9 +675,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55c4b8228cb8844da5ee32b82c55472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cabinets
+  promptText: Open drawer
+  activeOnDays: 
+  activeDuringTasks: []
+  requiredFlags: []
+  hiddenByFlags: []
+  unlockFlag: 
+  lockedDialogue:
+    dialogueLines: []
+  whenTriedWhileLocked:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   closedCabinet: {fileID: 1732715013}
   openCabinet: {fileID: 1939397982}
-  key: {fileID: 1905748507}
+  openFlag: KeyDrawerOpen
+  openPrompt: Open drawer
+  closePrompt: Close drawer
 --- !u!4 &254747244
 Transform:
   m_ObjectHideFlags: 0
@@ -692,6 +710,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2023316138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254747245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254747241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4435d7afdea5f9944a2503200c0c9a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
+  maxDistanceFromPlayer: 0
+  hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites:
+  - {fileID: 1732715013}
+  - {fileID: 1939397982}
 --- !u!1 &335729291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1395,7 @@ GameObject:
   - component: {fileID: 884009487}
   - component: {fileID: 884009486}
   - component: {fileID: 884009485}
+  - component: {fileID: 884009488}
   m_Layer: 0
   m_Name: Cabinet Controller 2
   m_TagString: Untagged
@@ -1397,7 +1433,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1425,9 +1461,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55c4b8228cb8844da5ee32b82c55472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cabinets
+  promptText: Open cupboard
+  activeOnDays: 
+  activeDuringTasks: []
+  requiredFlags: []
+  hiddenByFlags: []
+  unlockFlag: 
+  lockedDialogue:
+    dialogueLines: []
+  whenTriedWhileLocked:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   closedCabinet: {fileID: 1429094081}
   openCabinet: {fileID: 1453664905}
-  key: {fileID: 1905748507}
+  openFlag: 
+  openPrompt: Open cupboard
+  closePrompt: Close cupboard
 --- !u!4 &884009487
 Transform:
   m_ObjectHideFlags: 0
@@ -1443,6 +1496,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2023316138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &884009488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884009484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4435d7afdea5f9944a2503200c0c9a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
+  maxDistanceFromPlayer: 0
+  hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites:
+  - {fileID: 1429094081}
+  - {fileID: 1453664905}
 --- !u!1 &904091948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1524,7 @@ GameObject:
   - component: {fileID: 904091951}
   - component: {fileID: 904091950}
   - component: {fileID: 904091949}
+  - component: {fileID: 904091952}
   m_Layer: 0
   m_Name: Cabinet Controller 1
   m_TagString: Untagged
@@ -1491,7 +1562,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1519,9 +1590,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55c4b8228cb8844da5ee32b82c55472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cabinets
+  promptText: Open cupboard
+  activeOnDays: 
+  activeDuringTasks: []
+  requiredFlags: []
+  hiddenByFlags: []
+  unlockFlag: 
+  lockedDialogue:
+    dialogueLines: []
+  whenTriedWhileLocked:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   closedCabinet: {fileID: 1152934875}
   openCabinet: {fileID: 1670986290}
-  key: {fileID: 1905748507}
+  openFlag: 
+  openPrompt: Open cupboard
+  closePrompt: Close cupboard
 --- !u!4 &904091951
 Transform:
   m_ObjectHideFlags: 0
@@ -1537,6 +1625,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2023316138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &904091952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904091948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4435d7afdea5f9944a2503200c0c9a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
+  maxDistanceFromPlayer: 0
+  hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites:
+  - {fileID: 1152934875}
+  - {fileID: 1670986290}
 --- !u!1 &957284628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,6 +2308,7 @@ GameObject:
   - component: {fileID: 1249203179}
   - component: {fileID: 1249203178}
   - component: {fileID: 1249203177}
+  - component: {fileID: 1249203180}
   m_Layer: 0
   m_Name: Table Controller 1
   m_TagString: Untagged
@@ -2240,7 +2346,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2268,9 +2374,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55c4b8228cb8844da5ee32b82c55472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cabinets
+  promptText: Open drawer
+  activeOnDays: 
+  activeDuringTasks: []
+  requiredFlags: []
+  hiddenByFlags: []
+  unlockFlag: 
+  lockedDialogue:
+    dialogueLines: []
+  whenTriedWhileLocked:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   closedCabinet: {fileID: 111514876}
   openCabinet: {fileID: 721795290}
-  key: {fileID: 1905748507}
+  openFlag: 
+  openPrompt: Open drawer
+  closePrompt: Close drawer
 --- !u!4 &1249203179
 Transform:
   m_ObjectHideFlags: 0
@@ -2286,6 +2409,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2023316138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1249203180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249203176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4435d7afdea5f9944a2503200c0c9a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
+  maxDistanceFromPlayer: 0
+  hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites:
+  - {fileID: 111514876}
+  - {fileID: 721795290}
 --- !u!1 &1289291540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2983,8 @@ MonoBehaviour:
   activeOnDays: 02000000i
   activeDuringTasks:
   - day1_find_key
-  requiredFlags: []
+  requiredFlags:
+  - KeyDrawerOpen
   hiddenByFlags: []
   unlockFlag: 
   lockedDialogue:
@@ -2956,6 +3097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
   maxDistanceFromPlayer: 0
   hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites: []
 --- !u!1 &1393414713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,6 +3493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
   maxDistanceFromPlayer: 0
   hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites: []
 --- !u!1 &1477672055
 GameObject:
   m_ObjectHideFlags: 0

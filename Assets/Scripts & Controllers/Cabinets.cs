@@ -1,60 +1,42 @@
 using UnityEngine;
 
-
-public class Cabinets : MonoBehaviour
+// A cupboard or drawer the player clicks to open and close (add ClickToInteract; its Sprites = both arts).
+// Open Flag (optional) is set while it's open, so whatever is inside can list it in its Required Flags
+// and only show up (and be clickable) while it's open, e.g. the basement key in the Floor 4 table drawer.
+// The flag also remembers the drawer as open when the player comes back to the room.
+public class Cabinets : Interactable
 {
-    public SpriteRenderer closedCabinet;
-    public SpriteRenderer openCabinet;
-    public SpriteRenderer key;
-    private bool isOpen = false;
+    [Header("Art")]
+    [SerializeField] private SpriteRenderer closedCabinet;
+    [SerializeField] private SpriteRenderer openCabinet;
 
-    public void Awake()
+    [Header("Contents")]
+    [Tooltip("Set while open, cleared when closed. Empty = it just opens and closes.")]
+    [SerializeField] private string openFlag;
+
+    [Header("Text")]
+    [SerializeField] private string openPrompt = "Open";
+    [SerializeField] private string closePrompt = "Close";
+
+    private bool isOpen;
+
+    public override string PromptText => isOpen ? closePrompt : openPrompt;
+
+    private void Start()
     {
-        closedCabinet.enabled = true;
-        openCabinet.enabled = false;
-        key.enabled = false;
+        ShowOpen(GameState.Instance.HasFlag(openFlag));
     }
 
-    public void OpenCabinet()
+    protected override void OnInteract()
     {
-        closedCabinet.enabled = false;
-        openCabinet.enabled = true;
-        isOpen = true;
+        ShowOpen(!isOpen);
+        GameState.Instance.SetFlag(openFlag, isOpen);
     }
 
-    public void CloseCabinet()
+    private void ShowOpen(bool open)
     {
-        closedCabinet.enabled = true;
-        openCabinet.enabled = false;
-        isOpen = false;
-    }
-
-    public void OnMouseDown()
-    {
-        if (!isOpen) 
-        {
-            OpenCabinet();
-            showKey();
-        }
-        else
-        {
-            CloseCabinet();
-            if (openCabinet.name == "Open right") {
-                hideKey();
-            }
-        }
-
-    }
-
-    public void showKey()
-    {
-        if (openCabinet.name == "Open right" && isOpen) {
-            key.enabled = true;
-        }
-    }
-
-    public void hideKey()
-    {
-        key.enabled = false;
+        isOpen = open;
+        closedCabinet.enabled = !open;
+        openCabinet.enabled = open;
     }
 }
