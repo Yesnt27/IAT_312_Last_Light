@@ -115,9 +115,9 @@ Slots on the right of the screen (Systems prefab → **UI Canvas/Inventory HUD**
 | Page Number | 4, the last journal page, which finishes Day 4's puzzle |
 | Opened Dialogue | *The safe clicks open.* / *Inside is the last page of the journal.* / a placeholder player line |
 | After Opened | Set Flag `SafeOpened` |
-| Closed Art / Open Art | **Closed/Safe_0** (the closed safe art) and **Closed/open safe_0** (the open safe art). Opening the safe hides the first and shows the second |
+| Closed Art / Open Art | **Closed/Safe_0** (the closed safe, `Backgrounds and Furnish/Safe.png`) and **Closed/Safe_open** (the open safe, `Safe_open.png`). Opening the safe hides the first and shows the second, and it stays open on later visits (once page 4 is collected) |
 
-It has **Click To Interact**: the clickable area is its art, which tints yellow on hover, and E no longer does anything there. Its old Box Collider 2D trigger is still on it but unused. The art is under **Closed**: **Safe_0** (closed, the safe's Closed Art) and **open safe_0** (the Open Art).
+It has **Click To Interact**: the clickable area is its art, which tints yellow on hover, and E no longer does anything there. Its old Box Collider 2D trigger is still on it but unused. The art is under **Closed**: **Safe_0** (Closed Art) and **Safe_open** (Open Art). Both pictures use 798 pixels per unit, so the closed safe is 2.38 units wide, and both stand on the cabinet top (bottom at y 0.535). The open picture's safe body is its right part (x 1022–2877 of 2899 px), placed exactly over the closed safe, with the door swinging out to the left. `Safe.png` keeps its one slice `Safe_0` (widened to the whole 1899 × 1517 picture when it was redrawn), so the scene's reference didn't change. The old `open safe.png` is no longer used.
 
 **To change the code, change it in all three places:**
 1. **Safe → Code**
@@ -127,6 +127,8 @@ It has **Click To Interact**: the clickable area is its art, which tints yellow 
 The keypad works with any code length. The clue-found line on the Bookshelf says "six-digit lock", so change it too if the length changes.
 
 **Safe Keypad** (`Assets/Prefabs/UI/Safe Keypad.prefab`, script `Puzzles/SafeKeypad.cs`) has its own canvas (sorting 150):
+- **Art:** **Panel** shows `Backgrounds and Furnish/Safe_keypad.png` at 1.3× (588 × 819). Its children are anchored to the drawing in proportion, so resizing Panel keeps everything lined up. **Screen** covers the drawn screen (transparent): **Display** (the digits, auto-sized) on its top part and **Status** (*Enter the code* / *Wrong code* / *Click*) underneath. **Title** (*SAFE*) sits above the keypad, and the **X** is on its top-right corner.
+- **Keys:** the 12 buttons (1–9, C, 0, <) sit over the drawn keys. Their own image is invisible; hovering lights a key yellow (like hovering the safe) and pressing darkens it (each button's colours). The dark labels name the keys, because the drawn keys are blank.
 - **Buttons:** each digit button's **On Click** calls `SafeKeypad.PressDigit` with its digit; **C** calls `ClearDigits`, **<** calls `DeleteDigit`, **X** closes.
 - **Keyboard:** digit keys type; Backspace deletes; Esc steps away.
 - **Code length:** it checks as soon as as many digits as the code has are typed, so a longer code just works.
