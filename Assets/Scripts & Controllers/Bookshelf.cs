@@ -1,13 +1,13 @@
 using UnityEngine;
 
 // A bookshelf the player can search (needs ClickToInteract or a trigger collider). It opens the Bookshelf Puzzle
-// close-up with these books. Holding the Clue Item up next to the clue book solves it: after the shelf closes,
-// Clue Found Dialogue plays and After Finding Clue is applied (once; skipped when its flag is already set).
+// close-up; its books (titles, pictures, which one is the clue) are the Book hitboxes inside that prefab.
+// Opening the clue book while carrying the Clue Item solves it: after the shelf closes, Clue Found Dialogue plays
+// and After Finding Clue is applied (once; skipped when its flag is already set).
 public class Bookshelf : Interactable
 {
-    [Header("Books")]
+    [Header("Close-Up")]
     [SerializeField] private BookshelfPuzzle puzzlePrefab;
-    [SerializeField] private ShelfBook[] books;
 
     [Header("Clue")]
     [Tooltip("The inventory item to compare with the clue book (the bottle's note).")]
@@ -22,7 +22,7 @@ public class Bookshelf : Interactable
         if (openPuzzle != null) return;
 
         openPuzzle = Instantiate(puzzlePrefab);
-        openPuzzle.Open(books, clueItem, OnClosed);
+        openPuzzle.Open(clueItem, OnClosed);
     }
 
     private void OnClosed(bool solved)

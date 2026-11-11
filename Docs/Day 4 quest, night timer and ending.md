@@ -12,7 +12,7 @@ It also covers re-applying the Day 1 settings that a merge had emptied.
 1. Wake up in the Floor 4 bed to the horn. Go outside, and the "What's that floating in the water?" lines play.
 2. **Click the bottle** in the water. A line plays (*You fish the bottle out...*), then the **note opens on a piece of paper**: six picture symbols (`symbols_paper`: ship, lighthouse, fish, bird, anchor, lighthouse). Click to put it away. The note is now in the **inventory** (right of the screen), and F reads it again at any time.
 3. The player says a book might help. Task: *Find a book inside the lighthouse that can help read the message*.
-4. On **Floor 2**, click the **bookshelf**. The shelf opens full-screen with four books (Fishing Almanac, Sailor's Poems, Symbols, Ship Registry); each opens to its picture from `Journal Assets`. Click a spine to open that book; *Put the book back* (or Esc) returns to the shelf. The note is shown beside every open book by itself. Opening **Symbols** solves it: *"The symbols on the note match the ones in this book!"* The book's key turns the note into **7 4 8 5 2 4**, but the game never says the number. Closing the shelf plays two lines, sets `BottleDeciphered` and the task *Decode the note with the symbol book, then open the safe on the fourth floor*.
+4. On **Floor 2**, click the **bookshelf**. The painted shelf close-up opens full-screen with six books; each opens to its picture from `Journal Assets`. Hovering a book lights it up (no title: the player has to open the books to find the right one); click it to open it; *Put the book back* (or Esc) returns to the shelf. The note is shown beside every open book by itself. Opening **Symbols** solves it: *"The symbols on the note match the ones in this book!"* The book's key turns the note into **7 4 8 5 2 4**, but the game never says the number. Closing the shelf plays two lines, sets `BottleDeciphered` and the task *Decode the note with the symbol book, then open the safe on the fourth floor*.
 5. On **Floor 4**, click the **Safe** (it lights up on hover, like the electrical box) to open its keypad. Type the digits or click the buttons; the code is checked once all 6 digits are in. A wrong code shows "Wrong code" and clears. The right one shows *Click*, the safe swings open, and **the last journal page (page 4)** is inside.
 6. Page 4 finishes Day 4's puzzle. "Head to the top" plays, and going up starts the **last night: 7 ships, 75 seconds**.
 7. After the night report: fade, then the Day 4 bedtime card (*"We will pick you up bright and early in the morning."*). In the morning, **Ending 1 - Win** loads.
@@ -74,15 +74,31 @@ It closes on a left click (the `Click` and `Dialogue` actions, both on the left 
 | Prompt Text | Search the bookshelf |
 | Active On Days / Required Flags / Hidden By Flags | 4 / `BottleMessage` / `SafeOpened`. So it opens once the note is read, and stays open for a second look until the safe is open |
 | Puzzle Prefab | `Assets/Prefabs/UI/Bookshelf Puzzle` |
-| **Books** | One entry per book: **Title** (on the spine), **Spine Color**, **Open Pages** (the open-book picture, e.g. `Fishing_Almanac`; import it as Sprite (2D and UI)), **Is Clue** (only `Symbols`). Add, remove or reorder books here; the shelf builds the spines from this list |
 | Clue Item | `Assets/Data/Items/Bottle Note`: the note shown beside every open book; opening the clue book while carrying it solves the puzzle |
 | Clue Found Dialogue | Two player lines, played after the shelf closes (only the first time) |
 | After Finding Clue | Task `day3_open_safe`, *Decode the note with the symbol book, then open the safe on the fourth floor*; Set Flag `BottleDeciphered` (unlocks the safe) |
 
-**Bookshelf Puzzle** (`Assets/Prefabs/UI/Bookshelf Puzzle.prefab`, script `Puzzles/BookshelfPuzzle.cs`) is the close-up: its own canvas (sorting 150, scaler *Expand*, so it fits any window shape), a dark Dim, the **Shelf** with a **Spine Row** (spines are copies of the hidden **Spine Template**), the **Open Book** (two pages + *Put the book back*), the **Held Note** paper on the right, the red X and a status line at the top. All its texts (instructions, *Compare the book with the note*, the match message) are on the component.
+**Bookshelf Puzzle** (`Assets/Prefabs/UI/Bookshelf Puzzle.prefab`, script `Puzzles/BookshelfPuzzle.cs`) is the close-up: its own canvas (sorting 150, scaler *Expand*, so it fits any window shape), a dark Dim, the **Shelf** (the painted picture `Backgrounds and Furnish/bookshelf_zoomed`, 1800 × 686) with one **Book** hitbox per painted book, the **Open Book** (two pages + *Put the book back*), the **Held Note** paper on the right, the red X and a status line at the top. All its texts (instructions, *Compare the book with the note*, the match message) are on the component.
 
-- **Hover:** spines tint yellow under the mouse, like the electrical box (**Hover Tint**, default (1, 1, 0.55)), and the book's **title appears only while the mouse is over its spine**. That's the **Hover Reveal** component on the Spine Template, whose Target is the spine's Label.
-- **The books** (Floor 2 → Bookshelf → Books), in shelf order: Fishing Almanac, Sailor's Poems, Supernatural Creatures, **Symbols** (the clue), Grocery List and Ship Registry. Each one opens to its picture in `Visual Assets/Journal Assets`.
+- **Hover:** the book under the mouse lights up yellow, like the electrical box (**Hover Tint** on each book, default (1, 1, 0.55)). **No title is shown**, on purpose: the player has to open the books to find out which is which. The `Book N - <title>` object names are only for you.
+- **The books** are in the prefab now (Shelf → `Book 1 - Fishing Almanac` … `Book 6 - Ship Registry`), not on Floor 2's Bookshelf. Standing, left to right: Fishing Almanac (red), Supernatural Creatures (grey-purple), Sailor's Poems (green), **Symbols** (dark green, the clue). Lying in the top-middle box: Grocery List (green, top) and Ship Registry (red, bottom). Each one opens to its picture in `Visual Assets/Journal Assets`.
+
+### Adjusting the book hitboxes
+Each book's clickable area is an invisible box over the picture. To move one:
+
+1. Double-click `Assets/Prefabs/UI/Bookshelf Puzzle` to open it in Prefab Mode. Press **2D** in the Scene view's toolbar and frame the **Shelf** (select it, press **F**).
+2. Every book box is drawn as a **yellow outline** over the picture. Select one in the Hierarchy (**Shelf → Book 4 - Symbols**, for example).
+3. Press **T** (Rect Tool). Drag inside the box to move it, drag its edges or corners to resize it, and drag just outside a corner to rotate it (the standing books lean, so their boxes are turned 0–13°). You can also type **Pos X / Pos Y**, **Width / Height** and **Rotation Z** in its Rect Transform.
+4. Keep the box on the book: everything inside it lights up on hover and counts as that book. Where two boxes overlap, the one lower in the Hierarchy wins the click.
+5. Save the prefab (Ctrl+S) and press Play to check.
+
+To see the boxes in the Game view too, tick **Show Mask Graphic** on a book's **Mask** component: the box shows as see-through yellow. Untick it again when you're done.
+
+**Change a book:** select its box and edit **Shelf Book Spot**: **Open Pages** (the open-book picture; import it as Sprite (2D and UI)), **Is Clue** (only `Symbols`). Rename the object to match if you like. Leave **Picture** (= Shelf) and **Highlight** (its child) alone.
+
+**Add a book:** duplicate a box (Ctrl+D), keep it under **Shelf**, move it over the new book and fill in its Shelf Book Spot. **Remove one:** delete its box.
+
+**New shelf picture:** put the sprite on **Shelf**'s Image and set Shelf's Width/Height to the picture's aspect ratio (it's 1800 × 686 now), then move the boxes onto the new books.
 - **The note shows by itself:** if the player carries the **Clue Item**, its paper appears beside every open book. There's no F step any more, and the old item hint at the bottom was removed.
 - **Solving:** opening the **Is Clue** book while carrying the Clue Item solves it.
 
@@ -123,7 +139,7 @@ It has **Click To Interact**: the clickable area is its art, which tints yellow 
 **To change the code, change it in all three places:**
 1. **Safe → Code**
 2. **The note picture** (`symbols_paper`, set as `Data/Items/Bottle Note` → Note Image): the symbols for the new digits
-3. **The Symbols book picture** (`Floor 2 → Bookshelf → Books → Symbols → Open Pages`): only if you change which symbol means which digit
+3. **The Symbols book picture** (`Bookshelf Puzzle` prefab → Shelf → `Book 4 - Symbols` → Open Pages): only if you change which symbol means which digit
 
 The keypad works with any code length. The clue-found line on the Bookshelf says "six-digit lock", so change it too if the length changes.
 

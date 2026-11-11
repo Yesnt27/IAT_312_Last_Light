@@ -1,22 +1,18 @@
 using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-// The bookshelf close-up: a full-screen prefab (Assets/Prefabs/UI/Bookshelf Puzzle) with its own canvas.
-// Bookshelf spawns it and calls Open(); it destroys itself when it closes. Spines light up under the mouse;
-// click one to open that book (its picture). If the player carries the Clue Item (the bottle's note), it's shown beside
-// every open book, and opening the clue book solves it. Esc puts the book back, then steps away.
+// The bookshelf close-up: a full-screen prefab (Assets/Prefabs/UI/Bookshelf Puzzle) with its own canvas, showing the
+// shelf picture (bookshelf_zoomed). Every book in the picture has a ShelfBookSpot hitbox under Shelf with its
+// open-book picture and Is Clue. Hovering a book lights it up (no title, so the player has to look inside); clicking opens it.
+// If the player carries the Clue Item (the bottle's note), it's shown beside every open book, and opening the clue book
+// solves it. Esc puts the book back, then steps away. Bookshelf spawns it and calls Open(); it destroys itself when it closes.
 public class BookshelfPuzzle : MonoBehaviour
 {
     [Header("Shelf")]
     [SerializeField] private GameObject shelf;
-    [SerializeField] private RectTransform spineRow;
-    [SerializeField] private Button spineTemplate;
-    [Tooltip("Spine colour while the mouse is over it (multiplied, like hovering the electrical box).")]
-    [SerializeField] private Color hoverTint = new Color(1f, 1f, 0.55f);
 
     [Header("Open Book")]
     [SerializeField] private GameObject openBook;
@@ -38,9 +34,8 @@ public class BookshelfPuzzle : MonoBehaviour
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color matchColor = new Color(0.45f, 1f, 0.5f);
 
-    private ShelfBook[] books;
     private InventoryItem clueItem;
-    private ShelfBook currentBook;
+    private ShelfBookSpot currentBook;
     private Action<bool> onClosed;
     private bool isSolved;
 
@@ -50,7 +45,7 @@ public class BookshelfPuzzle : MonoBehaviour
     {
         closeButton.onClick.AddListener(Close);
         putBackButton.onClick.AddListener(PutBack);
-        spineTemplate.gameObject.SetActive(false);
+        foreach (ShelfBookSpot book in shelf.GetComponentsInChildren<ShelfBookSpot>(true)) book.Clicked += OpenBook;
     }
 
     private void OnDestroy()
@@ -58,14 +53,12 @@ public class BookshelfPuzzle : MonoBehaviour
         PlayerLock.Remove(this);
     }
 
-    public void Open(ShelfBook[] shelfBooks, InventoryItem clue, Action<bool> onClosedCallback)
+    public void Open(InventoryItem clue, Action<bool> onClosedCallback)
     {
-        books = shelfBooks;
         clueItem = clue;
         onClosed = onClosedCallback;
         PlayerLock.Add(this);
 
-        for (int i = 0; i < books.Length; i++) AddSpine(i);
         ShowClueNote();
         PutBack();
     }
@@ -77,25 +70,6 @@ public class BookshelfPuzzle : MonoBehaviour
 
         if (currentBook != null) PutBack();
         else Close();
-    }
-
-    public void OpenBook(int index)
-    {
-        currentBook = books[index];
-        bookPages.sprite = currentBook.openPages;
-        shelf.SetActive(false);
-        openBook.SetActive(true);
-        clueNote.gameObject.SetActive(HasClueItem);
-
-        if (HasClueItem && currentBook.isClue)
-        {
-            isSolved = true;
-            ShowStatus(matchText, matchColor);
-        }
-        else
-        {
-            ShowStatus(HasClueItem ? bookText : "", normalColor);
-        }
     }
 
     public void PutBack()
@@ -116,22 +90,23 @@ public class BookshelfPuzzle : MonoBehaviour
         closed?.Invoke(isSolved);
     }
 
-    private void AddSpine(int index)
+    private void OpenBook(ShelfBookSpot book)
     {
-        Button spine = Instantiate(spineTemplate, spineRow);
-        spine.gameObject.SetActive(true);
-        spine.GetComponent<Image>().color = books[index].spineColor;
-        spine.GetComponentInChildren<TextMeshProUGUI>(true).text = books[index].title; // hidden until hovered (HoverReveal)
+        currentBook = book;
+        bookPages.sprite = book.OpenPages;
+        shelf.SetActive(false);
+        openBook.SetActive(true);
+        clueNote.gameObject.SetActive(HasClueItem);
 
-        ColorBlock colors = spine.colors;
-        colors.normalColor = Color.white;
-        colors.highlightedColor = hoverTint;
-        colors.selectedColor = Color.white;
-        spine.colors = colors;
-
-        LayoutElement size = spine.GetComponent<LayoutElement>();
-        if (size != null) size.preferredHeight -= (index * 37) % 90;
-        spine.onClick.AddListener(() => OpenBook(index));
+        if (HasClueItem && book.IsClue)
+        {
+            isSolved = true;
+            ShowStatus(matchText, matchColor);
+        }
+        else
+        {
+            ShowStatus(HasClueItem ? bookText : "", normalColor);
+        }
     }
 
     // The note from the bottle, filled in once; it's shown whenever a book is open.
