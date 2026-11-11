@@ -5,8 +5,8 @@ using UnityEngine;
 
 // Runs the night shift in the 3D Night Scene. When the day loop sends you here it shows only the ships
 // that sail tonight (each NightShip's Active On Nights) and plays an optional opening line. The clock starts
-// the first time the player picks up the binoculars: First Night Seconds on night 1, plus Extra Seconds Per
-// Night for each night after that. The night ends when every ship is reported or marked safe, or when time
+// the first time the player picks up the binoculars, with that night's entry in Night Seconds (nights past the
+// end of the list use the last entry). The night ends when every ship is reported or marked safe, or when time
 // runs out; ships nobody reported in time don't count (they're only listed as "not reported" on the night report).
 // Pressing Play directly in this scene shows Preview Night's ships so you can try them; no clock, no end.
 public class NightShift : MonoBehaviour
@@ -28,8 +28,8 @@ public class NightShift : MonoBehaviour
     [SerializeField] private float endDelay = 2f;
 
     [Header("Time Limit")]
-    [SerializeField] private float firstNightSeconds = 30f;
-    [SerializeField] private float extraSecondsPerNight = 15f;
+    [Tooltip("Seconds on the clock each night: element 0 = night 1. Later nights use the last entry.")]
+    [SerializeField] private float[] nightSeconds = { 60f, 75f, 90f, 180f };
     [SerializeField] private TextMeshProUGUI timerLabel;
     [Tooltip("{0} = the time left, e.g. 0:27.")]
     [SerializeField] private string timerText = "TIME LEFT  {0}";
@@ -45,7 +45,8 @@ public class NightShift : MonoBehaviour
 
     public float TimeLimit(int night)
     {
-        return firstNightSeconds + extraSecondsPerNight * Mathf.Max(0, night - 1);
+        if (nightSeconds == null || nightSeconds.Length == 0) return 60f;
+        return nightSeconds[Mathf.Clamp(night - 1, 0, nightSeconds.Length - 1)];
     }
 
     private void Start()

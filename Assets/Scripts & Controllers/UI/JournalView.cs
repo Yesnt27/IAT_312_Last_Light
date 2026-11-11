@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 // Full-screen picture of journal pages (Assets/Prefabs/UI/Journal View, its own canvas). Spawn it and call
-// Open(pages, startPage, onClosed): the arrow keys (TurnPage) flip through the pages and a click closes it.
+// Open(pages, startPage, onClosed): the arrow keys (TurnPage) flip through the pages; a click or Esc closes it.
 // The player is frozen while it's open, and it destroys itself when it closes.
 public class JournalView : MonoBehaviour
 {
@@ -44,6 +44,12 @@ public class JournalView : MonoBehaviour
     private void OnDestroy()
     {
         PlayerLock.Remove(this);
+    }
+
+    private void Update()
+    {
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame && Time.frameCount != openedFrame) Close();
     }
 
     public void Open(Sprite[] journalPages, int startPage, Action onClosedCallback)

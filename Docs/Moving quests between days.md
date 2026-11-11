@@ -66,7 +66,7 @@ To copy a whole Wake Dialogue: right-click the **Wake Dialogue** label → **Cop
 | Puzzle Task Id | `day1_explore` | **`day1_find_key`** (was `day2_power`) | **`day2_power`** (was `day3_check_horn`) | **`day3_check_horn`** (was `day4_todo`) |
 | Puzzle Task Text | **`*Explore the house*`** | **`*Check around the house to find the key for the basement*`** | **`*Fix the power*`** | **`*Check the horn sound coming from outside*`** |
 | Journal Page | **0** (was 1) | **1** (was 2) | **2** (was 3) | **3** (was 4) |
-| Required Flags | **`ExploredFloor1`, `ExploredFloor2`, `ExploredFloor3`, `ExploredFloor4`** (was `FoodFound`) | **`FoodFound`, `BasementKey`, `Journal`** (was `PowerFixed`) | **`PowerFixed`** (was empty) | **empty** |
+| Required Flags | **`ExploredFloor1`, `ExploredFloor2`, `ExploredFloor4`** (was `FoodFound`; `ExploredFloor3` was removed later, with the Floor 3 scene) | **`FoodFound`, `BasementKey`, `Journal`** (was `PowerFixed`) | **`PowerFixed`** (was empty) | **empty** |
 
 `BasementKey` and `Journal` were added to Day 2 later, for **Start On Day**. They change nothing in normal play: you always have the key and the journal by the time you find the food. But they mean that starting on Day 3 hands you the key, so you can get into the basement to the electrical box.
 
@@ -97,9 +97,11 @@ Open `Basement`:
 Open `Outside`:
 - **Interactables/Message in a Bottle**: **Active On Days** `3` → **`4`**
 - **Story/Day 3 - Horn Check**: only renamed to **Day 4 - Horn Check** (now **Day 4 - Horn Check (Bridge)**: it plays when the player walks onto the bridge, not on arrival). It is tied to the task `day3_check_horn`, which is now Day 4's puzzle task.
-- The Floor 3 books need nothing: they depend on the `BottleMessage` flag, not a day.
+- The Floor 3 books need nothing: they depend on the `BottleMessage` flag, not a day. (The books later moved to Floor 2's bookshelf, and Floor 3 no longer exists.)
 
 ### Step 6: New Day 1 "explore" lines (Floors 1–4)
+> **Later:** the `Floor 3` scene was deleted (Floor 2's stairs now lead straight to Floor 4), so its trigger and `ExploredFloor3` are gone. Day 1 now waits for `ExploredFloor1`, `ExploredFloor2` and `ExploredFloor4`.
+
 In each of the `Floor 1`, `Floor 2`, `Floor 3` and `Floor 4` scenes:
 1. Hierarchy → right-click empty space → **Create Empty**, name it **Story**. None of the floors had a Story folder yet.
 2. Right-click **Story** → **Create Empty**, name it **Day 1 - Explore Floor N** (N = the floor).
@@ -115,7 +117,7 @@ In each of the `Floor 1`, `Floor 2`, `Floor 3` and `Floor 4` scenes:
    - Leave **Outcome** and **Then** empty.
 4. Save the scene (**Ctrl+S**).
 
-When the fourth flag is set, Day 1's puzzle is done. The usual "I should head up to the top of the lighthouse" line plays, and you can start the night.
+When the last flag is set, Day 1's puzzle is done. The usual "I should head up to the top of the lighthouse" line plays, and you can start the night.
 
 ### Step 7: Test
 Press Play in `Outside` to start a new game, and play through it in order. To test one day quickly, use **Start On Day** (next section). Tested:

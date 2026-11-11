@@ -30,7 +30,7 @@ public class Journal : MonoBehaviour
 
     private JournalView openView;
 
-    private bool HasPages => GameState.Instance.CollectedPages.Count > 0;
+    public bool HasPages => GameState.Instance.CollectedPages.Count > 0;
     private bool CanOpen => HasPages && !PlayerLock.IsLocked && GameObject.FindWithTag("Player") != null;
 
     private void Awake()
@@ -54,6 +54,12 @@ public class Journal : MonoBehaviour
         bool show = CanOpen;
         if (icon.activeSelf != show) icon.SetActive(show);
         if (show) iconLabel.text = string.Format(iconText, InteractionPrompt.KeyHint(openAction));
+    }
+
+    // The book at the newest collected page, from anywhere (the night scene's clipboard uses this; R needs the 2D player).
+    public void OpenBook(Action onClosed = null)
+    {
+        if (openView == null) OpenBookAt(-1, onClosed);
     }
 
     // A page was just found: show it, then (optionally) the book open at it. onClosed runs when it's all put away.

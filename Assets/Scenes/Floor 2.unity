@@ -773,7 +773,7 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
-  targetScene: Floor 3
+  targetScene: Floor 4
   targetSpawnId: FromFloor2
   loadOnTouch: 1
 --- !u!61 &957284631
@@ -1258,11 +1258,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2201422502177106148, guid: 820c08e8249a46f4e86b1b646a2212ef, type: 3}
       propertyPath: m_Name
-      value: Spawn - FromFloor3
+      value: Spawn - FromFloor4
       objectReference: {fileID: 0}
     - target: {fileID: 3642374924535044175, guid: 820c08e8249a46f4e86b1b646a2212ef, type: 3}
       propertyPath: spawnId
-      value: FromFloor3
+      value: FromFloor4
       objectReference: {fileID: 0}
     - target: {fileID: 6838372334853108710, guid: 820c08e8249a46f4e86b1b646a2212ef, type: 3}
       propertyPath: m_LocalPosition.x

@@ -29,7 +29,6 @@ MonoBehaviour:
   requiredFlags:
   - ExploredFloor1
   - ExploredFloor2
-  - ExploredFloor3
   - ExploredFloor4
   - Journal
   shipCount: 3

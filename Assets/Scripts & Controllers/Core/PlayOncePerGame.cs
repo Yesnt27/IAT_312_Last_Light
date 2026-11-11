@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-// Runs On First Time the first time Play() is called in a game, then never again. It's remembered as a
+
 // GameState flag, so starting a new game shows it once more. Outside's zoom-out title and music use this:
 // CameraTrigger's On Zoom Out calls Play().
 public class PlayOncePerGame : MonoBehaviour
