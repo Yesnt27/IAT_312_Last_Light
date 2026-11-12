@@ -43,3 +43,11 @@ MonoBehaviour:
     title: '#2 Bedtime'
     description: As the player heads to the bedroom, a shadow passes by.
     scene: 
+    video: {fileID: 32900000, guid: 12234dd4cedf57f48b580f3717c5c450, type: 3}
+    videoLines:
+    - line:
+        character:
+          name: 
+        text: '*A shadow passes by...*'
+      startTime: 0
+      endTime: 0

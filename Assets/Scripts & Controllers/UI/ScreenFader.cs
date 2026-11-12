@@ -11,6 +11,8 @@ public class ScreenFader : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float defaultDuration = 0.5f;
 
+    public float Alpha => fadeGroup.alpha;
+
     private void Awake()
     {
         Instance = this;

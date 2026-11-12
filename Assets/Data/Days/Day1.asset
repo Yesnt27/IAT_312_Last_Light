@@ -36,3 +36,5 @@ MonoBehaviour:
     title: 
     description: 
     scene: 
+    video: {fileID: 32900000, guid: 366e5243dcddc644cbdf8a48a09ad4d8, type: 3}
+    videoLines: []

@@ -309,12 +309,18 @@ public class DayManager : MonoBehaviour
         }
     }
 
-    // A card, or a cutscene scene if the card names one. onDone runs when it's over.
+    // A card, a video (VideoCutscene) or a cutscene scene, depending on what the card has. onDone runs when it's over.
     public void PlayCutscene(CutsceneCard card, System.Action onDone)
     {
         if (card == null || card.IsEmpty)
         {
             onDone?.Invoke();
+            return;
+        }
+
+        if (card.IsVideo)
+        {
+            VideoCutscene.Instance.Play(card, onDone);
             return;
         }
 

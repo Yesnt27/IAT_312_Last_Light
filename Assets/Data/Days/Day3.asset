@@ -36,3 +36,5 @@ MonoBehaviour:
     title: '#3 Bedtime'
     description: The player hears strange noises in the night.
     scene: 
+    video: {fileID: 32900000, guid: fd9c65dd8e058614ab4407a8b549593b, type: 3}
+    videoLines: []
