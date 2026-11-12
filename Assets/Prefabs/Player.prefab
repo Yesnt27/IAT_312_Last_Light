@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 5396996121718221123}
   - component: {fileID: 5620206267112346171}
   - component: {fileID: 5078938692872871081}
+  - component: {fileID: 6486521976098734696}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -262,3 +263,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
   interactAction: {fileID: 1495457442111385117, guid: 9633760eeb53b3143a4782d94791f940, type: 3}
   interactRadius: 1.2
+--- !u!95 &6486521976098734696
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955780817537956719}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
