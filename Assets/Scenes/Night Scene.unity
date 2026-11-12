@@ -666,6 +666,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: 9777520f0799d2948803e8d841a5667b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 017411b67d0939340b2a0117016388ab, type: 2}
     - target: {fileID: 8771091787928289351, guid: 9777520f0799d2948803e8d841a5667b, type: 3}
       propertyPath: m_Name
       value: D4_Ship6
@@ -3647,6 +3651,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: a3b8443c877d0f549b3bb5b0b467f3da, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 51b8c4cb68226ea4ca622ba9092f8508, type: 2}
     - target: {fileID: 8771091787928289351, guid: a3b8443c877d0f549b3bb5b0b467f3da, type: 3}
       propertyPath: m_Name
       value: D4_Ship4
@@ -3749,6 +3757,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: a9d5a5db0f1705644af8f1491793dd37, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e53f011accbb07841b601149588571bd, type: 2}
     - target: {fileID: 8771091787928289351, guid: a9d5a5db0f1705644af8f1491793dd37, type: 3}
       propertyPath: m_Name
       value: D3_Ship2
@@ -5440,6 +5452,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: 8f16d9ce193a90a48bf5f738d5528015, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 421895a0d5fdabb4991da6a184c0aa48, type: 2}
     - target: {fileID: 8771091787928289351, guid: 8f16d9ce193a90a48bf5f738d5528015, type: 3}
       propertyPath: m_Name
       value: D4_Ship9
@@ -5544,6 +5560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: 1c84fdded4d55684fbd393fdcd3634d6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a09d8accac91704abf0d24b66863216, type: 2}
     - target: {fileID: 8771091787928289351, guid: 1c84fdded4d55684fbd393fdcd3634d6, type: 3}
       propertyPath: m_Name
       value: D4_Ship3
@@ -5695,6 +5715,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: de4fc279f1a82cd42bf69fc48c383d02, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7208bd6bb0f48cc4fb5b3d3c9fc2c34d, type: 2}
     - target: {fileID: 8771091787928289351, guid: de4fc279f1a82cd42bf69fc48c383d02, type: 3}
       propertyPath: m_Name
       value: D3_Ship5
@@ -6057,6 +6081,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: 3dd61b747dcee4941a15b4d31256d9d7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a0f227ac813b4b24cadfc504dfeb2d5c, type: 2}
     - target: {fileID: 8771091787928289351, guid: 3dd61b747dcee4941a15b4d31256d9d7, type: 3}
       propertyPath: m_Name
       value: D3_Ship4
@@ -7141,6 +7169,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: 76c99c63da3ebb043900812942741b10, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4df7d41c56b3db24fbfe67393e9aed8c, type: 2}
     - target: {fileID: 8771091787928289351, guid: 76c99c63da3ebb043900812942741b10, type: 3}
       propertyPath: m_Name
       value: D4_Ship1
@@ -8299,6 +8331,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: 7df84a4a2c3fb454c8554a712c7edcdf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 545c2a386d9f11b4a90bdccf4e2cff96, type: 2}
     - target: {fileID: 8771091787928289351, guid: 7df84a4a2c3fb454c8554a712c7edcdf, type: 3}
       propertyPath: m_Name
       value: D4_Ship2
@@ -9501,6 +9537,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863068597267636011, guid: adc0a097f985309419f2d0ea110907d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43fef57f083b16049a8555905c9c1865, type: 2}
     - target: {fileID: 8771091787928289351, guid: adc0a097f985309419f2d0ea110907d5, type: 3}
       propertyPath: m_Name
       value: D3_Ship3
