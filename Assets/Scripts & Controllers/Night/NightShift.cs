@@ -43,6 +43,9 @@ public class NightShift : MonoBehaviour
 
     private int ReportedCount => tonight.FindAll(ship => ship.IsReported).Count;
 
+    // Tonight's number: the day when the day loop sent you here, otherwise Preview Night (NightWeather uses it too).
+    public int Night => GameState.Instance.Phase == DayPhase.Night ? GameState.Instance.CurrentDay : previewNight;
+
     public float TimeLimit(int night)
     {
         if (nightSeconds == null || nightSeconds.Length == 0) return 60f;
@@ -53,7 +56,7 @@ public class NightShift : MonoBehaviour
     {
         timerLabel.gameObject.SetActive(false);
         isRunning = GameState.Instance.Phase == DayPhase.Night;
-        int night = isRunning ? GameState.Instance.CurrentDay : previewNight;
+        int night = Night;
         foreach (NightShip ship in ships.GetComponentsInChildren<NightShip>(true))
         {
             bool sails = night <= 0 || ship.SailsOnNight(night);
