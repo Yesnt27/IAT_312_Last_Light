@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI dialogueArea;
     [SerializeField] private GameObject dialogueBox;
+    [Tooltip("\"Click to continue\"; hidden for timed lines (cutscene videos), which go away by themselves.")]
+    [SerializeField] private GameObject continueHint;
 
     [Header("Input")]
     [SerializeField] private InputActionReference advanceAction;
@@ -63,6 +65,7 @@ public class DialogueManager : MonoBehaviour
         startedFrame = Time.frameCount;
         PlayerLock.Add(this);
         dialogueBox.SetActive(true);
+        if (continueHint != null) continueHint.SetActive(true);
         lines.Clear();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
@@ -97,7 +100,32 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        currentLine = lines.Dequeue();
+        ShowLine(lines.Dequeue());
+    }
+
+    // A line that shows without waiting for clicks (e.g. under a cutscene video); HideTimedLine takes it away.
+    // Ignored while a normal dialogue is open.
+    public void ShowTimedLine(DialogueLine line)
+    {
+        if (isDialogueActive) return;
+
+        dialogueBox.SetActive(true);
+        if (continueHint != null) continueHint.SetActive(false);
+        ShowLine(line);
+    }
+
+    public void HideTimedLine()
+    {
+        if (isDialogueActive) return;
+
+        StopAllCoroutines();
+        isTyping = false;
+        dialogueBox.SetActive(false);
+    }
+
+    private void ShowLine(DialogueLine line)
+    {
+        currentLine = line;
         bool hasSpeaker = currentLine.character != null && !string.IsNullOrEmpty(currentLine.character.name);
         characterNameText.gameObject.SetActive(hasSpeaker);
         characterNameText.text = hasSpeaker ? currentLine.character.name : "";

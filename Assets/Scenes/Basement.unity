@@ -704,6 +704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
   maxDistanceFromPlayer: 0
   hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites: []
 --- !u!114 &518257120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +746,8 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  closeUpPicture: {fileID: 0}
+  closeUpTitle: 
 --- !u!1 &598836808
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +849,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1487606343}
     m_Modifications:
+    - target: {fileID: 914123549548119089, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1250385829456314142, guid: 136df4206f3102b45a38d9ca74ed5363, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
@@ -1017,7 +1024,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9214816946985267111, guid: 1d3267d824dacb749837b740eb1fa504, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1659,6 +1666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
   maxDistanceFromPlayer: 0
   hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites: []
 --- !u!114 &1733669275
 MonoBehaviour:
   m_ObjectHideFlags: 0
