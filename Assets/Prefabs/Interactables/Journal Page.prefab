@@ -220,7 +220,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -328,6 +328,13 @@ MonoBehaviour:
   unlockFlag: 
   lockedDialogue:
     dialogueLines: []
+  whenTriedWhileLocked:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  interactSound: {fileID: 8300000, guid: 5640bef8a87fac64bbb5f48367723562, type: 3}
+  lockedSound: {fileID: 0}
+  soundVolume: 0.18
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -337,6 +344,11 @@ MonoBehaviour:
     - character:
         name: 
       text: '*You found a page from the journal*'
+  afterFound:
+    newTaskId: 
+    newTaskText: 
+    setFlag: 
+  pickUpOnTouch: 0
 --- !u!114 &5163814366634329975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,3 +363,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickToInteract
   maxDistanceFromPlayer: 0
   hoverTint: {r: 1, g: 1, b: 0.55, a: 1}
+  clickableSprites: []

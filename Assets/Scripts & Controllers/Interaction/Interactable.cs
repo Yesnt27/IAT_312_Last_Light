@@ -21,6 +21,14 @@ public class Interactable : MonoBehaviour
     [Tooltip("Applied after the locked dialogue, e.g. start the 'find the key' task.")]
     [SerializeField] private StoryOutcome whenTriedWhileLocked = new StoryOutcome();
 
+    [Header("Sound (optional)")]
+    [Tooltip("Plays every time it's used (e.g. a cupboard opening or closing).")]
+    [SerializeField] private AudioClip interactSound;
+    [Tooltip("Plays when it's tried while locked.")]
+    [SerializeField] private AudioClip lockedSound;
+    [Range(0f, 1f)]
+    [SerializeField] private float soundVolume = 1f;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onInteract;
 
@@ -33,10 +41,12 @@ public class Interactable : MonoBehaviour
     {
         if (IsLocked)
         {
+            SoundEffects.Play(lockedSound, soundVolume);
             DialogueManager.instance.StartDialogue(lockedDialogue, whenTriedWhileLocked.Apply);
             return;
         }
 
+        SoundEffects.Play(interactSound, soundVolume);
         OnInteract();
         onInteract?.Invoke();
     }

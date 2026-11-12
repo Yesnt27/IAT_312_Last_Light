@@ -19,6 +19,10 @@ public class Safe : Interactable
     [SerializeField] private GameObject closedArt;
     [SerializeField] private GameObject openArt;
 
+    [Header("Sound")]
+    [Tooltip("Plays when the right code opens it.")]
+    [SerializeField] private AudioClip openedSound;
+
     private SafeKeypad openKeypad;
 
     private void Start()
@@ -37,6 +41,7 @@ public class Safe : Interactable
     private void OnCorrectCode()
     {
         ShowOpen(true);
+        SoundEffects.Play(openedSound);
         GameState.Instance.CollectPage(pageNumber);
         DialogueManager.instance.StartDialogue(openedDialogue, () => Journal.Instance.ShowPage(pageNumber, afterOpened.Apply));
     }

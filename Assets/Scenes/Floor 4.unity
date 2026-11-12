@@ -400,6 +400,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 0}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -687,6 +690,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 8300000, guid: 068e063692fcffe4ab8249aefabeb32a, type: 3}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -1473,6 +1479,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 8300000, guid: 068e063692fcffe4ab8249aefabeb32a, type: 3}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -1602,6 +1611,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 8300000, guid: 068e063692fcffe4ab8249aefabeb32a, type: 3}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -1699,6 +1711,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 0}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -2386,6 +2401,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 8300000, guid: 068e063692fcffe4ab8249aefabeb32a, type: 3}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -2564,6 +2582,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 0}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -2993,6 +3014,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 8300000, guid: 068e063692fcffe4ab8249aefabeb32a, type: 3}
+  lockedSound: {fileID: 8300000, guid: 068e063692fcffe4ab8249aefabeb32a, type: 3}
+  soundVolume: 0.02
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -3394,6 +3418,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 8300000, guid: f90573cb2729c254692ba76a4f8612da, type: 3}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -3417,6 +3444,7 @@ MonoBehaviour:
     setFlag: SafeOpened
   closedArt: {fileID: 1597260799}
   openArt: {fileID: 20943103}
+  openedSound: {fileID: 8300000, guid: f90573cb2729c254692ba76a4f8612da, type: 3}
 --- !u!61 &1455671560
 BoxCollider2D:
   m_ObjectHideFlags: 0
