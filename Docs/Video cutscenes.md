@@ -4,11 +4,12 @@ The bedtime cutscenes are now videos. They're in `Assets/Visual Assets/videos/`:
 
 | Clip | Plays | Length | Dialogue box |
 |---|---|---|---|
-| `sleep 1` | Day 1's bedtime (after the first night) | 3.4 s | none |
-| `sleep 2` | Day 2's bedtime | 4.1 s | *\*A shadow passes by...\** for the whole clip |
+| `sleep 2` | Day 1's bedtime (after the first night): going to sleep | 4.1 s | none |
+| `sleep 1` | Day 2's bedtime: a shadow passes by | 3.4 s | none (the clip shows it) |
 | `sleep 3` | Day 3's bedtime | 7.5 s | none |
+| `sleep 2` | Day 4's bedtime (the last one, before the ending) | 4.1 s | Manager: *"We're coming to pick you up tomorrow."* for the whole clip |
 
-Day 4's bedtime is still the text card (the radio call), and it leads into the ending.
+Day 4's bedtime used to be a text card (the radio call); it's now the `sleep 2` clip with the Manager's line, and it leads into the ending.
 
 **When they play:** the player presses E on the bed, the screen fades to black, and the clip plays full screen. The dialogue box shows on top at the set times. When the clip ends, the screen is black again and the next morning loads. **Esc skips** a clip. The player can't move while it plays.
 
@@ -28,12 +29,12 @@ On the same **Bedtime Cutscene**, open **Video Lines**. Each entry is one line i
 
 | Field | What it does |
 |---|---|
-| **Line → Character → Name** | Speaker name above the text. Leave it empty for no speaker (like *\*A shadow passes by...\**). |
+| **Line → Character → Name** | Speaker name above the text. Leave it empty for no speaker (for a sound cue like *\*Static\**). |
 | **Line → Text** | What the box says. |
 | **Start Time** | Seconds into the clip when the line appears. `0` = from the start. |
 | **End Time** | Seconds into the clip when it goes away. **`0` = stays until the clip ends.** |
 
-- **Day 2 now:** one line, Start 0 / End 0, so the box is on screen for the whole 4.1 s clip.
+- **Day 4 now:** one line (Manager), Start 0 / End 0, so the box is on screen for the whole 4.1 s clip.
 - **More lines:** press **+** and give them back-to-back times. For example, line 1 from 0 to 2 and line 2 from 2 to 0 (the end).
 - **Gaps:** between two lines' times, the box hides.
 - **Overlaps:** if two lines' times overlap, the one lower in the list shows.

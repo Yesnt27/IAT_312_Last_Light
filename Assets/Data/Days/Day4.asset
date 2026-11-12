@@ -32,3 +32,11 @@ MonoBehaviour:
     title: '#4 Last bedtime'
     description: 'Radio call with the higher up: "We will pick you up bright and early in the morning."'
     scene: 
+    video: {fileID: 32900000, guid: 12234dd4cedf57f48b580f3717c5c450, type: 3}
+    videoLines:
+    - line:
+        character:
+          name: Manager
+        text: We're coming to pick you up tomorrow.
+      startTime: 0
+      endTime: 0

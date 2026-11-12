@@ -168,7 +168,7 @@ Ships per night are now **3 / 4 / 4 / 7**: the last night has 3 more than night 
 On the Systems prefab → **Day Manager → Ending**:
 - **Ending Cutscene** was emptied. It was a placeholder card: *Ending / The player watches a ship arrive. A boat horn sounds.*
 - **Victory Cutscene → Scene** = `Ending 1 - Win`.
-- **Death Cutscene** is unchanged. It still plays instead of Victory if the player reported **Ghost Ships To Lose** (3) or more abnormal ships as Real.
+- **Death Cutscene** (the bad ending, scene `Ending2`) plays instead of Victory if the player failed more than **Max Failed Ships** (12) of the 24 ships. See `Docs/Endings, night report, day cards and player.md`.
 
 So after Day 4's bedtime card, the morning loads **Ending 1 - Win** (it's in Build Settings).
 

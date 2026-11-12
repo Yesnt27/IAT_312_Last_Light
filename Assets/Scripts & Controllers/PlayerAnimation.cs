@@ -1,28 +1,37 @@
 using UnityEngine;
 
+// On the Player: plays the walk / jump / idle animations (Animator on the Art child, controller
+// Visual Assets/player/player.controller) from what PlayerController is doing, so they follow the real controls:
+// nothing animates while the player is frozen (dialogue, puzzles), and the jump pose shows only when actually in the air.
+[RequireComponent(typeof(PlayerController))]
 public class PlayerAnimation : MonoBehaviour
 {
-    private Animator animator;
-    private int isWalkingHash = Animator.StringToHash("IsWalking");
-    private int isJumpingHash = Animator.StringToHash("IsJumping");
+    private static readonly int IsWalkingHash = Animator.StringToHash("IsWalking");
+    private static readonly int IsJumpingHash = Animator.StringToHash("IsJumping");
 
+    [Header("References")]
+    [SerializeField] private Animator animator;
 
+    [Header("Jump Pose")]
+    [Tooltip("Seconds off the ground (while not rising) before the jump pose plays, so walking down stairs stays a walk.")]
+    [SerializeField] private float fallTimeBeforeJumpPose = 0.15f;
+    [Tooltip("Rising faster than this (a jump) shows the jump pose straight away.")]
+    [SerializeField] private float risingSpeed = 1f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private PlayerController controller;
+    private float airTime;
+
+    private void Awake()
     {
-        animator = GetComponent<Animator>();
+        controller = GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        bool isMoving = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
-        animator.SetBool(isWalkingHash, isMoving);
+        airTime = controller.IsGrounded ? 0f : airTime + Time.deltaTime;
+        bool inAir = !controller.IsGrounded && (controller.VerticalSpeed > risingSpeed || airTime > fallTimeBeforeJumpPose);
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetTrigger(isJumpingHash);
-        }
+        animator.SetBool(IsWalkingHash, controller.MoveInput != 0f);
+        animator.SetBool(IsJumpingHash, inAir);
     }
 }

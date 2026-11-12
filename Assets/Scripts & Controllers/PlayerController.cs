@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
 
     private bool CanControl => !PlayerLock.IsLocked;
 
+    public float MoveInput => moveInput;
+    public bool IsGrounded => isGrounded;
+    public float VerticalSpeed => rb.linearVelocity.y;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

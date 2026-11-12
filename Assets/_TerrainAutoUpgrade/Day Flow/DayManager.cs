@@ -49,10 +49,26 @@ public class DayManager : MonoBehaviour
     [Tooltip("Plays when the player arrives at the bed after the night.")]
     [SerializeField] private Dialogue afterNightDialogue;
 
+    [Header("Night Report")]
+    [Tooltip("Tonight's ships, then the whole game's failed ships. {0} guided, {1} abnormal caught, {2} abnormal let through, " +
+             "{3} normal ships reported, {4} not reported in time, {5} failed tonight, {6} failed in all, {7} ships in all so far.")]
+    [SerializeField, TextArea(4, 10)] private string nightReportText =
+        "Ships guided safely: {0}\nAbnormal ships caught: {1}\nAbnormal ships let through: {2}\n" +
+        "Normal ships wrongly reported: {3}\nNot reported in time: {4}\n\nFailed tonight: {5}\nTotal failed ships: {6} of {7}";
+
+    [Header("Day Card")]
+    [Tooltip("Black screen with the upcoming day on it (Assets/Prefabs/UI/Day Card), shown before each day starts. Empty = none.")]
+    [SerializeField] private DayCard dayCardPrefab;
+    [Tooltip("Also show it before Day 1 (after the intro).")]
+    [SerializeField] private bool showDayCardOnFirstDay = true;
+
     [Header("Ending")]
-    [SerializeField] private int ghostShipsToLose = 3;
+    [Tooltip("The bad ending (Death Cutscene) plays when MORE ships than this were failed over all the nights: abnormal ships " +
+             "let through, normal ships reported, or ships not reported in time. There are 24 ships in all (3 + 5 + 7 + 9).")]
+    [SerializeField] private int maxFailedShips = 12;
     [SerializeField] private CutsceneCard endingCutscene;
     [SerializeField] private CutsceneCard victoryCutscene;
+    [Tooltip("The bad ending.")]
     [SerializeField] private CutsceneCard deathCutscene;
 
     private string stayInScene;
@@ -133,7 +149,18 @@ public class DayManager : MonoBehaviour
         BeginDay(day);
     }
 
+    // The day card first (if any), then the day itself.
     public void BeginDay(int day)
+    {
+        if (dayCardPrefab != null && (day > 1 || showDayCardOnFirstDay))
+        {
+            Instantiate(dayCardPrefab).Show(day, () => StartDay(day));
+            return;
+        }
+        StartDay(day);
+    }
+
+    private void StartDay(int day)
     {
         DayDefinition definition = GetDay(day);
         GameState state = GameState.Instance;
@@ -153,6 +180,7 @@ public class DayManager : MonoBehaviour
 
         DayDefinition definition = CurrentDay;
         GameState state = GameState.Instance;
+        state.StartNightResults();
         state.SetPhase(DayPhase.Night);
         state.SetTask(NightShiftTask, $"{nightShiftTaskText} ({definition.ShipCount} ships)");
 
@@ -182,10 +210,7 @@ public class DayManager : MonoBehaviour
     public void EndNight()
     {
         GameState state = GameState.Instance;
-        string report = $"Ships guided: {state.ShipsGuided}\nGhost ships caught: {state.GhostShipsCaught}\n" +
-                        $"Ghost ships missed: {state.GhostShipsMissed}\nFalse alarms: {state.FalseAlarms}";
-
-        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, () =>
+        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", NightReport(), () =>
         {
             state.SetPhase(DayPhase.Bedtime);
             state.SetTask(GoToBedTask, goToBedTaskText);
@@ -198,10 +223,18 @@ public class DayManager : MonoBehaviour
         if (GameState.Instance.Phase != DayPhase.Night) return;
 
         GameState state = GameState.Instance;
-        string report = $"Ships guided: {state.ShipsGuided}\nAbnormal ships caught: {state.GhostShipsCaught}\n" +
-                        $"Abnormal ships missed: {state.GhostShipsMissed}\nNot reported in time: {state.ShipsNotReported}";
-        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", report, ReturnToBed);
+        CutscenePlaceholder.Instance.ShowCard($"NIGHT {state.CurrentDay} REPORT", NightReport(), ReturnToBed);
     }
+
+    private string NightReport()
+    {
+        ShipStats tonight = GameState.Instance.Tonight;
+        ShipStats total = GameState.Instance.Total;
+        return string.Format(nightReportText, tonight.guided, tonight.caught, tonight.missed, tonight.falseAlarms,
+            tonight.notReported, tonight.Failed, total.Failed, total.Ships);
+    }
+
+    public bool IsBadEnding => GameState.Instance.Total.Failed > maxFailedShips;
 
     // The player wakes back up in 2D beside the bed with the "Head to bed" task; the Bed then ends the day.
     private void ReturnToBed()
@@ -298,7 +331,7 @@ public class DayManager : MonoBehaviour
         state.SetPhase(DayPhase.Ending);
 
         yield return ShowAndWait(endingCutscene);
-        yield return ShowAndWait(state.GhostShipsMissed >= ghostShipsToLose ? deathCutscene : victoryCutscene);
+        yield return ShowAndWait(IsBadEnding ? deathCutscene : victoryCutscene);
 
         stayInScene = null;
         if (string.IsNullOrEmpty(titleScene)) StartNewGame();

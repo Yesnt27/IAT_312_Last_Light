@@ -19,11 +19,10 @@ public class GameState : MonoBehaviour
     [SerializeField] private string activeTaskText;
 
     [Header("Night Results")]
-    [SerializeField] private int shipsGuided;
-    [SerializeField] private int ghostShipsCaught;
-    [SerializeField] private int ghostShipsMissed;
-    [SerializeField] private int falseAlarms;
-    [SerializeField] private int shipsNotReported;
+    [Tooltip("The current (or last) night only; cleared when a night starts.")]
+    [SerializeField] private ShipStats tonight = new ShipStats();
+    [Tooltip("Every night this game; decides the ending.")]
+    [SerializeField] private ShipStats total = new ShipStats();
 
     public event Action Changed;
 
@@ -33,11 +32,8 @@ public class GameState : MonoBehaviour
     public string ActiveTaskId => activeTaskId;
     public string ActiveTaskText => activeTaskText;
     public IReadOnlyList<int> CollectedPages => collectedPages;
-    public int ShipsGuided => shipsGuided;
-    public int GhostShipsCaught => ghostShipsCaught;
-    public int GhostShipsMissed => ghostShipsMissed;
-    public int FalseAlarms => falseAlarms;
-    public int ShipsNotReported => shipsNotReported;
+    public ShipStats Tonight => tonight;
+    public ShipStats Total => total;
 
     public bool HasBasementKey => HasFlag(GameFlags.BasementKey);
     public bool HasJournal => HasFlag(GameFlags.Journal);
@@ -117,11 +113,17 @@ public class GameState : MonoBehaviour
         return !string.IsNullOrEmpty(taskId) && activeTaskId == taskId;
     }
 
-    public void RecordShipGuided() { shipsGuided++; Changed?.Invoke(); }
-    public void RecordGhostShipCaught() { ghostShipsCaught++; Changed?.Invoke(); }
-    public void RecordGhostShipMissed() { ghostShipsMissed++; Changed?.Invoke(); }
-    public void RecordFalseAlarm() { falseAlarms++; Changed?.Invoke(); }
-    public void RecordShipNotReported() { shipsNotReported++; Changed?.Invoke(); }
+    public void StartNightResults()
+    {
+        tonight.Clear();
+        Changed?.Invoke();
+    }
+
+    public void RecordShipGuided() { tonight.guided++; total.guided++; Changed?.Invoke(); }
+    public void RecordGhostShipCaught() { tonight.caught++; total.caught++; Changed?.Invoke(); }
+    public void RecordGhostShipMissed() { tonight.missed++; total.missed++; Changed?.Invoke(); }
+    public void RecordFalseAlarm() { tonight.falseAlarms++; total.falseAlarms++; Changed?.Invoke(); }
+    public void RecordShipNotReported() { tonight.notReported++; total.notReported++; Changed?.Invoke(); }
 
     public void ResetAll()
     {
@@ -132,11 +134,8 @@ public class GameState : MonoBehaviour
         collectedPages.Clear();
         activeTaskId = null;
         activeTaskText = null;
-        shipsGuided = 0;
-        ghostShipsCaught = 0;
-        ghostShipsMissed = 0;
-        falseAlarms = 0;
-        shipsNotReported = 0;
+        tonight.Clear();
+        total.Clear();
         Changed?.Invoke();
     }
 }
