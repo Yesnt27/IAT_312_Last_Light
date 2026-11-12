@@ -238,6 +238,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 0}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -680,6 +683,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 0}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -692,7 +698,7 @@ MonoBehaviour:
       text: Every symbol on the note is in that book... each one stands for a number.
     - character:
         name: Player
-      text: Six symbols, six numbers. The safe on the fourth floor has a six-digit lock.
+      text: Six symbols, six numbers. The safe on the third floor has a six-digit lock.
   afterFindingClue:
     newTaskId: day3_open_safe
     newTaskText: '*Decode the note with the symbol book, then open the safe on the fourth floor*'
@@ -754,6 +760,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 0}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -2721,6 +2730,9 @@ MonoBehaviour:
     newTaskId: 
     newTaskText: 
     setFlag: 
+  interactSound: {fileID: 0}
+  lockedSound: {fileID: 0}
+  soundVolume: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []
