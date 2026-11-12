@@ -26,7 +26,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private AudioClip interactSound;
     [Tooltip("Plays when it's tried while locked.")]
     [SerializeField] private AudioClip lockedSound;
-    [Range(0f, 1f)]
+    [Range(0f, 3f)]
     [SerializeField] private float soundVolume = 1f;
 
     [Header("Events")]

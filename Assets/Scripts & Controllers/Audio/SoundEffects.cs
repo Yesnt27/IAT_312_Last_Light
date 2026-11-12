@@ -9,9 +9,9 @@ public class SoundEffects : MonoBehaviour
     public static SoundEffects Instance { get; private set; }
 
     [Header("Volume")]
-    [Tooltip("Multiplies every sound effect. While playing, change it on Systems(Clone) under DontDestroyOnLoad, not on the prefab.")]
-    [Range(0f, 1f)]
-    [SerializeField] private float masterVolume = 1f;
+    [Tooltip("Multiplies every sound effect (above 1 = louder than the files). While playing, change it on Systems(Clone) under DontDestroyOnLoad, not on the prefab.")]
+    [Range(0f, 3f)]
+    [SerializeField] private float masterVolume = 1.5f;
 
     private AudioSource source;
 

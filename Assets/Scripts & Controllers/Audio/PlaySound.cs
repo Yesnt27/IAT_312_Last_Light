@@ -6,7 +6,7 @@ public class PlaySound : MonoBehaviour
 {
     [Header("Sound")]
     [SerializeField] private AudioClip clip;
-    [Range(0f, 1f)]
+    [Range(0f, 3f)]
     [SerializeField] private float volume = 1f;
 
     [Header("When")]

@@ -42,6 +42,7 @@ public class FirstPersonController : MonoBehaviour
     public float LookSensitivityScale { get; set; } = 1f;
     public bool CanWalk { get; set; } = true;
     public bool IsSeated { get; private set; }
+    public bool IsWalking { get; private set; }
     // So the E that sat you down isn't also read as another E action.
     public bool SatDownThisFrame => Time.frameCount == satDownFrame;
     public Transform Eyes => cameraPivot;
@@ -69,6 +70,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        IsWalking = false;
         bool locked = PlayerLock.IsLocked;
         if (locked != wasLocked) CaptureCursor(!locked);
         wasLocked = locked;
@@ -122,6 +124,7 @@ public class FirstPersonController : MonoBehaviour
         Vector2 input = CanWalk ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
         Vector3 walk = (transform.right * input.x + transform.forward * input.y) * moveSpeed;
 
+        IsWalking = input != Vector2.zero && controller.isGrounded;
         if (controller.isGrounded && verticalVelocity < 0f) verticalVelocity = -2f;
         if (CanWalk && controller.isGrounded && jumpAction.action.WasPressedThisFrame()) Jump();
         verticalVelocity += gravity * Time.deltaTime;

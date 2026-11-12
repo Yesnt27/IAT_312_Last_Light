@@ -119,6 +119,13 @@ Its fields:
 
 For another looping story sound (a ghostly whisper on Night 3, rain on one day...), select `Day 4 Horn` in the Systems prefab, press **Ctrl+D**, rename the copy and change its fields.
 
+## Added for the finishing touches
+
+- **Binoculars:** `tick` plays when they're raised to the eyes and when they're lowered. Night Scene → **Binoculars → Zoom Sound / Zoom Sound Volume** (2, because the file is quiet).
+- **Storm ambience:** Systems → Ambience has a third entry, **Night storm**: `badWeather` loops in the Night Scene on every night, volume 0.45.
+- **Footsteps:** `Audio/WalkSound.cs` on the **Player** prefab and on the Night Scene's **First Person Player** loops `walk` while the player walks on the ground. **Volume** (0.5) and **Fade Seconds** are on the component.
+- **Louder effects:** Sound Effects → **Master Volume** now goes up to 3 and is 1.5 (it was 0.81, and its Audio Source's own Volume was 0.6, so effects played at about half strength; the Audio Source is back at 1). Each interactable's **Sound Volume** also goes up to 3 for a single quiet clip.
+
 ## Music and looping sounds
 
 Background music and ambience (ocean, wind) are different: they loop and fade. Use an **Audio Source** on an object in the scene, with **Loop** and **Play On Awake** ticked. Outside's `zoom_music` adds **Music Fader** (`Audio/MusicFader.cs`) for fading in and out.

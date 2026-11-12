@@ -32,6 +32,10 @@ public class Binoculars : MonoBehaviour
     [Header("Looking")]
     [SerializeField] private float zoomFieldOfView = 12f;
     [SerializeField] private float zoomTime = 0.2f;
+    [Tooltip("Plays when the binoculars are raised to the eyes or lowered.")]
+    [SerializeField] private AudioClip zoomSound;
+    [Range(0f, 3f)]
+    [SerializeField] private float zoomSoundVolume = 2f;
     [Tooltip("Extra degrees around a ship that still count as aiming at it.")]
     [SerializeField] private float aimTolerance = 1f;
     [Tooltip("Seconds after selecting a ship before the binoculars lower by themselves. 0 = stay up until you click.")]
@@ -144,6 +148,7 @@ public class Binoculars : MonoBehaviour
 
     private void SetLooking(bool looking)
     {
+        if (looking != IsLooking) SoundEffects.Play(zoomSound, zoomSoundVolume);
         IsLooking = looking;
         lowerTimer = 0f;
         model.gameObject.SetActive(!looking);
