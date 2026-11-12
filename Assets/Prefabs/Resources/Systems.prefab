@@ -1467,6 +1467,13 @@ MonoBehaviour:
     - Night Scene
     clip: {fileID: 8300000, guid: c561846a160ef8e4888df207aa4b321e, type: 3}
     volume: 0.45
+  - name: Cutscene waves
+    scenes:
+    - Cut Scene 1 - Intro
+    - Ending 1 - Win
+    - Ending2
+    clip: {fileID: 8300000, guid: 0c281e9a25152b5408bede0552c367c3, type: 3}
+    volume: 1
   fadeSeconds: 1.5
   masterVolume: 1
 --- !u!1 &3391954708763810450
